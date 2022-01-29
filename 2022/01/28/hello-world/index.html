@@ -241,7 +241,7 @@
 
 
 
-    <a data-url="http://example.com/2022/01/28/hello-world/" data-id="ckyz8fgqg0005kcu668yo6gux" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://example.com/2022/01/28/hello-world/" data-id="ckyz8phku000188u63fuaa2e0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -561,8 +561,26 @@ Quick",
     </div>
     
     
-    <!-- Valine -->
-    <div class="vcomments"></div>
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "",
+            appId: "3Fxc2P6c5B6Fk87YwUCcJpul-gzGzoHsz",
+            appKey: "kta73VYGubbDJPMEEYTSUltS",
+            placeholder: "Just Do It",
+            avatar:"identicon",
+            recordIP:"true",
+            visitor: "true"
+        });
+    </script>
 
 
 

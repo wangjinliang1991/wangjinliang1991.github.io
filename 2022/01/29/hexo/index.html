@@ -237,7 +237,7 @@
 
 
 
-    <a data-url="http://example.com/2022/01/29/hexo/" data-id="ckyz8fgqe0003kcu6fqur77t4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://example.com/2022/01/29/hexo/" data-id="ckyz8phl5000788u6bs3f6ezb" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -554,8 +554,26 @@ menu菜单1hexo new page abc
     </div>
     
     
-    <!-- Valine -->
-    <div class="vcomments"></div>
+    <script src="//unpkg.com/valine"></script>
+    <script>
+        var GUEST = ['nick','mail','link'];
+        var meta = '';
+        meta = meta.split(',').filter(function (item) {
+            return GUEST.indexOf(item)>-1;
+        });
+        var avatarcdn = 'https://gravatar.loli.net/avatar/' == true;
+        new Valine({
+            el: '.vcomments',
+            notify: "",
+            verify: "",
+            appId: "3Fxc2P6c5B6Fk87YwUCcJpul-gzGzoHsz",
+            appKey: "kta73VYGubbDJPMEEYTSUltS",
+            placeholder: "Just Do It",
+            avatar:"identicon",
+            recordIP:"true",
+            visitor: "true"
+        });
+    </script>
 
 
 
