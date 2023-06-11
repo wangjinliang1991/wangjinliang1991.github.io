@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-06-11T01:18:30.067Z</updated>
+  <updated>2023-06-11T12:33:43.111Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>西北游玩指北</title>
+    <link href="http://example.com/2023/06/11/%E8%A5%BF%E5%8C%97%E6%B8%B8%E7%8E%A9%E6%8C%87%E5%8C%97/"/>
+    <id>http://example.com/2023/06/11/%E8%A5%BF%E5%8C%97%E6%B8%B8%E7%8E%A9%E6%8C%87%E5%8C%97/</id>
+    <published>2023-06-11T11:20:45.000Z</published>
+    <updated>2023-06-11T12:33:43.111Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;仅记录生活，照片见qq相册&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;西北，不仅是个地理概念，更是中国人的西部情节，有机会，就去西北游玩吧。&lt;/p&gt;
+&lt;h2 id=&quot;1-旅行tips&quot;&gt;&lt;a href=&quot;#1-旅行tips&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="旅行" scheme="http://example.com/tags/%E6%97%85%E8%A1%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>first article</title>
