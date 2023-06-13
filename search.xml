@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>first article</title>
+    <url>/2023/06/10/first-article/</url>
+    <content><![CDATA[<h3 id="chatGPT注册"><a href="#chatGPT注册" class="headerlink" title="chatGPT注册"></a>chatGPT注册</h3><p>号码平台</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sms-activate.org </span><br><span class="line">wjl31802@126.com	</span><br></pre></td></tr></table></figure>
+
+
+
+<p>chatGPT账号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bruce5haul@protonmail.com</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><p><a href="https://shimo.im/docs/vVAXM59KxriGmo3m/read">https://shimo.im/docs/vVAXM59KxriGmo3m/read</a></p>
+<h2 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h2><p>chatGPT+短视频+自动带货</p>
+<p>如何搞蒙面主播</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>《面向对象是怎么工作的》读书笔记</title>
+    <url>/2023/06/12/%E3%80%8A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="面向对象为什么被认为很抽象，难理解"><a href="#面向对象为什么被认为很抽象，难理解" class="headerlink" title="面向对象为什么被认为很抽象，难理解"></a>面向对象为什么被认为很抽象，难理解</h2><h3 id="结构复杂"><a href="#结构复杂" class="headerlink" title="结构复杂"></a>结构复杂</h3><p>OOP增加了很多结构，基本的结构有类、实例、实例变量、方法、构造函数、继承、超类、子类、多态、包、异常、垃圾回收等。比如下面这句话：</p>
+<blockquote>
+<p>类中定义了实例变量、构造函数和方法。在调用构造函数时，会创建实例，从而调用方法。通过继承，我们可以定义拥有超类所有性质的子类；通过多态，我们可以对所有子类以相同的方式来调用方法。</p>
+</blockquote>
+<h3 id="滥用比喻引发混乱"><a href="#滥用比喻引发混乱" class="headerlink" title="滥用比喻引发混乱"></a>滥用比喻引发混乱</h3><p>比如animal是父类，dog和cat是子类；人具有name的属性，给larry这个实例发出“请告诉我你的名字”，会得到“Larry”的回答。</p>
+<p>使用比喻能留给人深刻的印象，但是OOP在实际编程中的便利性难以传达。</p>
+<h3 id="概念太抽象"><a href="#概念太抽象" class="headerlink" title="概念太抽象"></a>概念太抽象</h3><p>万物皆对象，虽然很酷，但与现实世界的情形似是而非，因此需要我们拨云见日，领略真正的含义。</p>
+<p>多态让消息的发送方法变得通用；继承对共同点和不同点进行系统的分类和整理</p>
+<p>类、多态和继承被明确定义为能够提高软件的可维护性和可重用性的结构。类用于将变量和子程序汇总在一起，创建独立性高的构件；多态和继承用于消除重复代码，创建通用性强的构件。另外，实例能在运行时将实例变量在堆区展开。</p>
+<h2 id="OOP的由来"><a href="#OOP的由来" class="headerlink" title="OOP的由来"></a>OOP的由来</h2><ul>
+<li><p>纸带打孔</p>
+</li>
+<li><p>机器语言</p>
+</li>
+<li><p>汇编语言</p>
+</li>
+<li><p>高级语言 fortran 1957年  </p>
+</li>
+<li><p>60年代后半期NATO会议提出软件危机</p>
+</li>
+</ul>
+<p>如何应对软件危机？</p>
+<ul>
+<li>结构化编程 戴克斯特拉提出，其基本思想是：为了编写出能够正确运行的程序，采用简单易懂的结构是非常重要的。具体方法就是废除程序中难以理解的GOTO语句，只是用三种基本结构：循序(按照顺序)、选择(if)、重复执行(for)</li>
+</ul>
+<p>为什么要无GOTO？滥用GOTO语句导致控制流程像面条一样扭曲纠结在一起的状态，造成“面条式代码”。</p>
+<ul>
+<li>提高子程序的独立性</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术杂谈</category>
+      </categories>
+      <tags>
+        <tag>读书笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>西北游玩指北</title>
     <url>/2023/06/11/%E8%A5%BF%E5%8C%97%E6%B8%B8%E7%8E%A9%E6%8C%87%E5%8C%97/</url>
     <content><![CDATA[<blockquote>
@@ -59,26 +117,12 @@
 <h3 id="麦积烟雨"><a href="#麦积烟雨" class="headerlink" title="麦积烟雨"></a>麦积烟雨</h3><p>石窟开凿的痕迹还很明显，不像中原的登峰造极，更让我们看到佛法西来的历史脚印</p>
 <p><img src="http://rw2wfzipz.bkt.clouddn.com/maiji.jpg" alt="maiji"></p>
 ]]></content>
+      <categories>
+        <category>旅行</category>
+      </categories>
       <tags>
         <tag>旅行</tag>
+        <tag>西北</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>first article</title>
-    <url>/2023/06/10/first-article/</url>
-    <content><![CDATA[<h3 id="chatGPT注册"><a href="#chatGPT注册" class="headerlink" title="chatGPT注册"></a>chatGPT注册</h3><p>号码平台</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sms-activate.org </span><br><span class="line">wjl31802@126.com	</span><br></pre></td></tr></table></figure>
-
-
-
-<p>chatGPT账号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bruce5haul@protonmail.com</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><p><a href="https://shimo.im/docs/vVAXM59KxriGmo3m/read">https://shimo.im/docs/vVAXM59KxriGmo3m/read</a></p>
-<h2 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h2><p>chatGPT+短视频+自动带货</p>
-<p>如何搞蒙面主播</p>
-]]></content>
   </entry>
 </search>
