@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>first article</title>
-    <url>/2023/06/10/first-article/</url>
-    <content><![CDATA[<h3 id="chatGPT注册"><a href="#chatGPT注册" class="headerlink" title="chatGPT注册"></a>chatGPT注册</h3><p>号码平台</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sms-activate.org </span><br><span class="line">wjl31802@126.com	</span><br></pre></td></tr></table></figure>
-
-
-
-<p>chatGPT账号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bruce5haul@protonmail.com</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><p><a href="https://shimo.im/docs/vVAXM59KxriGmo3m/read">https://shimo.im/docs/vVAXM59KxriGmo3m/read</a></p>
-<h2 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h2><p>chatGPT+短视频+自动带货</p>
-<p>如何搞蒙面主播</p>
-]]></content>
-  </entry>
-  <entry>
     <title>hexo博客搭建过程记录</title>
     <url>/2023/06/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
@@ -75,6 +57,34 @@
       </tags>
   </entry>
   <entry>
+    <title>文件存储系列</title>
+    <url>/2023/06/14/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E7%B3%BB%E5%88%97/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在文件存储中，有很多名词，会让人疑惑，本人对这块也是一知半解，需要系统梳理。参考书目为《文件系统内幕：大数据时代海量数据存储之道》。逻辑为文件系统-&gt;网络文件系统-&gt;分布式文件系统</p>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="文件系统-1"><a href="#文件系统-1" class="headerlink" title="文件系统"></a>文件系统</h4><p>文件系统是一个控制数据存取的软件系统，它实现了文件的增、删、改、查。而通常我们所说的文件系统是构建在硬盘（SSD卡和SD卡等）中的。因此，文件系统其实就是一个对硬盘（或者说块设备）空间进行管理，实现数据存取的软件系统。</p>
+<p>从狭义上来说，文件系统实现了对磁盘数据的存取。而从广义上来说，文件系统未必需要构建在磁盘中，它还可以构建在网络或内存中。无论构建在哪种设备上，最为核心的功能是实现对数据的存取。</p>
+<p>除对数据的存取外，文件系统更重要的一个功能是抽象了一个更加容易访问存储空间的接口。这里所说的接口包括用于程序开发的API接口和普通用户的操作接口。</p>
+<p>关系：文件系统(目录树) -&gt; 硬盘驱动器 -&gt; 底层硬件设备(硬盘)</p>
+<p>文件系统对文件进行了抽象化处理，对文件系统而言，所有文件都是字节流，它并不关注文件的格式与内容。文件的格式是由具体的应用软件来负责的。</p>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><p>目录是一种容器，可以容纳子目录和普通文件。目录本身也是一种文件。只不过目录中存储的数据是特殊的数据，这些数据就是关于文件名称等元数据（管理数据的数据）的信息。存储的数据其实是文件名与一个数字(<code>inode Id</code>)的对应关系</p>
+<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><p>在文件系统中，最基本的概念是文件，文件是存储数据的实体。文件系统为每个文件都分配了一个名称，称为文件名。通常包含两部分，并通过“.”进行了分隔，但并非绝对。</p>
+<p>第一部分称为文件主名，它表示该文件的标识，就好像人名一样；第二部分称为扩展名，它的作用是标识文件的类型。</p>
+<h4 id="文件的内部"><a href="#文件的内部" class="headerlink" title="文件的内部"></a>文件的内部</h4><p>从开发的角度看，文件就是个线性空间，类似数组。与数组不同的是文件的大小是可以变化的，当写入更多的数据时，文件的容量就会变大。</p>
+<p>从文件系统层面，其真实位置可能在磁盘的任意位置。一个文件通常在逻辑上被划分为若干等份，每一份被称为一个逻辑块（Block）。连续的block对应的磁盘物理位置并不固定，分散在很多地方。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E6%96%87%E4%BB%B61.jpg" alt="文件1"></p>
+<h4 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h4><p>文件系统不关心文件是什么格式的，而是把所有文件看作字节流。用户层面需要关心文件的格式。操作系统层面建立了文件格式与软件的关联，因此当双击文件的图标时就会自动使用对应的软件打开该文件。系统缺少相关的软件，或者关联关系被破坏，就无法打开该文件。</p>
+<h4 id="链接link"><a href="#链接link" class="headerlink" title="链接link"></a>链接link</h4><p>链接是Linux文件系统的概念，在Windows和macOS中通常被称为快捷方式。</p>
+<p>分为软链接（Soft Link）和硬链接（Hard Link）两种。其中，软链接又被称为符号链接（Symbolic Link），它是文件的另外一种形态，其内容指向另外一个文件路径（相对路径或绝对路径）。硬链接则不同，它是一个已经存在文件的附加名称，也就是同一个文件的第2个或第N个名称。</p>
+<p>软链接有”-&gt;”符号，指示了该链接所指向的目的文件。硬链接与源文件的inode ID是一样的，指向同一个文件。</p>
+<p>链接的作用？实现对源文件的快速访问，且节省存储空间。如在B目录使用A目录的某个文件，通过链接的方式，在源文件发生变化的情况下可以马上感知，不需要重新复制，同时又节省存储空间。</p>
+]]></content>
+      <categories>
+        <category>文件系统</category>
+      </categories>
+      <tags>
+        <tag>文件存储</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《面向对象是怎么工作的》读书笔记</title>
     <url>/2023/06/12/%E3%80%8A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="面向对象为什么被认为很抽象，难理解"><a href="#面向对象为什么被认为很抽象，难理解" class="headerlink" title="面向对象为什么被认为很抽象，难理解"></a>面向对象为什么被认为很抽象，难理解</h2><h3 id="结构复杂"><a href="#结构复杂" class="headerlink" title="结构复杂"></a>结构复杂</h3><p>OOP增加了很多结构，基本的结构有类、实例、实例变量、方法、构造函数、继承、超类、子类、多态、包、异常、垃圾回收等。比如下面这句话：</p>
@@ -112,34 +122,6 @@
       </categories>
       <tags>
         <tag>读书笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>文件存储系列</title>
-    <url>/2023/06/14/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E7%B3%BB%E5%88%97/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在文件存储中，有很多名词，会让人疑惑，本人对这块也是一知半解，需要系统梳理。参考书目为《文件系统内幕：大数据时代海量数据存储之道》。逻辑为文件系统-&gt;网络文件系统-&gt;分布式文件系统</p>
-<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="文件系统-1"><a href="#文件系统-1" class="headerlink" title="文件系统"></a>文件系统</h4><p>文件系统是一个控制数据存取的软件系统，它实现了文件的增、删、改、查。而通常我们所说的文件系统是构建在硬盘（SSD卡和SD卡等）中的。因此，文件系统其实就是一个对硬盘（或者说块设备）空间进行管理，实现数据存取的软件系统。</p>
-<p>从狭义上来说，文件系统实现了对磁盘数据的存取。而从广义上来说，文件系统未必需要构建在磁盘中，它还可以构建在网络或内存中。无论构建在哪种设备上，最为核心的功能是实现对数据的存取。</p>
-<p>除对数据的存取外，文件系统更重要的一个功能是抽象了一个更加容易访问存储空间的接口。这里所说的接口包括用于程序开发的API接口和普通用户的操作接口。</p>
-<p>关系：文件系统(目录树) -&gt; 硬盘驱动器 -&gt; 底层硬件设备(硬盘)</p>
-<p>文件系统对文件进行了抽象化处理，对文件系统而言，所有文件都是字节流，它并不关注文件的格式与内容。文件的格式是由具体的应用软件来负责的。</p>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><p>目录是一种容器，可以容纳子目录和普通文件。目录本身也是一种文件。只不过目录中存储的数据是特殊的数据，这些数据就是关于文件名称等元数据（管理数据的数据）的信息。存储的数据其实是文件名与一个数字(<code>inode Id</code>)的对应关系</p>
-<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><p>在文件系统中，最基本的概念是文件，文件是存储数据的实体。文件系统为每个文件都分配了一个名称，称为文件名。通常包含两部分，并通过“.”进行了分隔，但并非绝对。</p>
-<p>第一部分称为文件主名，它表示该文件的标识，就好像人名一样；第二部分称为扩展名，它的作用是标识文件的类型。</p>
-<h4 id="文件的内部"><a href="#文件的内部" class="headerlink" title="文件的内部"></a>文件的内部</h4><p>从开发的角度看，文件就是个线性空间，类似数组。与数组不同的是文件的大小是可以变化的，当写入更多的数据时，文件的容量就会变大。</p>
-<p>从文件系统层面，其真实位置可能在磁盘的任意位置。一个文件通常在逻辑上被划分为若干等份，每一份被称为一个逻辑块（Block）。连续的block对应的磁盘物理位置并不固定，分散在很多地方。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E6%96%87%E4%BB%B61.jpg" alt="文件1"></p>
-<h4 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h4><p>文件系统不关心文件是什么格式的，而是把所有文件看作字节流。用户层面需要关心文件的格式。操作系统层面建立了文件格式与软件的关联，因此当双击文件的图标时就会自动使用对应的软件打开该文件。系统缺少相关的软件，或者关联关系被破坏，就无法打开该文件。</p>
-<h4 id="链接link"><a href="#链接link" class="headerlink" title="链接link"></a>链接link</h4><p>链接是Linux文件系统的概念，在Windows和macOS中通常被称为快捷方式。</p>
-<p>分为软链接（Soft Link）和硬链接（Hard Link）两种。其中，软链接又被称为符号链接（Symbolic Link），它是文件的另外一种形态，其内容指向另外一个文件路径（相对路径或绝对路径）。硬链接则不同，它是一个已经存在文件的附加名称，也就是同一个文件的第2个或第N个名称。</p>
-<p>软链接有”-&gt;”符号，指示了该链接所指向的目的文件。硬链接与源文件的inode ID是一样的，指向同一个文件。</p>
-<p>链接的作用？实现对源文件的快速访问，且节省存储空间。如在B目录使用A目录的某个文件，通过链接的方式，在源文件发生变化的情况下可以马上感知，不需要重新复制，同时又节省存储空间。</p>
-]]></content>
-      <categories>
-        <category>文件系统</category>
-      </categories>
-      <tags>
-        <tag>文件存储</tag>
       </tags>
   </entry>
   <entry>
@@ -197,7 +179,8 @@
 <p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E4%B8%B9%E9%9C%9E.jpg" alt="丹霞"></p>
 <h3 id="宁夏"><a href="#宁夏" class="headerlink" title="宁夏"></a>宁夏</h3><p>甘肃到宁夏的高速开到了180码，经历了真正的沙尘天气，还是挺有感觉的。</p>
 <p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E5%AE%81%E5%A4%8F.jpg" alt="宁夏"></p>
-<h3 id="兰州"><a href="#兰州" class="headerlink" title="兰州"></a>兰州</h3><p>省博里面看到很多有意思的文物，可能地处边陲，年代尚早，记录着汉民族少年阶段的探索，笔法稚嫩，但就是比后面充满匠气的文物更有精神气。</p>
+<h3 id="兰州"><a href="#兰州" class="headerlink" title="兰州"></a>兰州</h3><p>兰州美食：兰州古称金城，特色的兰州牛肉面、甜醅子、三炮台，其他的如大盘鸡、烧烤都差不多。</p>
+<p>省博里面看到很多有意思的文物，可能地处边陲，年代尚早，记录着汉民族少年阶段的探索，笔法稚嫩，但就是比后面充满匠气的文物更有精神气。</p>
 <p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E7%94%98%E8%82%83%E7%9C%81%E5%8D%9A.jpg" alt="甘肃省博"></p>
 <h3 id="麦积烟雨"><a href="#麦积烟雨" class="headerlink" title="麦积烟雨"></a>麦积烟雨</h3><p>石窟开凿的痕迹还很明显，不像中原的登峰造极，更让我们看到佛法西来的历史脚印</p>
 <p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/maiji.jpg" alt="maiji"></p>
@@ -209,5 +192,23 @@
         <tag>旅行</tag>
         <tag>西北</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>first article</title>
+    <url>/2023/06/10/first-article/</url>
+    <content><![CDATA[<h3 id="chatGPT注册"><a href="#chatGPT注册" class="headerlink" title="chatGPT注册"></a>chatGPT注册</h3><p>号码平台</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sms-activate.org </span><br><span class="line">wjl31802@126.com	</span><br></pre></td></tr></table></figure>
+
+
+
+<p>chatGPT账号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bruce5haul@protonmail.com</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><p><a href="https://shimo.im/docs/vVAXM59KxriGmo3m/read">https://shimo.im/docs/vVAXM59KxriGmo3m/read</a></p>
+<h2 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h2><p>chatGPT+短视频+自动带货</p>
+<p>如何搞蒙面主播</p>
+]]></content>
   </entry>
 </search>
