@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-06-15T23:48:08.652Z</updated>
+  <updated>2023-06-16T05:46:16.171Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>人生随想</title>
+    <link href="http://example.com/2023/06/16/%E4%BA%BA%E7%94%9F%E9%9A%8F%E6%83%B3/"/>
+    <id>http://example.com/2023/06/16/%E4%BA%BA%E7%94%9F%E9%9A%8F%E6%83%B3/</id>
+    <published>2023-06-16T05:40:19.000Z</published>
+    <updated>2023-06-16T05:46:16.171Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;年轻的人，总是会理想主义；世事经历的多了，便成了存在主义。新冠肺炎、指鼠为鸭、账号突然被封，让我们的周遭变得不确定，只有每天太阳照常升起，所以，好好活就是有意义，分享给那些在隧道中艰难跋涉的人们。&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="http://example.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://example.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo博客搭建过程记录</title>
