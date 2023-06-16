@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>first article</title>
-    <url>/2023/06/10/first-article/</url>
-    <content><![CDATA[<h3 id="chatGPT注册"><a href="#chatGPT注册" class="headerlink" title="chatGPT注册"></a>chatGPT注册</h3><p>号码平台</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sms-activate.org </span><br><span class="line">wjl31802@126.com	</span><br></pre></td></tr></table></figure>
-
-
-
-<p>chatGPT账号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bruce5haul@protonmail.com</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><p><a href="https://shimo.im/docs/vVAXM59KxriGmo3m/read">https://shimo.im/docs/vVAXM59KxriGmo3m/read</a></p>
-<h2 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h2><p>chatGPT+短视频+自动带货</p>
-<p>如何搞蒙面主播</p>
+    <title>mysql中级篇</title>
+    <url>/2023/06/16/mysql%E4%B8%AD%E7%BA%A7%E7%AF%87/</url>
+    <content><![CDATA[<h2 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h2><p>只要多个查询需要同时修改数据，就会产生并发控制问题。</p>
+<p>mysql有两个级别的并发控制：服务器级别和存储引擎级别。</p>
+<p>并发控制的解决方案：加锁。</p>
+<p>两种锁：</p>
+<ul>
+<li>读锁 read lock，也叫共享锁 shared lock</li>
+<li>写锁 write lock，也叫排他锁 exclusive lock</li>
+</ul>
+<p>如何提高并发？让锁的粒度更加精确，理想的方式：只对需要修改的数据片段进行精确的锁定。</p>
+<p>由于加锁也要增加系统开销，需要平衡锁开销和数据安全性，称之为<strong>锁定策略</strong>。</p>
+<p>mysql有多种存储引擎，每个都可以实现自己的锁策略和锁粒度。</p>
+<h3 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h3><p>table lock，最基本也是开销最小的锁，锁整个表。写操作(CUD)需要先获取写锁，阻碍所有的读写操作；只有没有写操作，才能获得读锁，读锁之间不相互阻塞。</p>
+<h3 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h3><p>row lock，锁某一行，最大程度的支持并发处理，代价是锁开销巨大。行锁是存储引擎实现。innodb支持行锁。</p>
 ]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
   </entry>
   <entry>
     <title>人生随想</title>
@@ -222,5 +228,23 @@
         <tag>旅行</tag>
         <tag>西北</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>first article</title>
+    <url>/2023/06/10/first-article/</url>
+    <content><![CDATA[<h3 id="chatGPT注册"><a href="#chatGPT注册" class="headerlink" title="chatGPT注册"></a>chatGPT注册</h3><p>号码平台</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sms-activate.org </span><br><span class="line">wjl31802@126.com	</span><br></pre></td></tr></table></figure>
+
+
+
+<p>chatGPT账号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bruce5haul@protonmail.com</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><p><a href="https://shimo.im/docs/vVAXM59KxriGmo3m/read">https://shimo.im/docs/vVAXM59KxriGmo3m/read</a></p>
+<h2 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h2><p>chatGPT+短视频+自动带货</p>
+<p>如何搞蒙面主播</p>
+]]></content>
   </entry>
 </search>
