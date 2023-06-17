@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>chatGPT系列</title>
-    <url>/2023/06/10/chatGPT%E7%B3%BB%E5%88%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="chatGPT注册"><a href="#chatGPT注册" class="headerlink" title="chatGPT注册"></a>chatGPT注册</h2><h3 id="vpn"><a href="#vpn" class="headerlink" title="vpn"></a>vpn</h3><p>OpenAI直接拒绝了国内包括香港的注册，因此必须使用VPN，有付费的，有免费的。</p>
-<p>付费的推荐<a href="https://xddlcsy.com/auth/register?code=5Per">rabbitPro</a>，每个月30块钱不到，速度很快，质量很稳定。</p>
-<p>免费的其实就是一个客户端V2ray，可以看他们github的<a href="https://github.com/v2fly/v2ray-core/releases">地址</a>，然后下载最新版的客户端即可。之后就是代理IP的获取，有github上这个<a href="https://github.com/freefq/free">仓库</a>，每天免费分享IP池，只是需要每次尝试看哪个可用。</p>
-<p>注册后需要短信验证，需要号码平台。</p>
-<h3 id="号码平台"><a href="#号码平台" class="headerlink" title="号码平台"></a>号码平台</h3><p>有多种，可以网上搜下，可使用下面这个俄罗斯的<a href="https://sms-activate.org/">sms-activate.org</a></p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617145442966.png" alt="image-20230617145442966"></p>
-<p>注册并验证号码之后就成功了，可以登录<a href="https://chat.openai.com/%E4%BD%BF%E7%94%A8%E4%BA%86">https://chat.openai.com/使用了</a></p>
-<h2 id="AI相关工具"><a href="#AI相关工具" class="headerlink" title="AI相关工具"></a>AI相关工具</h2><p><a href="https://shimo.im/docs/vVAXM59KxriGmo3m/read">https://shimo.im/docs/vVAXM59KxriGmo3m/read</a></p>
-<h2 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h2><p>chatGPT+短视频+自动带货，参考<a href="https://youtu.be/y2m0TnD0q6M">https://youtu.be/y2m0TnD0q6M</a> 这个油管视频</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>chatGPT</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo博客搭建过程记录</title>
     <url>/2023/06/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
@@ -74,6 +54,26 @@
       <tags>
         <tag>技术</tag>
         <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>chatGPT系列</title>
+    <url>/2023/06/10/chatGPT%E7%B3%BB%E5%88%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="chatGPT注册"><a href="#chatGPT注册" class="headerlink" title="chatGPT注册"></a>chatGPT注册</h2><h3 id="vpn"><a href="#vpn" class="headerlink" title="vpn"></a>vpn</h3><p>OpenAI直接拒绝了国内包括香港的注册，因此必须使用VPN，有付费的，有免费的。</p>
+<p>付费的推荐<a href="https://xddlcsy.com/auth/register?code=5Per">rabbitPro</a>，每个月30块钱不到，速度很快，质量很稳定。</p>
+<p>免费的其实就是一个客户端V2ray，可以看他们github的<a href="https://github.com/v2fly/v2ray-core/releases">地址</a>，然后下载最新版的客户端即可。之后就是代理IP的获取，有github上这个<a href="https://github.com/freefq/free">仓库</a>，每天免费分享IP池，只是需要每次尝试看哪个可用。</p>
+<p>注册后需要短信验证，需要号码平台。</p>
+<h3 id="号码平台"><a href="#号码平台" class="headerlink" title="号码平台"></a>号码平台</h3><p>有多种，可以网上搜下，可使用下面这个俄罗斯的<a href="https://sms-activate.org/">sms-activate.org</a></p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617145442966.png" alt="image-20230617145442966"></p>
+<p>注册并验证号码之后就成功了，可以登录<a href="https://chat.openai.com/%E4%BD%BF%E7%94%A8%E4%BA%86">https://chat.openai.com/使用了</a></p>
+<h2 id="AI相关工具"><a href="#AI相关工具" class="headerlink" title="AI相关工具"></a>AI相关工具</h2><p><a href="https://shimo.im/docs/vVAXM59KxriGmo3m/read">https://shimo.im/docs/vVAXM59KxriGmo3m/read</a></p>
+<h2 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h2><p>chatGPT+短视频+自动带货，参考<a href="https://youtu.be/y2m0TnD0q6M">https://youtu.be/y2m0TnD0q6M</a> 这个油管视频</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>chatGPT</tag>
       </tags>
   </entry>
   <entry>
