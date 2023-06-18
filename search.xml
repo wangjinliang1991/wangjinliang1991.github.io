@@ -70,6 +70,42 @@
       </tags>
   </entry>
   <entry>
+    <title>英语规划</title>
+    <url>/2023/06/18/%E8%8B%B1%E8%AF%AD%E8%A7%84%E5%88%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>英语，作为一个拦路虎，很烦人，但是又不得不面对，因为英语作为国际通用语言，比较前沿的东西都是英语写的，科研成果、github、chatGPT等等，而中文环境充斥着僵尸号、各种二三手的消息、自我阉割的审查机制，导致学习成本用人生长度来计算的话，比英语高多了。</p>
+<p>而作为成年人，尤其是职场人，你很难跟学生一样，抽出专门的时间去学习，因此，学习的目的是什么？如何有效学习？需要我们深度思考。</p>
+<h2 id="学习英语的目的"><a href="#学习英语的目的" class="headerlink" title="学习英语的目的"></a>学习英语的目的</h2><p>最通俗的来说，就是升职加薪。作为程序员，各类语言、工具基本上都是英语的，写的代码、甚至注释，最好也是英语，减少歧义，让自己的代码和轮子被复用，增强自己的影响力。</p>
+<p>此外，最新的思想、潮流，基本上都是大洋彼岸吹来的，必须跟上潮流才能端好饭碗。如果有机会参与Google、Amazon、Facebook等的开源项目甚至加入这些公司，那就是世界级的程序员，不用再考虑生存价值了。</p>
+<h2 id="如何有效学习"><a href="#如何有效学习" class="headerlink" title="如何有效学习"></a>如何有效学习</h2><p>现阶段不需要会说，只需要会读写即可。毕竟大部分是博客、论文交流。</p>
+<p>以2年为期，让自己彻底学会读写。</p>
+<h3 id="读写的训练"><a href="#读写的训练" class="headerlink" title="读写的训练"></a>读写的训练</h3><p>一个是读，也就是单词和短语。因为程序世界的会短语即可，不需要太过复杂。</p>
+<p>工具有：</p>
+<ul>
+<li>谷歌翻译  最简单</li>
+<li>Burning Vocabulary 插件，遇到不认识的，放到行囊中，上下班的地铁上再多认识几遍即可</li>
+</ul>
+<p>要以我为主，在两年后彻底摆脱谷歌翻译为目标。</p>
+<h3 id="材料-TODO"><a href="#材料-TODO" class="headerlink" title="材料 TODO"></a>材料 TODO</h3><p>有空列清单，碰到就放这里，方便查看。</p>
+<ul>
+<li>redis <a href="https://redis.io/docs/getting-started/">https://redis.io/docs/getting-started/</a></li>
+<li>linux</li>
+<li>java </li>
+<li>javascript <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript</a></li>
+<li>k8s</li>
+<li>mongodb</li>
+</ul>
+<h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2><p>看到一个安卓大佬的GitHub，<a href="https://github.com/JakeWharton">https://github.com/JakeWharton</a></p>
+<p>我竟然沉默无言了，确实”talk is cheap, show me your code.”，希望激励下自己。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230618161203722.png" alt="image-20230618161203722"></p>
+]]></content>
+      <categories>
+        <category>人生规划</category>
+      </categories>
+      <tags>
+        <tag>英语</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>人生规划笔记</title>
     <url>/2023/06/18/%E4%BA%BA%E7%94%9F%E8%A7%84%E5%88%92%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="人生规划"><a href="#人生规划" class="headerlink" title="人生规划"></a>人生规划</h2><p>三步走：先生存，后发展，再实现自我</p>
