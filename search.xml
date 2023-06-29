@@ -21,6 +21,273 @@
       </tags>
   </entry>
   <entry>
+    <title>jenkins基础</title>
+    <url>/2023/06/21/jenkins%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h3 id="持续集成CI"><a href="#持续集成CI" class="headerlink" title="持续集成CI"></a>持续集成CI</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>continuous integration，持续集成的重点是构建编译和测试，通过<strong>自动化的构建</strong>(主要是<strong>构建编译、自动化测试</strong>)来验证，从而尽早发现集成错误。</p>
+<h4 id="持续集成的工作流程"><a href="#持续集成的工作流程" class="headerlink" title="持续集成的工作流程"></a>持续集成的工作流程</h4><ul>
+<li>初始化CI流程 基本的CI流程的配置，如脚本、定时任务</li>
+<li>拉取最新代码 从gitlab仓库拉取最新代码到构建服务器磁盘</li>
+<li>构建 通过配置的脚本触发执行构建，如java构建一般基于maven或gradle</li>
+<li>执行测试 一般包括单元测试和集成测试，Java的单元测试默认Junit</li>
+<li>结果处理 一般都要通知给对应人员，如邮件、钉钉、短信</li>
+</ul>
+<h3 id="持续交付CD"><a href="#持续交付CD" class="headerlink" title="持续交付CD"></a>持续交付CD</h3><p>continuous delivery，将产品尽快的发布上线的过程。持续交付是在持续集成的基础上的扩展，也就是说除了<strong>自动化编译、自动化测试</strong>，为尽快上线还要<strong>自动化发布</strong>。</p>
+<h3 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h3><p>continuous deployment，在持续交付的基础上，将编译、测试、打包部署到生产环境的过程实现自动化。当然，一般非生产环境保证自动化，生产环境还是手动。</p>
+<h3 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>开发和运维的组合，打破开发和运维的壁垒，通过工具链，将开发、测试、运维的工作串联起来，将全部流程自动化，减少人力重复投入，降低人为风险。</p>
+<h4 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h4><ul>
+<li>编码 代码开发和审查、源码管理工具、代码合并 gitlab</li>
+<li>构建 持续集成工具 Jenkins maven</li>
+<li>测试 持续测试工具 selenium Jmeter </li>
+<li>发布 变更管理、发布审批、发布自动化 </li>
+<li>容器平台 docker k8s </li>
+<li>配置 基础设置配置和管理 Ansible </li>
+<li>监控 应用性能监控、终端用户体验 logstash nagios kibana zabbix</li>
+</ul>
+<h2 id="jenkins"><a href="#jenkins" class="headerlink" title="jenkins"></a>jenkins</h2><p>文档 <a href="https://www.jenkins.io/zh/doc/">https://www.jenkins.io/zh/doc/</a></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>前身hudson，Oracle收购sun之后hudson归Oracle所有，贡献者基于hudson改为jenkins。目前hudson已停止开发，Jenkins成为使用最多的CICD工具。持续集成是Jenkins的核心功能。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>集成svn&#x2F;git客户端实现源码checkout</li>
+<li>集成maven&#x2F;ant&#x2F;gradle&#x2F;npm等构建工具实现源码编译打包和单元测试</li>
+<li>集成ansible实现自动化部署发布</li>
+<li>集成jmeter&#x2F;k8s…</li>
+<li>可自定义插件或脚本通过Jenkins传参运行</li>
+<li>非常灵活，日常运维工作都可自动化</li>
+</ul>
+<h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><ul>
+<li><p>Jenkins 2.x 主流，支持pipeline</p>
+</li>
+<li><p>Jenkins X 基于k8s的持续集成</p>
+</li>
+</ul>
+<h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><p>主从集群，将构建任务分发到多个从节点执行，支撑多个项目的大量构建任务</p>
+<p>部署方式：</p>
+<ul>
+<li>服务器直接运行war</li>
+<li>服务器yum下载Jenkins安装包</li>
+<li>docker容器运行</li>
+</ul>
+<h4 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h4><ul>
+<li><p>centos7</p>
+</li>
+<li><p>jdk1.8</p>
+</li>
+<li><p>maven3.x</p>
+</li>
+<li><p>git 1.8.3</p>
+</li>
+<li><p>jenkins 最新版本</p>
+</li>
+<li><p>master主机 centos30</p>
+</li>
+<li><p>slave主机 centos31</p>
+</li>
+</ul>
+<h4 id="master安装"><a href="#master安装" class="headerlink" title="master安装"></a>master安装</h4><h5 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 上传jdk包</span><br><span class="line"># 配置Java环境变量</span><br><span class="line">vi /etc/profile</span><br><span class="line">export JAVA_HOME=/opt/jdk1.8.0_301</span><br><span class="line">export JRE_HOME=/opt/jdk1.8.0_301/jre</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</span><br><span class="line"># 使用source命令，使其生效</span><br><span class="line">source /etc/profile</span><br><span class="line"># 验证安装成功</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<h5 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y git</span><br><span class="line"># 验证是否安装成功</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<h5 id="sshpass安装"><a href="#sshpass安装" class="headerlink" title="sshpass安装"></a>sshpass安装</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 远程连接工具，备份恢复使用</span><br><span class="line">yum install sshpass -y</span><br></pre></td></tr></table></figure>
+
+<h5 id="wget安装"><a href="#wget安装" class="headerlink" title="wget安装"></a>wget安装</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install wget -y</span><br></pre></td></tr></table></figure>
+
+<h5 id="axel安装"><a href="#axel安装" class="headerlink" title="axel安装"></a>axel安装</h5><p>多线程下载工具</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/a/axel-2.4-9.el7.x86_64.rpm</span><br><span class="line">rpm -ivh axel-2.4-9.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<h5 id="TODO-创建Jenkins用户"><a href="#TODO-创建Jenkins用户" class="headerlink" title="TODO 创建Jenkins用户"></a>TODO 创建Jenkins用户</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">useradd -d /home/jenkins -m -s /bin/bash jenkins</span><br><span class="line"># 密码</span><br></pre></td></tr></table></figure>
+
+<h5 id="maven安装"><a href="#maven安装" class="headerlink" title="maven安装"></a>maven安装</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 上传压缩包，解压到/opt</span><br><span class="line"># 配置环境变量</span><br><span class="line">vi /etc/profile</span><br><span class="line">export MAVEN_HOME=/opt/apache-maven-3.8.5</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$MAVEN_HOME/bin</span><br><span class="line"># source</span><br><span class="line">source /etc/profile</span><br><span class="line"># 验证</span><br><span class="line">mvn -v</span><br></pre></td></tr></table></figure>
+
+<p>配置镜像加速</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">maven下的conf/settings.xml找到&lt;mirrors&gt;和&lt;/mirrors&gt;标签，添加</span><br><span class="line">vi /opt/apache-maven-3.8.5/conf/settings.xml</span><br><span class="line"></span><br><span class="line">&lt;!-- 配置镜像加速 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">     &lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">     &lt;name&gt;alimaven&lt;/name&gt;</span><br><span class="line">     &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;</span><br><span class="line">     &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果配置本地仓库的地址，一定要赋予该目录其他用户可读写的权限</p>
+<h5 id="rsync安装"><a href="#rsync安装" class="headerlink" title="rsync安装"></a>rsync安装</h5><p>跨机器文件同步</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install rsync -y</span><br></pre></td></tr></table></figure>
+
+<h5 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line"># 永久关闭</span><br><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+
+<h5 id="Jenkins安装"><a href="#Jenkins安装" class="headerlink" title="Jenkins安装"></a>Jenkins安装</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /opt/jenkins</span><br><span class="line"># 为jenkins用户授权</span><br><span class="line">chown -R jenkins:jenkins /opt/jenkins</span><br><span class="line">su jenkins</span><br><span class="line"># 下载Jenkins最新版</span><br><span class="line">axel -n 20 http://mirrors.jenkins-ci.org/war/latest/jenkins.war</span><br></pre></td></tr></table></figure>
+
+<p>创建启动脚本 vi jenkins.sh</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">args=<span class="variable">$1</span></span><br><span class="line"><span class="comment">#注意修改jenkinswar包的目录</span></span><br><span class="line">jenkins_war_path=<span class="string">&quot;/opt/jenkins&quot;</span></span><br><span class="line"><span class="comment">#jenkins开放端口</span></span><br><span class="line">jenkins_http_port=<span class="string">&quot;8888&quot;</span></span><br><span class="line"><span class="comment">#java安装路径</span></span><br><span class="line">java_home=<span class="string">&quot;/opt/jdk1.8.0_301&quot;</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">isRuning</span></span>()&#123;</span><br><span class="line">        <span class="built_in">local</span> jenkinsPID=`ps -ef|grep jenkins.war|grep -v grep|awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>`</span><br><span class="line">        <span class="keyword">if</span> [ -z <span class="variable">$&#123;jenkinsPID&#125;</span> ];<span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;0&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="variable">$&#123;jenkinsPID&#125;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#停止jenkins</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">stop</span></span>()&#123;</span><br><span class="line">        <span class="built_in">local</span> runFlag=$(isRuning)</span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$&#123;runFlag&#125;</span> -eq <span class="string">&quot;0&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Jenkins is already stoped.&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                `<span class="built_in">kill</span> -9 <span class="variable">$&#123;runFlag&#125;</span>`</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Stop jenkins success.&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#启动jenkins</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">start</span></span>()&#123;</span><br><span class="line">        <span class="built_in">local</span> runFlag=$(isRuning)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;runFlag&#125;</span>&quot;</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$&#123;runFlag&#125;</span> -eq <span class="string">&quot;0&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">                `<span class="variable">$&#123;java_home&#125;</span>/bin/java -jar <span class="variable">$&#123;jenkins_war_path&#125;</span>/jenkins.war --httpPort=<span class="variable">$&#123;jenkins_http_port&#125;</span> &amp;` &gt; /dev/null</span><br><span class="line">                <span class="keyword">if</span> [ $? -eq 0 ];<span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">&quot;Start jenkins success.&quot;</span></span><br><span class="line">                        <span class="built_in">exit</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">&quot;Start jenkins fail.&quot;</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">echo</span>  <span class="string">&quot;Jenkins is running now.&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#重启jenkins</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">restart</span></span>()&#123;</span><br><span class="line">        <span class="built_in">local</span> runFlag=$(isRuning)</span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$&#123;runFlag&#125;</span> -eq <span class="string">&quot;0&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Jenkins is already stoped.&quot;</span></span><br><span class="line">                <span class="built_in">exit</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                stop</span><br><span class="line">                start</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Restart jenkins success.&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#根据输入的参数执行不同的动作</span></span><br><span class="line"><span class="comment">#参数不能为空</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$&#123;args&#125;</span> ];<span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Arg can not be null.&quot;</span></span><br><span class="line">        <span class="built_in">exit</span></span><br><span class="line"><span class="comment">#参数个数必须为1个</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$#</span> -ne 1 ];<span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Only one arg is required:start|stop|restart&quot;</span></span><br><span class="line"><span class="comment">#参数为start时启动jenkins</span></span><br><span class="line"><span class="keyword">elif</span>  [ <span class="variable">$&#123;args&#125;</span> = <span class="string">&quot;start&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">        start</span><br><span class="line"><span class="comment">#参数为stop时停止jenkins</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$&#123;args&#125;</span> = <span class="string">&quot;stop&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">        stop</span><br><span class="line"><span class="comment">#参数为restart时重启jenkins</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$&#123;args&#125;</span> = <span class="string">&quot;restart&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">        restart</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;One of following args is required: start|stop|restart&quot;</span></span><br><span class="line">        <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>启动jenkins</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sh jenkins.sh start</span><br></pre></td></tr></table></figure>
+
+<p>配置加速</p>
+<p><code>vi /home/jenkins/.jenkins/hudson.model.UpdateCenter.xml</code><br>将xml的url替换为<code>http://mirror.xmission.com/jenkins/updates/update-center.json</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&#x27;1.1&#x27; encoding=&#x27;UTF-8&#x27;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sites</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">site</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>default<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://mirror.xmission.com/jenkins/updates/update-center.json<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">site</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">sites</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或在web界面manage jenkins-&gt;manage plugins-&gt;Advanced-&gt;Update Site修改</p>
+<p>访问Jenkins <code>http://ip:8888</code></p>
+<p>获取管理员密码 <code>cat /home/jenkins/.jenkins/secrets/initialAdminPassword</code></p>
+<blockquote>
+<p>修改管理员密码</p>
+</blockquote>
+<p>页面左上角jenkins-&gt;people-&gt;admin-&gt;configure修改</p>
+<blockquote>
+<p>插件安装</p>
+</blockquote>
+<p>需要安装<strong>ssh、Pipeline、Role-based Authorization Strategy、Git、Gitee、Git Parameter、thinBackup</strong>这些插件，manage jenkins-&gt;manage plugins，点击available搜索下载</p>
+<table>
+<thead>
+<tr>
+<th>插件名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pipeline</td>
+<td>流水线部署项目</td>
+</tr>
+<tr>
+<td>Role-based Authorization Strategy</td>
+<td>基于角色的用户管理权限策略，最常用的jenkins权限策略管理插件</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>支持使用GitHub、gitlab等源码仓库，创建普通job会用到</td>
+</tr>
+<tr>
+<td>Gitee</td>
+<td>Gitee基于gitlab plugin开发的插件，配置Jenkins触发器，接受gitee平台发送的webhook触发jenkins进行自动化持续集成或持续部署，并可将构建状态反馈gitee平台</td>
+</tr>
+<tr>
+<td>Git Parameter</td>
+<td>可把git的tag branch作为构建参数传进来，方便使用branch构建</td>
+</tr>
+<tr>
+<td>Extended Choice Parameter</td>
+<td>参数化构建</td>
+</tr>
+<tr>
+<td>Maven Integration</td>
+<td>为maven2&#x2F;3项目提供高级集成功能</td>
+</tr>
+<tr>
+<td>SonarQube Scanner</td>
+<td>代码扫描</td>
+</tr>
+<tr>
+<td>Email Extension</td>
+<td>扩展发送告警邮件的控制粒度，可定义邮件触发器、邮件内容、收件人</td>
+</tr>
+<tr>
+<td>Workspace Cleanup</td>
+<td>每次build之前删除workspace目录下指定的文件</td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>监控Jenkins节点的CPU、系统负载、平均响应时间和内存使用</td>
+</tr>
+<tr>
+<td>Build Monitor View</td>
+<td>将Jenkins项目以看板的形式呈现</td>
+</tr>
+<tr>
+<td>ThinBackup</td>
+<td>单元测试覆盖率</td>
+</tr>
+<tr>
+<td>jacoco</td>
+<td>单元测试覆盖率</td>
+</tr>
+<tr>
+<td>Generic Webhook Trigger</td>
+<td>webhook</td>
+</tr>
+</tbody></table>
+<h4 id="jenkins的配置"><a href="#jenkins的配置" class="headerlink" title="jenkins的配置"></a>jenkins的配置</h4><p>Jenkins-&gt;Manage jenkins-&gt;Configure System 进入系统配置页面</p>
+<blockquote>
+<p>令牌配置</p>
+</blockquote>
+<p>证书令牌</p>
+<h4 id="分组管理"><a href="#分组管理" class="headerlink" title="分组管理"></a>分组管理</h4><p>new view即可</p>
+<h3 id="备份恢复"><a href="#备份恢复" class="headerlink" title="备份恢复"></a>备份恢复</h3><h4 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h4><p>在Jenkins中，所有数据默认都以文件形式存储在<code>$JENKINS_HOME</code>目录。占用空间最大的是jobs目录和workspace目录。</p>
+<ul>
+<li>jobs目录 项目在Jenkins上的配置、构建日志、构建结果等所在的目录，对应<code>/home/jenkins/.jenkins/jobs</code>目录</li>
+<li>workspace目录 项目在Jenkins上配置的源码仓库地址下载的源码所在的目录，如Java的maven构建操作就在此目录，对应<code>/data/jenkins_data/workspace</code>目录</li>
+</ul>
+<h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4><ul>
+<li>jobs目录下的一级目录名，均为在Jenkins上新建的job名称</li>
+<li>二级目录下的build里面出现的数字1，2，3…表示构建历史所在的目录，也就是一次构建有一个构建版本号，从1开始随着构建次数增加递增</li>
+<li>workspace下面都是空的，因为还没拉取代码</li>
+</ul>
+<h3 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h3><h4 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h4><p>流水线即代码，流水线的代码定义了整个的构建过程，包括构建、测试和交付应用程序的阶段，对流水线的定义写在Jenkinsfile文件中，可被提交到源码仓库。创建Jenkinsfile并提交到源码仓库的好处：</p>
+<ul>
+<li>自动为所有分支创建流水线构建过程并拉取请求</li>
+<li>在流水线上代码复查&#x2F;迭代</li>
+<li>对流水线进行审计跟踪</li>
+<li>该流水线的真正源码可被团队成员共同查看和编辑</li>
+</ul>
+<h4 id="语法支持"><a href="#语法支持" class="headerlink" title="语法支持"></a>语法支持</h4><p>Jenkinsfile能用两种语法编写，都能用pipeline内置的插件和steps</p>
+<ul>
+<li>Declarative Pipeline声明式 推荐使用，语法更严格，有固定的组织结构</li>
+<li>Scripted Pipeline 脚本化 groovy语言，只对结构和语法限制，用户可自己灵活实现和扩展</li>
+</ul>
+<p>基本概念</p>
+<ul>
+<li>stage 阶段，一个pipeline分为多个stage，每个stage代表一组操作，stage是一个逻辑分组的概念，可跨多个node</li>
+<li>node 构建服务器节点，一个node就是要给Jenkins节点，或master或agent，是执行step的具体运行期环境</li>
+<li>step 步骤，最基本的操作单元，小到创建一个目录，大到构建一个docker镜像，由各类Jenkins plugin提供</li>
+</ul>
+<h4 id="pipeline语法"><a href="#pipeline语法" class="headerlink" title="pipeline语法"></a>pipeline语法</h4><p>参考<a href="https://www.jenkins.io/zh/doc/book/pipeline/syntax/#declarative-directives">https://www.jenkins.io/zh/doc/book/pipeline/syntax/#declarative-directives</a></p>
+<ul>
+<li><p>声明式pipeline必须包含在固定格式的pipeline{}内</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">pipeline &#123;</span><br><span class="line">    <span class="comment">// insert declarative pipeline here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每个声明语句必须独立一行，行尾无需分号</p>
+</li>
+<li><p>块blocks 由大括号括起来的语句如 pipeline{} parameters{} script{}</p>
+</li>
+<li><p>章节sections 通常包括一个或多个指令或步骤 如agent post stages steps</p>
+</li>
+<li><p>指令directives 如 environment option parameter trigger stage tools when</p>
+</li>
+<li><p>步骤step 执行脚本式pipeline，如script{} </p>
+</li>
+<li><p>块只能由阶段<code>stages&#123;&#125;</code>、指令、步骤(<code>steps&#123;&#125;</code>)或赋值语句组成</p>
+</li>
+<li><p>属性引用语句被视为无参方法调用，如<code>input()</code></p>
+</li>
+</ul>
+<p>示例</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="comment">// jenkinsfile(declarative pipeline)</span></span><br><span class="line">pipeline &#123;</span><br><span class="line">   agent any</span><br><span class="line">    stages &#123;</span><br><span class="line">        stage(<span class="string">&#x27;Build&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;make&#x27;</span></span><br><span class="line">                echo <span class="string">&quot;Hello world&quot;</span></span><br><span class="line">                script &#123;</span><br><span class="line">                    <span class="keyword">def</span> browsers = [<span class="string">&#x27;chrome&#x27;</span>,<span class="string">&#x27;firefox&#x27;</span>]</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; browsers.size(); ++i) &#123;</span><br><span class="line">                        echo <span class="string">&quot;Testing the $&#123;browsers[i]&#125; browser&quot;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">&#x27;Test&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;make check&#x27;</span></span><br><span class="line">                junit <span class="string">&#x27;reports/**/*.xml&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">&#x27;Deploy&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;make publish&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>pipeline是声明式流水线的一种特定语法，定义了包含执行整个流水线的所有内容和指令的block</li>
+<li>agent 指示Jenkins为整个流水线分配一个执行器(在Jenkins环境中的任何可用代理&#x2F;节点上)和工作区。一般用作指定在哪个节点上构建，如果不指定就写any表示任意节点</li>
+<li>定义Build Test Deploy三个阶段，每个阶段执行不同的步骤</li>
+<li>stage 描述stage of this pipeline的语法块，定义在pipeline的不同阶段</li>
+<li>steps 声明式流水线的特定语法，描述这个stage中要运行的步骤</li>
+<li>sh 是一个执行给定的shell命令的流水线</li>
+<li>echo 简单的字符串到控制台输出</li>
+<li>junit 另一个聚合测试报告的流水线</li>
+<li>stage括号的值表示阶段名称，内容不固定，自定义即可</li>
+</ul>
+<p>gitee的demo</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">pipeline &#123;</span><br><span class="line">    <span class="comment">//指定运行的节点，slave运行</span></span><br><span class="line">    agent &#123;</span><br><span class="line">        node &#123;</span><br><span class="line">            label <span class="string">&#x27;follower&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//定义各个阶段</span></span><br><span class="line">    stages &#123;</span><br><span class="line">        <span class="comment">// 获取git代码，credentialsId是配置的git账号</span></span><br><span class="line">        stage(<span class="string">&#x27;git&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                git <span class="attr">credentialsId:</span> <span class="string">&#x27;gitee-username&#x27;</span>, <span class="attr">url:</span> <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// test阶段</span></span><br><span class="line">        stage(<span class="string">&#x27;test&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                <span class="comment">//可从environment获取</span></span><br><span class="line">                sh <span class="string">&#x27;$&#123;MAVEN_HOME&#125;/bin/mvn test&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 编译打包阶段，打jar包</span></span><br><span class="line">        stage(<span class="string">&#x27;build&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;$&#123;MAVEN_HOME&#125;/bin/mvn clean package -DskipTests&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// docker镜像</span></span><br><span class="line">        stage(<span class="string">&#x27;docker&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;docker build -t jenkins-demo:$&#123;BUILD_NUMBER&#125; .&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 部署阶段，停掉旧的docker进程，启动新镜像</span></span><br><span class="line">        stage(<span class="string">&#x27;deploy&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                <span class="comment">//如果test-boot没有在启动中，如果不跟或语句，会执行失败</span></span><br><span class="line">                sh <span class="string">&#x27;docker rm -f jenkins-demo || sleep 0&#x27;</span></span><br><span class="line">                sh <span class="string">&#x27;docker run --name jenkins-demo -d -p 8080:8080 jenkins-demo:$&#123;BUILD_NUMBER&#125;&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其他常见语法：</p>
+<ul>
+<li><p>when 允许流水线根据给定的条件决定是否应该执行阶段，必须包含至少一个条件</p>
+</li>
+<li><p>environment </p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">pipeline &#123;</span><br><span class="line">    environment &#123;</span><br><span class="line">        <span class="comment">//	顶层流水线块中使用的 environment 指令将适用于流水线中的所有步骤</span></span><br><span class="line">    &#125;</span><br><span class="line">    stages &#123;</span><br><span class="line">        stage(<span class="string">&#x27;Example&#x27;</span>) &#123;</span><br><span class="line">            environment &#123; </span><br><span class="line">                <span class="comment">//在一个 stage 中定义的 environment 指令只会将给定的环境变量应用于 stage 中的步骤</span></span><br><span class="line">                AN_ACCESS_KEY = credentials(<span class="string">&#x27;my-prefined-secret-text&#x27;</span>) </span><br><span class="line">            &#125;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;printenv&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>options 从流水线内部配置特定于流水线的选项，如超时，中止流水线</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">pipeline &#123; </span><br><span class="line">     </span><br><span class="line">    options &#123;</span><br><span class="line">        timeout(<span class="attr">time:</span> <span class="number">30</span>, <span class="attr">unit:</span> <span class="string">&#x27;SECONDS&#x27;</span>) <span class="comment">//unit根据需要可选值有：SECONDS、MINUTES、HOURS</span></span><br><span class="line">        retry(<span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo博客搭建过程记录</title>
     <url>/2023/06/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
@@ -107,6 +374,25 @@
       </tags>
   </entry>
   <entry>
+    <title>linux命令拾遗</title>
+    <url>/2023/06/28/linux%E5%91%BD%E4%BB%A4%E6%8B%BE%E9%81%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>jenkins流水线构建时，有tar命令</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sh <span class="string">&#x27;tar --transform=&quot;flags=r;s|$&#123;NAME&#125;$&#123;DIST_PATH&#125;|src|&quot; -czf /tmp/$UPLOAD_FILE $&#123;NAME&#125;$&#123;DIST_PATH&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>--transform</code>是<code>tar</code>命令的一个选项，用于指定文件名的转换规则。</p>
+<ul>
+<li><code>flags=r</code>：这部分指定了转换规则的标志。在这种情况下，<code>r</code>表示替换（replace）</li>
+<li><code>s|$&#123;NAME&#125;$&#123;DIST_PATH&#125;|src|</code>：这部分是实际的转换规则，使用了<code>sed</code>命令的替换语法。它指定了源文件名和目标文件名的替换关系。<code>$&#123;NAME&#125;$&#123;DIST_PATH&#125;</code>是源文件名，<code>src</code>是目标文件名。具体来说，它将<code>tar</code>归档中的文件名<code>$&#123;NAME&#125;$&#123;DIST_PATH&#125;</code>替换为<code>src</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mysql中级篇</title>
     <url>/2023/06/16/mysql%E4%B8%AD%E7%BA%A7%E7%AF%87/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h2><p>只要多个查询需要同时修改数据，就会产生并发控制问题。</p>
@@ -141,94 +427,6 @@
       </categories>
       <tags>
         <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>文件存储系列</title>
-    <url>/2023/06/14/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E7%B3%BB%E5%88%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在文件存储中，有很多名词，会让人疑惑，本人对这块也是一知半解，需要系统梳理。参考书目为《文件系统内幕：大数据时代海量数据存储之道》。逻辑为文件系统-&gt;网络文件系统-&gt;分布式文件系统</p>
-<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="文件系统-1"><a href="#文件系统-1" class="headerlink" title="文件系统"></a>文件系统</h4><p>文件系统是一个控制数据存取的软件系统，它实现了文件的增、删、改、查。而通常我们所说的文件系统是构建在硬盘（SSD卡和SD卡等）中的。因此，文件系统其实就是一个对硬盘（或者说块设备）空间进行管理，实现数据存取的软件系统。</p>
-<p>从狭义上来说，文件系统实现了对磁盘数据的存取。而从广义上来说，文件系统未必需要构建在磁盘中，它还可以构建在网络或内存中。无论构建在哪种设备上，最为核心的功能是实现对数据的存取。</p>
-<p>除对数据的存取外，文件系统更重要的一个功能是抽象了一个更加容易访问存储空间的接口。这里所说的接口包括用于程序开发的API接口和普通用户的操作接口。</p>
-<p>关系：文件系统(目录树) -&gt; 硬盘驱动器 -&gt; 底层硬件设备(硬盘)</p>
-<p>文件系统对文件进行了抽象化处理，对文件系统而言，所有文件都是字节流，它并不关注文件的格式与内容。文件的格式是由具体的应用软件来负责的。</p>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><p>目录是一种容器，可以容纳子目录和普通文件。目录本身也是一种文件。只不过目录中存储的数据是特殊的数据，这些数据就是关于文件名称等元数据（管理数据的数据）的信息。存储的数据其实是文件名与一个数字(<code>inode Id</code>)的对应关系</p>
-<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><p>在文件系统中，最基本的概念是文件，文件是存储数据的实体。文件系统为每个文件都分配了一个名称，称为文件名。通常包含两部分，并通过“.”进行了分隔，但并非绝对。</p>
-<p>第一部分称为文件主名，它表示该文件的标识，就好像人名一样；第二部分称为扩展名，它的作用是标识文件的类型。</p>
-<h4 id="文件的内部"><a href="#文件的内部" class="headerlink" title="文件的内部"></a>文件的内部</h4><p>从开发的角度看，文件就是个线性空间，类似数组。与数组不同的是文件的大小是可以变化的，当写入更多的数据时，文件的容量就会变大。</p>
-<p>从文件系统层面，其真实位置可能在磁盘的任意位置。一个文件通常在逻辑上被划分为若干等份，每一份被称为一个逻辑块（Block）。连续的block对应的磁盘物理位置并不固定，分散在很多地方。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E6%96%87%E4%BB%B61.jpg" alt="文件1"></p>
-<h4 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h4><p>文件系统不关心文件是什么格式的，而是把所有文件看作字节流。用户层面需要关心文件的格式。操作系统层面建立了文件格式与软件的关联，因此当双击文件的图标时就会自动使用对应的软件打开该文件。系统缺少相关的软件，或者关联关系被破坏，就无法打开该文件。</p>
-<h4 id="链接link"><a href="#链接link" class="headerlink" title="链接link"></a>链接link</h4><p>链接是Linux文件系统的概念，在Windows和macOS中通常被称为快捷方式。</p>
-<p>分为软链接（Soft Link）和硬链接（Hard Link）两种。其中，软链接又被称为符号链接（Symbolic Link），它是文件的另外一种形态，其内容指向另外一个文件路径（相对路径或绝对路径）。硬链接则不同，它是一个已经存在文件的附加名称，也就是同一个文件的第2个或第N个名称。</p>
-<p>软链接有”-&gt;”符号，指示了该链接所指向的目的文件。硬链接与源文件的inode ID是一样的，指向同一个文件。</p>
-<p>链接的作用？实现对源文件的快速访问，且节省存储空间。如在B目录使用A目录的某个文件，通过链接的方式，在源文件发生变化的情况下可以马上感知，不需要重新复制，同时又节省存储空间。</p>
-]]></content>
-      <categories>
-        <category>文件系统</category>
-      </categories>
-      <tags>
-        <tag>文件存储</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>人生随想</title>
-    <url>/2023/06/16/%E4%BA%BA%E7%94%9F%E9%9A%8F%E6%83%B3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>年轻的人，总是会理想主义；世事经历的多了，便成了存在主义。新冠肺炎、指鼠为鸭、账号突然被封，让我们的周遭变得不确定，只有每天太阳照常升起，所以，好好活就是有意义，分享给那些在隧道中艰难跋涉的人们。</p>
-<hr>
-<p>​       今天心情很低落，一个新同事，来了两三周了，干不出成绩，要被撵走，他的身上还背负着房贷和亲朋的借债，每个月房贷7000+要还朋友的7000，房子是期房，今年才交付，三年后才能给房产证，很难想象要怎么熬过去，这可是成都，二线城市，一般程序员月薪最多20000左右，五险一金扣完基本上16000-17000，他之前跟我们说不会结婚了，结婚也是拖累别人，让人莫名的心酸，希望自己能早日冲破生存关，不用再执着于找到一份好工作，祝他也好运吧。</p>
-<p>​																													       – 2023年6月19日</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>指鼠为鸭事件</title>
-    <url>/2023/06/17/%E6%8C%87%E9%BC%A0%E4%B8%BA%E9%B8%AD%E4%BA%8B%E4%BB%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="事件时间线"><a href="#事件时间线" class="headerlink" title="事件时间线"></a>事件时间线</h2><p>6月1日，”江西一高校饭菜中疑吃出老鼠头”的短视频在网络热传。影片清晰显示，饭菜里的一块黑色异物看起来极似老鼠头，不但有眼睛、胡须还有啮齿类的犬齿。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617164648853.png" alt="image-20230617164648853"></p>
-<p>6月3日，江西工业职业技术学院在其官方微博通报，宣称当事学生在事发当时即邀请同学共同对”异物”进行了对比，确认为”鸭脖”，为正常食物。人民网江西频道也发布报道确认“异物”为鸭脖。</p>
-<p>6月4日，江西南昌市场监管展开调查。高新区市场监管局昌东分局执法人员反复确认后，认定这个异物就是鸭脖。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170302782.png" alt="image-20230617170302782"></p>
-<p>然而广大网友没人买账，纷纷调侃，终于创造出了历史性的词汇：指鼠为鸭。成语总是更容易传播，这导致该事件舆情更高。</p>
-<p>此事更引发诸多媒体发文，包括“已退休”的胡锡进。而该学校的新媒体中心也火上浇油，有网友爆料，涉事学校的新媒体中心对学生下发通知，要求学生按照已经拟好的话语模板去新闻评论区控评。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170202860.png" alt="image-20230617170202860"></p>
-<p>受该事件影响，周黑鸭和绝味鸭脖等股价收到严重波及。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170514729.png" alt="image-20230617170514729"></p>
-<p>6月8日，该学校另一名学生在食堂饭菜中发现大青虫。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617171145581.png" alt="image-20230617171145581"></p>
-<p>同日，联合国教科文组织发微博隐喻，导致舆论再次引爆。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170733720.png" alt="image-20230617170733720"></p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170720478.png" alt="image-20230617170720478"></p>
-<p>6月10日，江西工职院‘6·1’食品安全事件”联合调查组发布情况通报，针对江西工业职业技术学院“6·1”食品安全事件，江西省已成立由省教育厅、省公安厅、省国资委、省市场监督管理局等部门组成的联合调查组，进行调查。</p>
-<p>6月17日，联合调查组认定饭菜中异物是鼠头，此事再次冲上热搜。</p>
-<p>百度指数、微信指数等可以看出热度曲线，早已引爆多波舆情。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617164455924.png" alt="image-20230617164455924"></p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617164524450.png" alt="image-20230617164524450"></p>
-<h2 id="事件评价"><a href="#事件评价" class="headerlink" title="事件评价"></a>事件评价</h2><p>以下几个维度：</p>
-<ul>
-<li>热词 指鼠为鸭，2023年的热词榜应该至少前三吧。</li>
-<li>公信力 地方政府的公信力已降低至历史新低。</li>
-<li>阿卡拉省出名了， 江西老表总是没什么存在感，没想到一爆就是大新闻，唉。</li>
-</ul>
-<p>此事件随着官方通报的反转，虽然老鼠已经过了头七，但迟到的正义也是正义，群众不能嫌弃呀。</p>
-<p>当然，历史是人民创造的，至少指鼠为鸭已经和指鹿为马一样，植入到了我们的历史记忆，后人视今，就会想到这个典故。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
-<li><a href="https://www.guancha.cn/politics/2023_06_10_696327.shtml">江西成立“江西工职院‘6·1’食品安全事件”联合调查组</a></li>
-<li><a href="https://news.ifeng.com/c/8QUzd0FyH6g">胡锡进：鼠头鸭脖事件让人产生校方做假、市监局帮着背书的印象</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/635218172">当”指鼠为鸭“陷入“塔西陀陷阱”</a></li>
-<li><a href="https://www.sohu.com/a/684450465_380844">江西鼠头鸭脖惊动联合国 是真伪难辨还是有口难说</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -269,111 +467,6 @@
       </categories>
       <tags>
         <tag>读书笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>英语规划</title>
-    <url>/2023/06/18/%E8%8B%B1%E8%AF%AD%E8%A7%84%E5%88%92/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>英语，作为一个拦路虎，很烦人，但是又不得不面对，因为英语作为国际通用语言，比较前沿的东西都是英语写的，科研成果、github、chatGPT等等，而中文环境充斥着僵尸号、各种二三手的消息、自我阉割的审查机制，导致学习成本用人生长度来计算的话，比英语高多了。</p>
-<p>而作为成年人，尤其是职场人，你很难跟学生一样，抽出专门的时间去学习，因此，学习的目的是什么？如何有效学习？需要我们深度思考。</p>
-<h2 id="学习英语的目的"><a href="#学习英语的目的" class="headerlink" title="学习英语的目的"></a>学习英语的目的</h2><p>最通俗的来说，就是升职加薪。作为程序员，各类语言、工具基本上都是英语的，写的代码、甚至注释，最好也是英语，减少歧义，让自己的代码和轮子被复用，增强自己的影响力。</p>
-<p>此外，最新的思想、潮流，基本上都是大洋彼岸吹来的，必须跟上潮流才能端好饭碗。如果有机会参与Google、Amazon、Facebook等的开源项目甚至加入这些公司，那就是世界级的程序员，不用再考虑生存价值了。</p>
-<h2 id="如何有效学习"><a href="#如何有效学习" class="headerlink" title="如何有效学习"></a>如何有效学习</h2><p>现阶段不需要会说，只需要会读写即可。毕竟大部分是博客、论文交流。</p>
-<p>以2年为期，让自己彻底学会读写。</p>
-<h3 id="读写的训练"><a href="#读写的训练" class="headerlink" title="读写的训练"></a>读写的训练</h3><p>一个是读，也就是单词和短语。因为程序世界的会短语即可，不需要太过复杂。</p>
-<p>工具有：</p>
-<ul>
-<li>谷歌翻译  最简单</li>
-<li>Burning Vocabulary 插件，遇到不认识的，放到行囊中，上下班的地铁上再多认识几遍即可</li>
-</ul>
-<p>要以我为主，在两年后彻底摆脱谷歌翻译为目标。</p>
-<h3 id="材料-TODO"><a href="#材料-TODO" class="headerlink" title="材料 TODO"></a>材料 TODO</h3><p>有空列清单，碰到就放这里，方便查看。</p>
-<ul>
-<li>redis <a href="https://redis.io/docs/getting-started/">https://redis.io/docs/getting-started/</a></li>
-<li>linux</li>
-<li>java </li>
-<li>javascript <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript</a></li>
-<li>k8s</li>
-<li>mongodb</li>
-</ul>
-<h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2><p>看到一个安卓大佬的GitHub，<a href="https://github.com/JakeWharton">https://github.com/JakeWharton</a></p>
-<p>我竟然沉默无言了，确实”talk is cheap, show me your code.”，希望激励下自己。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230618161203722.png" alt="image-20230618161203722"></p>
-]]></content>
-      <categories>
-        <category>人生规划</category>
-      </categories>
-      <tags>
-        <tag>英语</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>西北游玩指北</title>
-    <url>/2023/06/11/%E8%A5%BF%E5%8C%97%E6%B8%B8%E7%8E%A9%E6%8C%87%E5%8C%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>仅记录生活，照片见qq相册</p>
-</blockquote>
-<p>西北，不仅是个地理概念，更是中国人的西部情节，有机会，就去西北游玩吧。</p>
-<h2 id="1-旅行tips"><a href="#1-旅行tips" class="headerlink" title="1. 旅行tips"></a>1. 旅行tips</h2><h3 id="1-交通"><a href="#1-交通" class="headerlink" title="1. 交通"></a>1. 交通</h3><p>成都-兰州西 <code>￥200</code></p>
-<p>兰州西-中川机场 <code>￥17*2</code></p>
-<p><code>9:38</code> 的飞机，<code>11:40</code> 到敦煌机场，<code>￥740</code></p>
-<p>机场到莫高窟，参观3小时  <code>￥200</code></p>
-<p>鸣沙山门票<code>￥220</code>  骆驼<code>￥240</code>  敦煌打车<code>￥90</code>  吃饭<code>￥70</code></p>
-<p>从敦煌<code>20:43</code>到嘉峪关<code>23:57</code>, <code>￥100*2</code> 住宿<code>￥90</code></p>
-<p>嘉峪关坐出租车参观<code>￥110</code>，到10点</p>
-<p>从嘉峪关南<code>10:04</code>到张掖西<code>11:34</code>  <code>￥65.5*2</code>，张掖西到丹霞景区，打车<code>￥6</code>  大巴<code>￥60</code> 七彩丹霞景区<code>￥148</code></p>
-<p>张掖西<code>18:31</code>到西宁<code>20:25</code> <code>￥91.5*2</code></p>
-<p>西宁租车<code>￥223</code>，住宿<code>￥107</code></p>
-<p>第二天6点开车去青海湖环游，加油<code>￥300</code></p>
-<p>西宁的饭<code>￥80*2</code></p>
-<p>西宁回兰州<code>￥58</code>  回成都<code>￥240.5</code></p>
-<h3 id="2-小件"><a href="#2-小件" class="headerlink" title="2. 小件"></a>2. 小件</h3><p>雨伞、充电宝、采购鸡腿和面包</p>
-<h3 id="3-知识"><a href="#3-知识" class="headerlink" title="3. 知识"></a>3. 知识</h3><p>参考出租车费：沙洲市场-<a href="http://you.ctrip.com/sight/dunhuang8/1566.html#ctm_ref=gs_290606_3957006_8_sid1566_2_l">莫高窟</a>22；莫高窟-<a href="http://you.ctrip.com/sight/dunhuang8/1563.html#ctm_ref=gs_290606_3957006_8_sid1563_2_l">鸣沙山</a>35；鸣沙山-沙洲市场15；沙洲夜市-机场30</p>
-<h2 id="2-旅途"><a href="#2-旅途" class="headerlink" title="2. 旅途"></a>2. 旅途</h2><h3 id="青海湖"><a href="#青海湖" class="headerlink" title="青海湖"></a>青海湖</h3><p>去过两次，记录下</p>
-<p>西宁站–&gt;青海湖–&gt;茶卡盐湖–&gt;青海湖（看是否有时间环湖）–&gt;塔尔寺–&gt;西宁站</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/ditu.jpg" alt="ditu"></p>
-<p>路上可能稍微有点堵车，到青海湖的黑马河乡地图时间3h左右，实际可能4h，路上可以问藏民哪个地方可以直接进去（一般10元），黑马河乡到茶卡盐湖地图时间1h30min，到茶卡盐湖坐小火车到天空之境拍照</p>
-<blockquote>
-<p>青海湖还有其他几个地方拍照比较好：达秀木拉布宰、青海湖二郎剑景区对面的停车场，往青海湖南山行驶10分钟就可以找到理想的观景点</p>
-</blockquote>
-<p>有兴趣的话，回西宁的路上再加上塔尔寺</p>
-<p>高速到茶卡盐湖，平均150码左右，国道到黑河马乡，在菜根香小炒吃的土火锅，非常赞，第二天看完日出从国道开回西宁，平均100码左右，公路景观非常棒，跟游戏的画面似的，梦幻般的感觉。</p>
-<p>费用明细：</p>
-<ul>
-<li>高速： 大水桥65 倒淌河21 日月山4 倒淌河33 另外的15</li>
-<li>加油：200</li>
-<li>晚饭：120</li>
-<li>茶卡盐湖的门票：300（各150，包括坐小火车到天空之境），停车费10块</li>
-<li>火车票：兰州到西宁往返 116*2</li>
-<li>旅馆：75</li>
-<li>旅途中草原上骑马：100（各50）用现金，那边（路途中间）没网…</li>
-<li>租车：40（剩余油费）+279（租车）+2000（违章押金，待退还）</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E9%9D%92%E6%B5%B7%E6%B9%96.jpg" alt="青海湖日出"></p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E7%BE%8A%E7%BE%A4.jpg" alt="羊群"></p>
-<p>茶卡盐湖</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/chaka.jpg" alt="茶卡盐湖"></p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E8%88%AA%E5%A4%A9%E5%9F%8E.jpg" alt="航天城"></p>
-<h3 id="敦煌"><a href="#敦煌" class="headerlink" title="敦煌"></a>敦煌</h3><p>莫高窟、鸣沙山</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E9%B8%A3%E6%B2%99%E5%B1%B1.jpg" alt="鸣沙山"></p>
-<h3 id="嘉峪关"><a href="#嘉峪关" class="headerlink" title="嘉峪关"></a>嘉峪关</h3><p>古长城</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E9%95%BF%E5%9F%8E.jpg" alt="长城"></p>
-<h3 id="张掖"><a href="#张掖" class="headerlink" title="张掖"></a>张掖</h3><p>七彩丹霞</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E4%B8%B9%E9%9C%9E.jpg" alt="丹霞"></p>
-<h3 id="宁夏"><a href="#宁夏" class="headerlink" title="宁夏"></a>宁夏</h3><p>甘肃到宁夏的高速开到了180码，经历了真正的沙尘天气，还是挺有感觉的。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E5%AE%81%E5%A4%8F.jpg" alt="宁夏"></p>
-<h3 id="兰州"><a href="#兰州" class="headerlink" title="兰州"></a>兰州</h3><p>兰州美食：兰州古称金城，特色的兰州牛肉面、甜醅子、三炮台，其他的如大盘鸡、烧烤都差不多。</p>
-<p>省博里面看到很多有意思的文物，可能地处边陲，年代尚早，记录着汉民族少年阶段的探索，笔法稚嫩，但就是比后面充满匠气的文物更有精神气。</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E7%94%98%E8%82%83%E7%9C%81%E5%8D%9A.jpg" alt="甘肃省博"></p>
-<h3 id="麦积烟雨"><a href="#麦积烟雨" class="headerlink" title="麦积烟雨"></a>麦积烟雨</h3><p>石窟开凿的痕迹还很明显，不像中原的登峰造极，更让我们看到佛法西来的历史脚印</p>
-<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/maiji.jpg" alt="麦积山"></p>
-]]></content>
-      <categories>
-        <category>旅行</category>
-      </categories>
-      <tags>
-        <tag>旅行</tag>
-        <tag>西北</tag>
       </tags>
   </entry>
   <entry>
@@ -578,6 +671,134 @@
       </tags>
   </entry>
   <entry>
+    <title>指鼠为鸭事件</title>
+    <url>/2023/06/17/%E6%8C%87%E9%BC%A0%E4%B8%BA%E9%B8%AD%E4%BA%8B%E4%BB%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="事件时间线"><a href="#事件时间线" class="headerlink" title="事件时间线"></a>事件时间线</h2><p>6月1日，”江西一高校饭菜中疑吃出老鼠头”的短视频在网络热传。影片清晰显示，饭菜里的一块黑色异物看起来极似老鼠头，不但有眼睛、胡须还有啮齿类的犬齿。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617164648853.png" alt="image-20230617164648853"></p>
+<p>6月3日，江西工业职业技术学院在其官方微博通报，宣称当事学生在事发当时即邀请同学共同对”异物”进行了对比，确认为”鸭脖”，为正常食物。人民网江西频道也发布报道确认“异物”为鸭脖。</p>
+<p>6月4日，江西南昌市场监管展开调查。高新区市场监管局昌东分局执法人员反复确认后，认定这个异物就是鸭脖。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170302782.png" alt="image-20230617170302782"></p>
+<p>然而广大网友没人买账，纷纷调侃，终于创造出了历史性的词汇：指鼠为鸭。成语总是更容易传播，这导致该事件舆情更高。</p>
+<p>此事更引发诸多媒体发文，包括“已退休”的胡锡进。而该学校的新媒体中心也火上浇油，有网友爆料，涉事学校的新媒体中心对学生下发通知，要求学生按照已经拟好的话语模板去新闻评论区控评。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170202860.png" alt="image-20230617170202860"></p>
+<p>受该事件影响，周黑鸭和绝味鸭脖等股价收到严重波及。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170514729.png" alt="image-20230617170514729"></p>
+<p>6月8日，该学校另一名学生在食堂饭菜中发现大青虫。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617171145581.png" alt="image-20230617171145581"></p>
+<p>同日，联合国教科文组织发微博隐喻，导致舆论再次引爆。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170733720.png" alt="image-20230617170733720"></p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617170720478.png" alt="image-20230617170720478"></p>
+<p>6月10日，江西工职院‘6·1’食品安全事件”联合调查组发布情况通报，针对江西工业职业技术学院“6·1”食品安全事件，江西省已成立由省教育厅、省公安厅、省国资委、省市场监督管理局等部门组成的联合调查组，进行调查。</p>
+<p>6月17日，联合调查组认定饭菜中异物是鼠头，此事再次冲上热搜。</p>
+<p>百度指数、微信指数等可以看出热度曲线，早已引爆多波舆情。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617164455924.png" alt="image-20230617164455924"></p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230617164524450.png" alt="image-20230617164524450"></p>
+<h2 id="事件评价"><a href="#事件评价" class="headerlink" title="事件评价"></a>事件评价</h2><p>以下几个维度：</p>
+<ul>
+<li>热词 指鼠为鸭，2023年的热词榜应该至少前三吧。</li>
+<li>公信力 地方政府的公信力已降低至历史新低。</li>
+<li>阿卡拉省出名了， 江西老表总是没什么存在感，没想到一爆就是大新闻，唉。</li>
+</ul>
+<p>此事件随着官方通报的反转，虽然老鼠已经过了头七，但迟到的正义也是正义，群众不能嫌弃呀。</p>
+<p>当然，历史是人民创造的，至少指鼠为鸭已经和指鹿为马一样，植入到了我们的历史记忆，后人视今，就会想到这个典故。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://www.guancha.cn/politics/2023_06_10_696327.shtml">江西成立“江西工职院‘6·1’食品安全事件”联合调查组</a></li>
+<li><a href="https://news.ifeng.com/c/8QUzd0FyH6g">胡锡进：鼠头鸭脖事件让人产生校方做假、市监局帮着背书的印象</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/635218172">当”指鼠为鸭“陷入“塔西陀陷阱”</a></li>
+<li><a href="https://www.sohu.com/a/684450465_380844">江西鼠头鸭脖惊动联合国 是真伪难辨还是有口难说</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文件存储系列</title>
+    <url>/2023/06/14/%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E7%B3%BB%E5%88%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在文件存储中，有很多名词，会让人疑惑，本人对这块也是一知半解，需要系统梳理。参考书目为《文件系统内幕：大数据时代海量数据存储之道》。逻辑为文件系统-&gt;网络文件系统-&gt;分布式文件系统</p>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="文件系统-1"><a href="#文件系统-1" class="headerlink" title="文件系统"></a>文件系统</h4><p>文件系统是一个控制数据存取的软件系统，它实现了文件的增、删、改、查。而通常我们所说的文件系统是构建在硬盘（SSD卡和SD卡等）中的。因此，文件系统其实就是一个对硬盘（或者说块设备）空间进行管理，实现数据存取的软件系统。</p>
+<p>从狭义上来说，文件系统实现了对磁盘数据的存取。而从广义上来说，文件系统未必需要构建在磁盘中，它还可以构建在网络或内存中。无论构建在哪种设备上，最为核心的功能是实现对数据的存取。</p>
+<p>除对数据的存取外，文件系统更重要的一个功能是抽象了一个更加容易访问存储空间的接口。这里所说的接口包括用于程序开发的API接口和普通用户的操作接口。</p>
+<p>关系：文件系统(目录树) -&gt; 硬盘驱动器 -&gt; 底层硬件设备(硬盘)</p>
+<p>文件系统对文件进行了抽象化处理，对文件系统而言，所有文件都是字节流，它并不关注文件的格式与内容。文件的格式是由具体的应用软件来负责的。</p>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><p>目录是一种容器，可以容纳子目录和普通文件。目录本身也是一种文件。只不过目录中存储的数据是特殊的数据，这些数据就是关于文件名称等元数据（管理数据的数据）的信息。存储的数据其实是文件名与一个数字(<code>inode Id</code>)的对应关系</p>
+<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><p>在文件系统中，最基本的概念是文件，文件是存储数据的实体。文件系统为每个文件都分配了一个名称，称为文件名。通常包含两部分，并通过“.”进行了分隔，但并非绝对。</p>
+<p>第一部分称为文件主名，它表示该文件的标识，就好像人名一样；第二部分称为扩展名，它的作用是标识文件的类型。</p>
+<h4 id="文件的内部"><a href="#文件的内部" class="headerlink" title="文件的内部"></a>文件的内部</h4><p>从开发的角度看，文件就是个线性空间，类似数组。与数组不同的是文件的大小是可以变化的，当写入更多的数据时，文件的容量就会变大。</p>
+<p>从文件系统层面，其真实位置可能在磁盘的任意位置。一个文件通常在逻辑上被划分为若干等份，每一份被称为一个逻辑块（Block）。连续的block对应的磁盘物理位置并不固定，分散在很多地方。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E6%96%87%E4%BB%B61.jpg" alt="文件1"></p>
+<h4 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h4><p>文件系统不关心文件是什么格式的，而是把所有文件看作字节流。用户层面需要关心文件的格式。操作系统层面建立了文件格式与软件的关联，因此当双击文件的图标时就会自动使用对应的软件打开该文件。系统缺少相关的软件，或者关联关系被破坏，就无法打开该文件。</p>
+<h4 id="链接link"><a href="#链接link" class="headerlink" title="链接link"></a>链接link</h4><p>链接是Linux文件系统的概念，在Windows和macOS中通常被称为快捷方式。</p>
+<p>分为软链接（Soft Link）和硬链接（Hard Link）两种。其中，软链接又被称为符号链接（Symbolic Link），它是文件的另外一种形态，其内容指向另外一个文件路径（相对路径或绝对路径）。硬链接则不同，它是一个已经存在文件的附加名称，也就是同一个文件的第2个或第N个名称。</p>
+<p>软链接有”-&gt;”符号，指示了该链接所指向的目的文件。硬链接与源文件的inode ID是一样的，指向同一个文件。</p>
+<p>链接的作用？实现对源文件的快速访问，且节省存储空间。如在B目录使用A目录的某个文件，通过链接的方式，在源文件发生变化的情况下可以马上感知，不需要重新复制，同时又节省存储空间。</p>
+]]></content>
+      <categories>
+        <category>文件系统</category>
+      </categories>
+      <tags>
+        <tag>文件存储</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人生随想</title>
+    <url>/2023/06/16/%E4%BA%BA%E7%94%9F%E9%9A%8F%E6%83%B3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>年轻的人，总是会理想主义；世事经历的多了，便成了存在主义。新冠肺炎、指鼠为鸭、账号突然被封，让我们的周遭变得不确定，只有每天太阳照常升起，所以，好好活就是有意义，分享给那些在隧道中艰难跋涉的人们。</p>
+<hr>
+<p>​       今天心情很低落，一个新同事，来了两三周了，干不出成绩，要被撵走，他的身上还背负着房贷和亲朋的借债，每个月房贷7000+要还朋友的7000，房子是期房，今年才交付，三年后才能给房产证，很难想象要怎么熬过去，这可是成都，二线城市，一般程序员月薪最多20000左右，五险一金扣完基本上16000-17000，他之前跟我们说不会结婚了，结婚也是拖累别人，让人莫名的心酸，希望自己能早日冲破生存关，不用再执着于找到一份好工作，祝他也好运吧。</p>
+<p>​																													       – 2023年6月19日</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>英语规划</title>
+    <url>/2023/06/18/%E8%8B%B1%E8%AF%AD%E8%A7%84%E5%88%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>英语，作为一个拦路虎，很烦人，但是又不得不面对，因为英语作为国际通用语言，比较前沿的东西都是英语写的，科研成果、github、chatGPT等等，而中文环境充斥着僵尸号、各种二三手的消息、自我阉割的审查机制，导致学习成本用人生长度来计算的话，比英语高多了。</p>
+<p>而作为成年人，尤其是职场人，你很难跟学生一样，抽出专门的时间去学习，因此，学习的目的是什么？如何有效学习？需要我们深度思考。</p>
+<h2 id="学习英语的目的"><a href="#学习英语的目的" class="headerlink" title="学习英语的目的"></a>学习英语的目的</h2><p>最通俗的来说，就是升职加薪。作为程序员，各类语言、工具基本上都是英语的，写的代码、甚至注释，最好也是英语，减少歧义，让自己的代码和轮子被复用，增强自己的影响力。</p>
+<p>此外，最新的思想、潮流，基本上都是大洋彼岸吹来的，必须跟上潮流才能端好饭碗。如果有机会参与Google、Amazon、Facebook等的开源项目甚至加入这些公司，那就是世界级的程序员，不用再考虑生存价值了。</p>
+<h2 id="如何有效学习"><a href="#如何有效学习" class="headerlink" title="如何有效学习"></a>如何有效学习</h2><p>现阶段不需要会说，只需要会读写即可。毕竟大部分是博客、论文交流。</p>
+<p>以2年为期，让自己彻底学会读写。</p>
+<h3 id="读写的训练"><a href="#读写的训练" class="headerlink" title="读写的训练"></a>读写的训练</h3><p>一个是读，也就是单词和短语。因为程序世界的会短语即可，不需要太过复杂。</p>
+<p>工具有：</p>
+<ul>
+<li>谷歌翻译  最简单</li>
+<li>Burning Vocabulary 插件，遇到不认识的，放到行囊中，上下班的地铁上再多认识几遍即可</li>
+</ul>
+<p>要以我为主，在两年后彻底摆脱谷歌翻译为目标。</p>
+<h3 id="材料-TODO"><a href="#材料-TODO" class="headerlink" title="材料 TODO"></a>材料 TODO</h3><p>有空列清单，碰到就放这里，方便查看。</p>
+<ul>
+<li>redis <a href="https://redis.io/docs/getting-started/">https://redis.io/docs/getting-started/</a></li>
+<li>linux</li>
+<li>java </li>
+<li>javascript <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript</a></li>
+<li>k8s</li>
+<li>mongodb</li>
+</ul>
+<h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2><p>看到一个安卓大佬的GitHub，<a href="https://github.com/JakeWharton">https://github.com/JakeWharton</a></p>
+<p>我竟然沉默无言了，确实”talk is cheap, show me your code.”，希望激励下自己。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230618161203722.png" alt="image-20230618161203722"></p>
+<p>2023年6月29日</p>
+<p>今天刷YouTube，发现自己关注的一个博主被裁员，然后很快就又找到一个新公司，晒他的leetcode，原来这么努力啊。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/image-20230629224912979.png" alt="image-20230629224912979"></p>
+<p>感觉真的是自己时来运转，发现了自己之前连努力都达不到…难怪这么水，💪</p>
+]]></content>
+      <categories>
+        <category>人生规划</category>
+      </categories>
+      <tags>
+        <tag>英语</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>跑步随想</title>
     <url>/2023/06/18/%E8%B7%91%E6%AD%A5%E9%9A%8F%E6%83%B3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>原文本想发表到CSDN，但是牢骚话发不了，说什么违反社区规定，索性才开了自己的博客，专门记录自己的人生感悟和技术整理。</p>
@@ -630,6 +851,75 @@
       </categories>
       <tags>
         <tag>随想</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>西北游玩指北</title>
+    <url>/2023/06/11/%E8%A5%BF%E5%8C%97%E6%B8%B8%E7%8E%A9%E6%8C%87%E5%8C%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>仅记录生活，照片见qq相册</p>
+</blockquote>
+<p>西北，不仅是个地理概念，更是中国人的西部情节，有机会，就去西北游玩吧。</p>
+<h2 id="1-旅行tips"><a href="#1-旅行tips" class="headerlink" title="1. 旅行tips"></a>1. 旅行tips</h2><h3 id="1-交通"><a href="#1-交通" class="headerlink" title="1. 交通"></a>1. 交通</h3><p>成都-兰州西 <code>￥200</code></p>
+<p>兰州西-中川机场 <code>￥17*2</code></p>
+<p><code>9:38</code> 的飞机，<code>11:40</code> 到敦煌机场，<code>￥740</code></p>
+<p>机场到莫高窟，参观3小时  <code>￥200</code></p>
+<p>鸣沙山门票<code>￥220</code>  骆驼<code>￥240</code>  敦煌打车<code>￥90</code>  吃饭<code>￥70</code></p>
+<p>从敦煌<code>20:43</code>到嘉峪关<code>23:57</code>, <code>￥100*2</code> 住宿<code>￥90</code></p>
+<p>嘉峪关坐出租车参观<code>￥110</code>，到10点</p>
+<p>从嘉峪关南<code>10:04</code>到张掖西<code>11:34</code>  <code>￥65.5*2</code>，张掖西到丹霞景区，打车<code>￥6</code>  大巴<code>￥60</code> 七彩丹霞景区<code>￥148</code></p>
+<p>张掖西<code>18:31</code>到西宁<code>20:25</code> <code>￥91.5*2</code></p>
+<p>西宁租车<code>￥223</code>，住宿<code>￥107</code></p>
+<p>第二天6点开车去青海湖环游，加油<code>￥300</code></p>
+<p>西宁的饭<code>￥80*2</code></p>
+<p>西宁回兰州<code>￥58</code>  回成都<code>￥240.5</code></p>
+<h3 id="2-小件"><a href="#2-小件" class="headerlink" title="2. 小件"></a>2. 小件</h3><p>雨伞、充电宝、采购鸡腿和面包</p>
+<h3 id="3-知识"><a href="#3-知识" class="headerlink" title="3. 知识"></a>3. 知识</h3><p>参考出租车费：沙洲市场-<a href="http://you.ctrip.com/sight/dunhuang8/1566.html#ctm_ref=gs_290606_3957006_8_sid1566_2_l">莫高窟</a>22；莫高窟-<a href="http://you.ctrip.com/sight/dunhuang8/1563.html#ctm_ref=gs_290606_3957006_8_sid1563_2_l">鸣沙山</a>35；鸣沙山-沙洲市场15；沙洲夜市-机场30</p>
+<h2 id="2-旅途"><a href="#2-旅途" class="headerlink" title="2. 旅途"></a>2. 旅途</h2><h3 id="青海湖"><a href="#青海湖" class="headerlink" title="青海湖"></a>青海湖</h3><p>去过两次，记录下</p>
+<p>西宁站–&gt;青海湖–&gt;茶卡盐湖–&gt;青海湖（看是否有时间环湖）–&gt;塔尔寺–&gt;西宁站</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/ditu.jpg" alt="ditu"></p>
+<p>路上可能稍微有点堵车，到青海湖的黑马河乡地图时间3h左右，实际可能4h，路上可以问藏民哪个地方可以直接进去（一般10元），黑马河乡到茶卡盐湖地图时间1h30min，到茶卡盐湖坐小火车到天空之境拍照</p>
+<blockquote>
+<p>青海湖还有其他几个地方拍照比较好：达秀木拉布宰、青海湖二郎剑景区对面的停车场，往青海湖南山行驶10分钟就可以找到理想的观景点</p>
+</blockquote>
+<p>有兴趣的话，回西宁的路上再加上塔尔寺</p>
+<p>高速到茶卡盐湖，平均150码左右，国道到黑河马乡，在菜根香小炒吃的土火锅，非常赞，第二天看完日出从国道开回西宁，平均100码左右，公路景观非常棒，跟游戏的画面似的，梦幻般的感觉。</p>
+<p>费用明细：</p>
+<ul>
+<li>高速： 大水桥65 倒淌河21 日月山4 倒淌河33 另外的15</li>
+<li>加油：200</li>
+<li>晚饭：120</li>
+<li>茶卡盐湖的门票：300（各150，包括坐小火车到天空之境），停车费10块</li>
+<li>火车票：兰州到西宁往返 116*2</li>
+<li>旅馆：75</li>
+<li>旅途中草原上骑马：100（各50）用现金，那边（路途中间）没网…</li>
+<li>租车：40（剩余油费）+279（租车）+2000（违章押金，待退还）</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E9%9D%92%E6%B5%B7%E6%B9%96.jpg" alt="青海湖日出"></p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E7%BE%8A%E7%BE%A4.jpg" alt="羊群"></p>
+<p>茶卡盐湖</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/chaka.jpg" alt="茶卡盐湖"></p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E8%88%AA%E5%A4%A9%E5%9F%8E.jpg" alt="航天城"></p>
+<h3 id="敦煌"><a href="#敦煌" class="headerlink" title="敦煌"></a>敦煌</h3><p>莫高窟、鸣沙山</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E9%B8%A3%E6%B2%99%E5%B1%B1.jpg" alt="鸣沙山"></p>
+<h3 id="嘉峪关"><a href="#嘉峪关" class="headerlink" title="嘉峪关"></a>嘉峪关</h3><p>古长城</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E9%95%BF%E5%9F%8E.jpg" alt="长城"></p>
+<h3 id="张掖"><a href="#张掖" class="headerlink" title="张掖"></a>张掖</h3><p>七彩丹霞</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E4%B8%B9%E9%9C%9E.jpg" alt="丹霞"></p>
+<h3 id="宁夏"><a href="#宁夏" class="headerlink" title="宁夏"></a>宁夏</h3><p>甘肃到宁夏的高速开到了180码，经历了真正的沙尘天气，还是挺有感觉的。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E5%AE%81%E5%A4%8F.jpg" alt="宁夏"></p>
+<h3 id="兰州"><a href="#兰州" class="headerlink" title="兰州"></a>兰州</h3><p>兰州美食：兰州古称金城，特色的兰州牛肉面、甜醅子、三炮台，其他的如大盘鸡、烧烤都差不多。</p>
+<p>省博里面看到很多有意思的文物，可能地处边陲，年代尚早，记录着汉民族少年阶段的探索，笔法稚嫩，但就是比后面充满匠气的文物更有精神气。</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/%E7%94%98%E8%82%83%E7%9C%81%E5%8D%9A.jpg" alt="甘肃省博"></p>
+<h3 id="麦积烟雨"><a href="#麦积烟雨" class="headerlink" title="麦积烟雨"></a>麦积烟雨</h3><p>石窟开凿的痕迹还很明显，不像中原的登峰造极，更让我们看到佛法西来的历史脚印</p>
+<p><img src="https://raw.githubusercontent.com/wangjinliang1991/mypic/master/maiji.jpg" alt="麦积山"></p>
+]]></content>
+      <categories>
+        <category>旅行</category>
+      </categories>
+      <tags>
+        <tag>旅行</tag>
+        <tag>西北</tag>
       </tags>
   </entry>
 </search>

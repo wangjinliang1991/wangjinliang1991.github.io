@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>jenkins基础 |  Larry&#39;s space</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.staticfile.org/mermaid/8.14.0/mermaid.min.js"></script>
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="Larry's space" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-jenkins基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  jenkins基础
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/06/21/jenkins%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2023-06-21T08:53:40.000Z" itemprop="datePublished">2023-06-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">14 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h3 id="持续集成CI"><a href="#持续集成CI" class="headerlink" title="持续集成CI"></a>持续集成CI</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>continuous integration，持续集成的重点是构建编译和测试，通过<strong>自动化的构建</strong>(主要是<strong>构建编译、自动化测试</strong>)来验证，从而尽早发现集成错误。</p>
+<h4 id="持续集成的工作流程"><a href="#持续集成的工作流程" class="headerlink" title="持续集成的工作流程"></a>持续集成的工作流程</h4><ul>
+<li>初始化CI流程 基本的CI流程的配置，如脚本、定时任务</li>
+<li>拉取最新代码 从gitlab仓库拉取最新代码到构建服务器磁盘</li>
+<li>构建 通过配置的脚本触发执行构建，如java构建一般基于maven或gradle</li>
+<li>执行测试 一般包括单元测试和集成测试，Java的单元测试默认Junit</li>
+<li>结果处理 一般都要通知给对应人员，如邮件、钉钉、短信</li>
+</ul>
+<h3 id="持续交付CD"><a href="#持续交付CD" class="headerlink" title="持续交付CD"></a>持续交付CD</h3><p>continuous delivery，将产品尽快的发布上线的过程。持续交付是在持续集成的基础上的扩展，也就是说除了<strong>自动化编译、自动化测试</strong>，为尽快上线还要<strong>自动化发布</strong>。</p>
+<h3 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h3><p>continuous deployment，在持续交付的基础上，将编译、测试、打包部署到生产环境的过程实现自动化。当然，一般非生产环境保证自动化，生产环境还是手动。</p>
+<h3 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>开发和运维的组合，打破开发和运维的壁垒，通过工具链，将开发、测试、运维的工作串联起来，将全部流程自动化，减少人力重复投入，降低人为风险。</p>
+<h4 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h4><ul>
+<li>编码 代码开发和审查、源码管理工具、代码合并 gitlab</li>
+<li>构建 持续集成工具 Jenkins maven</li>
+<li>测试 持续测试工具 selenium Jmeter </li>
+<li>发布 变更管理、发布审批、发布自动化 </li>
+<li>容器平台 docker k8s </li>
+<li>配置 基础设置配置和管理 Ansible </li>
+<li>监控 应用性能监控、终端用户体验 logstash nagios kibana zabbix</li>
+</ul>
+<h2 id="jenkins"><a href="#jenkins" class="headerlink" title="jenkins"></a>jenkins</h2><p>文档 <a target="_blank" rel="noopener" href="https://www.jenkins.io/zh/doc/">https://www.jenkins.io/zh/doc/</a></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>前身hudson，Oracle收购sun之后hudson归Oracle所有，贡献者基于hudson改为jenkins。目前hudson已停止开发，Jenkins成为使用最多的CICD工具。持续集成是Jenkins的核心功能。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>集成svn&#x2F;git客户端实现源码checkout</li>
+<li>集成maven&#x2F;ant&#x2F;gradle&#x2F;npm等构建工具实现源码编译打包和单元测试</li>
+<li>集成ansible实现自动化部署发布</li>
+<li>集成jmeter&#x2F;k8s…</li>
+<li>可自定义插件或脚本通过Jenkins传参运行</li>
+<li>非常灵活，日常运维工作都可自动化</li>
+</ul>
+<h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><ul>
+<li><p>Jenkins 2.x 主流，支持pipeline</p>
+</li>
+<li><p>Jenkins X 基于k8s的持续集成</p>
+</li>
+</ul>
+<h3 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h3><p>主从集群，将构建任务分发到多个从节点执行，支撑多个项目的大量构建任务</p>
+<p>部署方式：</p>
+<ul>
+<li>服务器直接运行war</li>
+<li>服务器yum下载Jenkins安装包</li>
+<li>docker容器运行</li>
+</ul>
+<h4 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h4><ul>
+<li><p>centos7</p>
+</li>
+<li><p>jdk1.8</p>
+</li>
+<li><p>maven3.x</p>
+</li>
+<li><p>git 1.8.3</p>
+</li>
+<li><p>jenkins 最新版本</p>
+</li>
+<li><p>master主机 centos30</p>
+</li>
+<li><p>slave主机 centos31</p>
+</li>
+</ul>
+<h4 id="master安装"><a href="#master安装" class="headerlink" title="master安装"></a>master安装</h4><h5 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 上传jdk包</span><br><span class="line"># 配置Java环境变量</span><br><span class="line">vi /etc/profile</span><br><span class="line">export JAVA_HOME=/opt/jdk1.8.0_301</span><br><span class="line">export JRE_HOME=/opt/jdk1.8.0_301/jre</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</span><br><span class="line"># 使用source命令，使其生效</span><br><span class="line">source /etc/profile</span><br><span class="line"># 验证安装成功</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<h5 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git</span><br><span class="line"># 验证是否安装成功</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<h5 id="sshpass安装"><a href="#sshpass安装" class="headerlink" title="sshpass安装"></a>sshpass安装</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 远程连接工具，备份恢复使用</span><br><span class="line">yum install sshpass -y</span><br></pre></td></tr></table></figure>
+
+<h5 id="wget安装"><a href="#wget安装" class="headerlink" title="wget安装"></a>wget安装</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget -y</span><br></pre></td></tr></table></figure>
+
+<h5 id="axel安装"><a href="#axel安装" class="headerlink" title="axel安装"></a>axel安装</h5><p>多线程下载工具</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/a/axel-2.4-9.el7.x86_64.rpm</span><br><span class="line">rpm -ivh axel-2.4-9.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<h5 id="TODO-创建Jenkins用户"><a href="#TODO-创建Jenkins用户" class="headerlink" title="TODO 创建Jenkins用户"></a>TODO 创建Jenkins用户</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd -d /home/jenkins -m -s /bin/bash jenkins</span><br><span class="line"># 密码</span><br></pre></td></tr></table></figure>
+
+<h5 id="maven安装"><a href="#maven安装" class="headerlink" title="maven安装"></a>maven安装</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 上传压缩包，解压到/opt</span><br><span class="line"># 配置环境变量</span><br><span class="line">vi /etc/profile</span><br><span class="line">export MAVEN_HOME=/opt/apache-maven-3.8.5</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$MAVEN_HOME/bin</span><br><span class="line"># source</span><br><span class="line">source /etc/profile</span><br><span class="line"># 验证</span><br><span class="line">mvn -v</span><br></pre></td></tr></table></figure>
+
+<p>配置镜像加速</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">maven下的conf/settings.xml找到&lt;mirrors&gt;和&lt;/mirrors&gt;标签，添加</span><br><span class="line">vi /opt/apache-maven-3.8.5/conf/settings.xml</span><br><span class="line"></span><br><span class="line">&lt;!-- 配置镜像加速 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">     &lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">     &lt;name&gt;alimaven&lt;/name&gt;</span><br><span class="line">     &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;</span><br><span class="line">     &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果配置本地仓库的地址，一定要赋予该目录其他用户可读写的权限</p>
+<h5 id="rsync安装"><a href="#rsync安装" class="headerlink" title="rsync安装"></a>rsync安装</h5><p>跨机器文件同步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install rsync -y</span><br></pre></td></tr></table></figure>
+
+<h5 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line"># 永久关闭</span><br><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+
+<h5 id="Jenkins安装"><a href="#Jenkins安装" class="headerlink" title="Jenkins安装"></a>Jenkins安装</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/jenkins</span><br><span class="line"># 为jenkins用户授权</span><br><span class="line">chown -R jenkins:jenkins /opt/jenkins</span><br><span class="line">su jenkins</span><br><span class="line"># 下载Jenkins最新版</span><br><span class="line">axel -n 20 http://mirrors.jenkins-ci.org/war/latest/jenkins.war</span><br></pre></td></tr></table></figure>
+
+<p>创建启动脚本 vi jenkins.sh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">args=<span class="variable">$1</span></span><br><span class="line"><span class="comment">#注意修改jenkinswar包的目录</span></span><br><span class="line">jenkins_war_path=<span class="string">&quot;/opt/jenkins&quot;</span></span><br><span class="line"><span class="comment">#jenkins开放端口</span></span><br><span class="line">jenkins_http_port=<span class="string">&quot;8888&quot;</span></span><br><span class="line"><span class="comment">#java安装路径</span></span><br><span class="line">java_home=<span class="string">&quot;/opt/jdk1.8.0_301&quot;</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">isRuning</span></span>()&#123;</span><br><span class="line">        <span class="built_in">local</span> jenkinsPID=`ps -ef|grep jenkins.war|grep -v grep|awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>`</span><br><span class="line">        <span class="keyword">if</span> [ -z <span class="variable">$&#123;jenkinsPID&#125;</span> ];<span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;0&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="variable">$&#123;jenkinsPID&#125;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#停止jenkins</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">stop</span></span>()&#123;</span><br><span class="line">        <span class="built_in">local</span> runFlag=$(isRuning)</span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$&#123;runFlag&#125;</span> -eq <span class="string">&quot;0&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Jenkins is already stoped.&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                `<span class="built_in">kill</span> -9 <span class="variable">$&#123;runFlag&#125;</span>`</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Stop jenkins success.&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#启动jenkins</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">start</span></span>()&#123;</span><br><span class="line">        <span class="built_in">local</span> runFlag=$(isRuning)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;runFlag&#125;</span>&quot;</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$&#123;runFlag&#125;</span> -eq <span class="string">&quot;0&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">                `<span class="variable">$&#123;java_home&#125;</span>/bin/java -jar <span class="variable">$&#123;jenkins_war_path&#125;</span>/jenkins.war --httpPort=<span class="variable">$&#123;jenkins_http_port&#125;</span> &amp;` &gt; /dev/null</span><br><span class="line">                <span class="keyword">if</span> [ $? -eq 0 ];<span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">&quot;Start jenkins success.&quot;</span></span><br><span class="line">                        <span class="built_in">exit</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">&quot;Start jenkins fail.&quot;</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">echo</span>  <span class="string">&quot;Jenkins is running now.&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#重启jenkins</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">restart</span></span>()&#123;</span><br><span class="line">        <span class="built_in">local</span> runFlag=$(isRuning)</span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$&#123;runFlag&#125;</span> -eq <span class="string">&quot;0&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Jenkins is already stoped.&quot;</span></span><br><span class="line">                <span class="built_in">exit</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                stop</span><br><span class="line">                start</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Restart jenkins success.&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#根据输入的参数执行不同的动作</span></span><br><span class="line"><span class="comment">#参数不能为空</span></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="variable">$&#123;args&#125;</span> ];<span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Arg can not be null.&quot;</span></span><br><span class="line">        <span class="built_in">exit</span></span><br><span class="line"><span class="comment">#参数个数必须为1个</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$#</span> -ne 1 ];<span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Only one arg is required:start|stop|restart&quot;</span></span><br><span class="line"><span class="comment">#参数为start时启动jenkins</span></span><br><span class="line"><span class="keyword">elif</span>  [ <span class="variable">$&#123;args&#125;</span> = <span class="string">&quot;start&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">        start</span><br><span class="line"><span class="comment">#参数为stop时停止jenkins</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$&#123;args&#125;</span> = <span class="string">&quot;stop&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">        stop</span><br><span class="line"><span class="comment">#参数为restart时重启jenkins</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$&#123;args&#125;</span> = <span class="string">&quot;restart&quot;</span> ];<span class="keyword">then</span></span><br><span class="line">        restart</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;One of following args is required: start|stop|restart&quot;</span></span><br><span class="line">        <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>启动jenkins</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh jenkins.sh start</span><br></pre></td></tr></table></figure>
+
+<p>配置加速</p>
+<p><code>vi /home/jenkins/.jenkins/hudson.model.UpdateCenter.xml</code><br>将xml的url替换为<code>http://mirror.xmission.com/jenkins/updates/update-center.json</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&#x27;1.1&#x27; encoding=&#x27;UTF-8&#x27;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sites</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">site</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>default<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://mirror.xmission.com/jenkins/updates/update-center.json<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">site</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">sites</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或在web界面manage jenkins-&gt;manage plugins-&gt;Advanced-&gt;Update Site修改</p>
+<p>访问Jenkins <code>http://ip:8888</code></p>
+<p>获取管理员密码 <code>cat /home/jenkins/.jenkins/secrets/initialAdminPassword</code></p>
+<blockquote>
+<p>修改管理员密码</p>
+</blockquote>
+<p>页面左上角jenkins-&gt;people-&gt;admin-&gt;configure修改</p>
+<blockquote>
+<p>插件安装</p>
+</blockquote>
+<p>需要安装<strong>ssh、Pipeline、Role-based Authorization Strategy、Git、Gitee、Git Parameter、thinBackup</strong>这些插件，manage jenkins-&gt;manage plugins，点击available搜索下载</p>
+<table>
+<thead>
+<tr>
+<th>插件名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pipeline</td>
+<td>流水线部署项目</td>
+</tr>
+<tr>
+<td>Role-based Authorization Strategy</td>
+<td>基于角色的用户管理权限策略，最常用的jenkins权限策略管理插件</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>支持使用GitHub、gitlab等源码仓库，创建普通job会用到</td>
+</tr>
+<tr>
+<td>Gitee</td>
+<td>Gitee基于gitlab plugin开发的插件，配置Jenkins触发器，接受gitee平台发送的webhook触发jenkins进行自动化持续集成或持续部署，并可将构建状态反馈gitee平台</td>
+</tr>
+<tr>
+<td>Git Parameter</td>
+<td>可把git的tag branch作为构建参数传进来，方便使用branch构建</td>
+</tr>
+<tr>
+<td>Extended Choice Parameter</td>
+<td>参数化构建</td>
+</tr>
+<tr>
+<td>Maven Integration</td>
+<td>为maven2&#x2F;3项目提供高级集成功能</td>
+</tr>
+<tr>
+<td>SonarQube Scanner</td>
+<td>代码扫描</td>
+</tr>
+<tr>
+<td>Email Extension</td>
+<td>扩展发送告警邮件的控制粒度，可定义邮件触发器、邮件内容、收件人</td>
+</tr>
+<tr>
+<td>Workspace Cleanup</td>
+<td>每次build之前删除workspace目录下指定的文件</td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>监控Jenkins节点的CPU、系统负载、平均响应时间和内存使用</td>
+</tr>
+<tr>
+<td>Build Monitor View</td>
+<td>将Jenkins项目以看板的形式呈现</td>
+</tr>
+<tr>
+<td>ThinBackup</td>
+<td>单元测试覆盖率</td>
+</tr>
+<tr>
+<td>jacoco</td>
+<td>单元测试覆盖率</td>
+</tr>
+<tr>
+<td>Generic Webhook Trigger</td>
+<td>webhook</td>
+</tr>
+</tbody></table>
+<h4 id="jenkins的配置"><a href="#jenkins的配置" class="headerlink" title="jenkins的配置"></a>jenkins的配置</h4><p>Jenkins-&gt;Manage jenkins-&gt;Configure System 进入系统配置页面</p>
+<blockquote>
+<p>令牌配置</p>
+</blockquote>
+<p>证书令牌</p>
+<h4 id="分组管理"><a href="#分组管理" class="headerlink" title="分组管理"></a>分组管理</h4><p>new view即可</p>
+<h3 id="备份恢复"><a href="#备份恢复" class="headerlink" title="备份恢复"></a>备份恢复</h3><h4 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h4><p>在Jenkins中，所有数据默认都以文件形式存储在<code>$JENKINS_HOME</code>目录。占用空间最大的是jobs目录和workspace目录。</p>
+<ul>
+<li>jobs目录 项目在Jenkins上的配置、构建日志、构建结果等所在的目录，对应<code>/home/jenkins/.jenkins/jobs</code>目录</li>
+<li>workspace目录 项目在Jenkins上配置的源码仓库地址下载的源码所在的目录，如Java的maven构建操作就在此目录，对应<code>/data/jenkins_data/workspace</code>目录</li>
+</ul>
+<h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4><ul>
+<li>jobs目录下的一级目录名，均为在Jenkins上新建的job名称</li>
+<li>二级目录下的build里面出现的数字1，2，3…表示构建历史所在的目录，也就是一次构建有一个构建版本号，从1开始随着构建次数增加递增</li>
+<li>workspace下面都是空的，因为还没拉取代码</li>
+</ul>
+<h3 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h3><h4 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h4><p>流水线即代码，流水线的代码定义了整个的构建过程，包括构建、测试和交付应用程序的阶段，对流水线的定义写在Jenkinsfile文件中，可被提交到源码仓库。创建Jenkinsfile并提交到源码仓库的好处：</p>
+<ul>
+<li>自动为所有分支创建流水线构建过程并拉取请求</li>
+<li>在流水线上代码复查&#x2F;迭代</li>
+<li>对流水线进行审计跟踪</li>
+<li>该流水线的真正源码可被团队成员共同查看和编辑</li>
+</ul>
+<h4 id="语法支持"><a href="#语法支持" class="headerlink" title="语法支持"></a>语法支持</h4><p>Jenkinsfile能用两种语法编写，都能用pipeline内置的插件和steps</p>
+<ul>
+<li>Declarative Pipeline声明式 推荐使用，语法更严格，有固定的组织结构</li>
+<li>Scripted Pipeline 脚本化 groovy语言，只对结构和语法限制，用户可自己灵活实现和扩展</li>
+</ul>
+<p>基本概念</p>
+<ul>
+<li>stage 阶段，一个pipeline分为多个stage，每个stage代表一组操作，stage是一个逻辑分组的概念，可跨多个node</li>
+<li>node 构建服务器节点，一个node就是要给Jenkins节点，或master或agent，是执行step的具体运行期环境</li>
+<li>step 步骤，最基本的操作单元，小到创建一个目录，大到构建一个docker镜像，由各类Jenkins plugin提供</li>
+</ul>
+<h4 id="pipeline语法"><a href="#pipeline语法" class="headerlink" title="pipeline语法"></a>pipeline语法</h4><p>参考<a target="_blank" rel="noopener" href="https://www.jenkins.io/zh/doc/book/pipeline/syntax/#declarative-directives">https://www.jenkins.io/zh/doc/book/pipeline/syntax/#declarative-directives</a></p>
+<ul>
+<li><p>声明式pipeline必须包含在固定格式的pipeline{}内</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pipeline &#123;</span><br><span class="line">    <span class="comment">// insert declarative pipeline here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每个声明语句必须独立一行，行尾无需分号</p>
+</li>
+<li><p>块blocks 由大括号括起来的语句如 pipeline{} parameters{} script{}</p>
+</li>
+<li><p>章节sections 通常包括一个或多个指令或步骤 如agent post stages steps</p>
+</li>
+<li><p>指令directives 如 environment option parameter trigger stage tools when</p>
+</li>
+<li><p>步骤step 执行脚本式pipeline，如script{} </p>
+</li>
+<li><p>块只能由阶段<code>stages&#123;&#125;</code>、指令、步骤(<code>steps&#123;&#125;</code>)或赋值语句组成</p>
+</li>
+<li><p>属性引用语句被视为无参方法调用，如<code>input()</code></p>
+</li>
+</ul>
+<p>示例</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jenkinsfile(declarative pipeline)</span></span><br><span class="line">pipeline &#123;</span><br><span class="line">   agent any</span><br><span class="line">    stages &#123;</span><br><span class="line">        stage(<span class="string">&#x27;Build&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;make&#x27;</span></span><br><span class="line">                echo <span class="string">&quot;Hello world&quot;</span></span><br><span class="line">                script &#123;</span><br><span class="line">                    <span class="keyword">def</span> browsers = [<span class="string">&#x27;chrome&#x27;</span>,<span class="string">&#x27;firefox&#x27;</span>]</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; browsers.size(); ++i) &#123;</span><br><span class="line">                        echo <span class="string">&quot;Testing the $&#123;browsers[i]&#125; browser&quot;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">&#x27;Test&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;make check&#x27;</span></span><br><span class="line">                junit <span class="string">&#x27;reports/**/*.xml&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">&#x27;Deploy&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;make publish&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>pipeline是声明式流水线的一种特定语法，定义了包含执行整个流水线的所有内容和指令的block</li>
+<li>agent 指示Jenkins为整个流水线分配一个执行器(在Jenkins环境中的任何可用代理&#x2F;节点上)和工作区。一般用作指定在哪个节点上构建，如果不指定就写any表示任意节点</li>
+<li>定义Build Test Deploy三个阶段，每个阶段执行不同的步骤</li>
+<li>stage 描述stage of this pipeline的语法块，定义在pipeline的不同阶段</li>
+<li>steps 声明式流水线的特定语法，描述这个stage中要运行的步骤</li>
+<li>sh 是一个执行给定的shell命令的流水线</li>
+<li>echo 简单的字符串到控制台输出</li>
+<li>junit 另一个聚合测试报告的流水线</li>
+<li>stage括号的值表示阶段名称，内容不固定，自定义即可</li>
+</ul>
+<p>gitee的demo</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">pipeline &#123;</span><br><span class="line">    <span class="comment">//指定运行的节点，slave运行</span></span><br><span class="line">    agent &#123;</span><br><span class="line">        node &#123;</span><br><span class="line">            label <span class="string">&#x27;follower&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//定义各个阶段</span></span><br><span class="line">    stages &#123;</span><br><span class="line">        <span class="comment">// 获取git代码，credentialsId是配置的git账号</span></span><br><span class="line">        stage(<span class="string">&#x27;git&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                git <span class="attr">credentialsId:</span> <span class="string">&#x27;gitee-username&#x27;</span>, <span class="attr">url:</span> <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// test阶段</span></span><br><span class="line">        stage(<span class="string">&#x27;test&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                <span class="comment">//可从environment获取</span></span><br><span class="line">                sh <span class="string">&#x27;$&#123;MAVEN_HOME&#125;/bin/mvn test&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 编译打包阶段，打jar包</span></span><br><span class="line">        stage(<span class="string">&#x27;build&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;$&#123;MAVEN_HOME&#125;/bin/mvn clean package -DskipTests&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// docker镜像</span></span><br><span class="line">        stage(<span class="string">&#x27;docker&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;docker build -t jenkins-demo:$&#123;BUILD_NUMBER&#125; .&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 部署阶段，停掉旧的docker进程，启动新镜像</span></span><br><span class="line">        stage(<span class="string">&#x27;deploy&#x27;</span>) &#123;</span><br><span class="line">            steps &#123;</span><br><span class="line">                <span class="comment">//如果test-boot没有在启动中，如果不跟或语句，会执行失败</span></span><br><span class="line">                sh <span class="string">&#x27;docker rm -f jenkins-demo || sleep 0&#x27;</span></span><br><span class="line">                sh <span class="string">&#x27;docker run --name jenkins-demo -d -p 8080:8080 jenkins-demo:$&#123;BUILD_NUMBER&#125;&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其他常见语法：</p>
+<ul>
+<li><p>when 允许流水线根据给定的条件决定是否应该执行阶段，必须包含至少一个条件</p>
+</li>
+<li><p>environment </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pipeline &#123;</span><br><span class="line">    environment &#123;</span><br><span class="line">        <span class="comment">//	顶层流水线块中使用的 environment 指令将适用于流水线中的所有步骤</span></span><br><span class="line">    &#125;</span><br><span class="line">    stages &#123;</span><br><span class="line">        stage(<span class="string">&#x27;Example&#x27;</span>) &#123;</span><br><span class="line">            environment &#123; </span><br><span class="line">                <span class="comment">//在一个 stage 中定义的 environment 指令只会将给定的环境变量应用于 stage 中的步骤</span></span><br><span class="line">                AN_ACCESS_KEY = credentials(<span class="string">&#x27;my-prefined-secret-text&#x27;</span>) </span><br><span class="line">            &#125;</span><br><span class="line">            steps &#123;</span><br><span class="line">                sh <span class="string">&#x27;printenv&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>options 从流水线内部配置特定于流水线的选项，如超时，中止流水线</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pipeline &#123; </span><br><span class="line">     </span><br><span class="line">    options &#123;</span><br><span class="line">        timeout(<span class="attr">time:</span> <span class="number">30</span>, <span class="attr">unit:</span> <span class="string">&#x27;SECONDS&#x27;</span>) <span class="comment">//unit根据需要可选值有：SECONDS、MINUTES、HOURS</span></span><br><span class="line">        retry(<span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/06/21/jenkins%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/06/28/linux%E5%91%BD%E4%BB%A4%E6%8B%BE%E9%81%97/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            linux命令拾遗
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2023/06/19/%E3%80%8A%E7%A7%A6%E5%90%8F%E3%80%8B%E6%9C%89%E6%84%9F/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">《秦吏》有感</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "3Fxc2P6c5B6Fk87YwUCcJpul-gzGzoHsz",
+    app_key: "kta73VYGubbDJPMEEYTSUltS",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023
+        <i class="ri-heart-fill heart_icon"></i> Larry Wang
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Larry&#39;s space"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+      
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+      
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+      
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+      
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+      
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+ 
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.css">
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.js"></script>
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/contrib/auto-render.min.js"></script>
+        
+    
+ 
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=484056997&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

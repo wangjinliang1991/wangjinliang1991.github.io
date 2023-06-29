@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-06-19T00:33:33.692Z</updated>
+  <updated>2023-06-28T03:48:38.813Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux命令拾遗</title>
+    <link href="http://example.com/2023/06/28/linux%E5%91%BD%E4%BB%A4%E6%8B%BE%E9%81%97/"/>
+    <id>http://example.com/2023/06/28/linux%E5%91%BD%E4%BB%A4%E6%8B%BE%E9%81%97/</id>
+    <published>2023-06-28T03:45:44.000Z</published>
+    <updated>2023-06-28T03:48:38.813Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;&#92;assets&#92;css&#92;APlayer.min.css&quot;&gt;&lt;script src=&quot;&#92;assets&#92;js&#92;APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="http://example.com/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jenkins基础</title>
+    <link href="http://example.com/2023/06/21/jenkins%E5%9F%BA%E7%A1%80/"/>
+    <id>http://example.com/2023/06/21/jenkins%E5%9F%BA%E7%A1%80/</id>
+    <published>2023-06-21T08:53:40.000Z</published>
+    <updated>2023-06-23T11:40:42.070Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;&#92;assets&#92;css&#92;APlayer.min.css&quot;&gt;&lt;script src=&quot;&#92;assets&#92;js&#92;APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="http://example.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="jenkins" scheme="http://example.com/tags/jenkins/"/>
+    
+  </entry>
   
   <entry>
     <title>《秦吏》有感</title>
@@ -71,7 +121,7 @@
     <link href="http://example.com/2023/06/18/%E8%8B%B1%E8%AF%AD%E8%A7%84%E5%88%92/"/>
     <id>http://example.com/2023/06/18/%E8%8B%B1%E8%AF%AD%E8%A7%84%E5%88%92/</id>
     <published>2023-06-18T03:14:54.000Z</published>
-    <updated>2023-06-18T08:13:02.774Z</updated>
+    <updated>2023-06-29T14:50:35.199Z</updated>
     
     
       
