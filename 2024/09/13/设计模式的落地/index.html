@@ -131,14 +131,14 @@
 <p>单例模式最常见，必须掌握。spring默认就是单例模式</p>
 <h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><h2 id="封装有缺陷的接口设计"><a href="#封装有缺陷的接口设计" class="headerlink" title="封装有缺陷的接口设计"></a>封装有缺陷的接口设计</h2><p>可以看作一种补偿模式，也就是设计初期未考虑到一些接口，比如登录没考虑到第三方登录，这时候可以用。</p>
 <p>具体类图如下<br><img src="https://s1.imagehub.cc/images/2024/09/13/02baae974a6305ae6f202e5115ba67e6.png" alt="Pasted image 20240810114413"></p>
-<p>实现的效果如下<br>![[Pasted image 20240831104325.png]]</p>
+<p>实现的效果如下<br><img src="https://s1.imagehub.cc/images/2024/09/13/ebf01e1458ac48c0f17a1dea13d97b1c.png" alt="Pasted image 20240831104325"></p>
 <p>适配器(Adapter)角色，既能够支持已有功能（用户名／密码登录）​，也能够适配扩展功能（第三方账号授权登录）​，适配的扩展功能还能够复用已有的方法（register方法和login方法）</p>
 <p>具体gitee的实现详见</p>
 <p>设计模式-适配器模式-通过gitee登录应用系统</p>
 <iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/mzgqwg"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <h2 id="统一多个类的接口设计"><a href="#统一多个类的接口设计" class="headerlink" title="统一多个类的接口设计"></a>统一多个类的接口设计</h2><p>某个功能的实现依赖多个外部系统(或者说类)，敏感词过滤为例，系统可能依赖多个敏感词库，提高过滤的召回率。但是他们的接口实现都不太一样，通过适配器把接口适配为统一的接口定义，保证复用性。</p>
-<p>![[Pasted image 20240831120842.png]]</p>
+<p><img src="https://s1.imagehub.cc/images/2024/09/13/87536f14abafefa2bc78ce1e1d5040ce.png" alt="Pasted image 20240831120842"></p>
 <iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/z8uslh"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
