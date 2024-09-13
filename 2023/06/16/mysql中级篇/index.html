@@ -79,7 +79,7 @@
   <time datetime="2023-06-16T07:59:05.000Z" itemprop="datePublished">2023-06-16</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
   </div>
   
 <div class="word_count">
@@ -111,7 +111,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h2><p>只要多个查询需要同时修改数据，就会产生并发控制问题。</p>
+  <h2><span id="并发控制">并发控制</span></h2><p>只要多个查询需要同时修改数据，就会产生并发控制问题。</p>
 <p>mysql有两个级别的并发控制：服务器级别和存储引擎级别。</p>
 <p>并发控制的解决方案：加锁。</p>
 <p>两种锁：</p>
@@ -122,8 +122,8 @@
 <p>如何提高并发？让锁的粒度更加精确，理想的方式：只对需要修改的数据片段进行精确的锁定。</p>
 <p>由于加锁也要增加系统开销，需要平衡锁开销和数据安全性，称之为<strong>锁定策略</strong>。</p>
 <p>mysql有多种存储引擎，每个都可以实现自己的锁策略和锁粒度。</p>
-<h3 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h3><p>table lock，最基本也是开销最小的锁，锁整个表。写操作(CUD)需要先获取写锁，阻碍所有的读写操作；只有没有写操作，才能获得读锁，读锁之间不相互阻塞。</p>
-<h3 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h3><p>row lock，锁某一行，最大程度的支持并发处理，代价是锁开销巨大。行锁是存储引擎实现。innodb支持行锁。</p>
+<h3><span id="表锁">表锁</span></h3><p>table lock，最基本也是开销最小的锁，锁整个表。写操作(CUD)需要先获取写锁，阻碍所有的读写操作；只有没有写操作，才能获得读锁，读锁之间不相互阻塞。</p>
+<h3><span id="行锁">行锁</span></h3><p>row lock，锁某一行，最大程度的支持并发处理，代价是锁开销巨大。行锁是存储引擎实现。innodb支持行锁。</p>
  
       <!-- reward -->
       
