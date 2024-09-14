@@ -111,29 +111,30 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1><span id="为什么需要掌握设计模式">为什么需要掌握设计模式</span></h1><p>类比于我们的成语、行话，助力我们的大脑快速高效的沟通和研读优秀的代码</p>
-<h1><span id="1-六大原则">1. 六大原则</span></h1><h2><span id="介绍">介绍</span></h2><h3><span id="1-单一职责原则">1. 单一职责原则</span></h3><p>Single Responsibility Principle, SRP，一个类只负责一个功能领域的相应职责。也就是我们常说的“高内聚，低耦合”</p>
-<h3><span id="2-开闭原则">2. 开闭原则</span></h3><p>Open-Closed Principle,OCP：对扩展开放，对修改关闭</p>
+  <p>&lt;！– toc –&gt;</p>
+<h1><span id="wei-shi-me-xu-yao-zhang-wo-she-ji-mo-shi">为什么需要掌握设计模式</span></h1><p>类比于我们的成语、行话，助力我们的大脑快速高效的沟通和研读优秀的代码</p>
+<h1><span id="1-liu-da-yuan-ze">1. 六大原则</span></h1><h2><span id="jie-shao">介绍</span></h2><h3><span id="1-dan-yi-zhi-ze-yuan-ze">1. 单一职责原则</span></h3><p>Single Responsibility Principle, SRP，一个类只负责一个功能领域的相应职责。也就是我们常说的“高内聚，低耦合”</p>
+<h3><span id="2-kai-bi-yuan-ze">2. 开闭原则</span></h3><p>Open-Closed Principle,OCP：对扩展开放，对修改关闭</p>
 <p>也就是尽量在不修改原有代码的情况下进行扩展</p>
-<h3><span id="3-里式替换原则">3. 里式替换原则</span></h3><p>Liskov Substitution Principle，LSP：所有引用父类的地方必须能透明的使用其子类的对象。</p>
+<h3><span id="3-li-shi-ti-huan-yuan-ze">3. 里式替换原则</span></h3><p>Liskov Substitution Principle，LSP：所有引用父类的地方必须能透明的使用其子类的对象。</p>
 <p>在程序中尽量使用基类类型来对对象进行定义，在运行时再确定子类类型，用子类对象来替换父类对象。</p>
 <p>算是实现开闭原则的重要方式之一，通俗的说：<strong>子类可以扩展父类的功能，但不能改变父类原有的功能</strong></p>
-<h3><span id="4-依赖倒置原则">4. 依赖倒置原则</span></h3><p>Dependency Inversion Principle,DIP：抽象不应该依赖于细节，细节应该依赖于抽象，<strong>也就是面向接口编程，而不是针对实现编程</strong>。</p>
+<h3><span id="4-yi-lai-dao-zhi-yuan-ze">4. 依赖倒置原则</span></h3><p>Dependency Inversion Principle,DIP：抽象不应该依赖于细节，细节应该依赖于抽象，<strong>也就是面向接口编程，而不是针对实现编程</strong>。</p>
 <p>开闭原则是目标，里式替换是基础，依赖倒置是手段。</p>
 <p>感觉和spring的DI有点联系，后续再思考。</p>
-<h3><span id="5-接口隔离原则">5. 接口隔离原则</span></h3><p>Interface Segregation Principle，ISP：使用多个专门的接口，而不适用单一的总接口，即客户端不应该依赖那些它不需要的接口</p>
+<h3><span id="5-jie-kou-ge-chi-yuan-ze">5. 接口隔离原则</span></h3><p>Interface Segregation Principle，ISP：使用多个专门的接口，而不适用单一的总接口，即客户端不应该依赖那些它不需要的接口</p>
 <p>每个接口应该承担相对独立的角色，提供定制服务，当然接口也不能太小，灵活性会变差。控制好接口的粒度。</p>
-<h3><span id="6-迪米特法则">6. 迪米特法则</span></h3><p>Law of Demeter,LoD, 也叫最少知识原则，LeastKnowledge Principle,LKP：一个软件实体应当尽可能少的与其他实体发生相互作用</p>
+<h3><span id="6-di-mi-te-fa-ze">6. 迪米特法则</span></h3><p>Law of Demeter,LoD, 也叫最少知识原则，LeastKnowledge Principle,LKP：一个软件实体应当尽可能少的与其他实体发生相互作用</p>
 <p>也就是解耦合，降低系统的耦合度。</p>
-<h2><span id="分类">分类</span></h2><p>大致按照设计模式的应用目标分类，分为创建型、结构型和行为型</p>
+<h2><span id="fen-lei">分类</span></h2><p>大致按照设计模式的应用目标分类，分为创建型、结构型和行为型</p>
 <ul>
 <li>创建型模式，是对对象创建过程的各种问题和解决方案的总结，包括各种工厂模式（Factory, Abstract Factory）、单例模式（Singleton）、构建者模式（Builder）、原型模式（Prototype）</li>
 <li>结构型模式，是对软件设计结构的总结，专注于类、对象继承、组合方式的实践经验。常见的有桥接模式（Bridge）、适配器模式（Adapter）、装饰器模式（Decorator）、代理模式（Proxy）、组合模式（Composite）、门面模式（Facade）、享元模式（Flyweight）等。</li>
 <li>行为型模式，是从类或者对象之间交互、职责划分等角度总结的模式，常见有策略模式（Strategy）、解释器模式（Interpreter）、命令模式（Command）、观察者模式（Observer）、迭代器模式（Iterator）、模板方法模式（Template Method）、访问者模式（Visitor）</li>
 </ul>
-<h1><span id="单例模式">单例模式</span></h1><p>之前总结有，<a target="_blank" rel="noopener" href="https://blog.csdn.net/wjl31802/article/details/91360815">https://blog.csdn.net/wjl31802/article/details/91360815</a></p>
+<h1><span id="dan-li-mo-shi">单例模式</span></h1><p>之前总结有，<a target="_blank" rel="noopener" href="https://blog.csdn.net/wjl31802/article/details/91360815">https://blog.csdn.net/wjl31802/article/details/91360815</a></p>
 <p>单例模式最常见，必须掌握。spring默认就是单例模式</p>
-<h1><span id="适配器模式">适配器模式</span></h1><h2><span id="封装有缺陷的接口设计">封装有缺陷的接口设计</span></h2><p>可以看作一种补偿模式，也就是设计初期未考虑到一些接口，比如登录没考虑到第三方登录，这时候可以用。</p>
+<h1><span id="gua-pei-qi-mo-shi">适配器模式</span></h1><h2><span id="feng-zhuang-you-que-xian-de-jie-kou-she-ji">封装有缺陷的接口设计</span></h2><p>可以看作一种补偿模式，也就是设计初期未考虑到一些接口，比如登录没考虑到第三方登录，这时候可以用。</p>
 <p>具体类图如下<br><img src="https://s1.imagehub.cc/images/2024/09/13/02baae974a6305ae6f202e5115ba67e6.png" alt="Pasted image 20240810114413"></p>
 <p>实现的效果如下<br><img src="https://s1.imagehub.cc/images/2024/09/13/ebf01e1458ac48c0f17a1dea13d97b1c.png" alt="Pasted image 20240831104325"></p>
 <p>适配器(Adapter)角色，既能够支持已有功能（用户名／密码登录）​，也能够适配扩展功能（第三方账号授权登录）​，适配的扩展功能还能够复用已有的方法（register方法和login方法）</p>
@@ -141,21 +142,21 @@
 <p>设计模式-适配器模式-通过gitee登录应用系统</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/mzgqwg" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
-<h2><span id="统一多个类的接口设计">统一多个类的接口设计</span></h2><p>某个功能的实现依赖多个外部系统(或者说类)，敏感词过滤为例，系统可能依赖多个敏感词库，提高过滤的召回率。但是他们的接口实现都不太一样，通过适配器把接口适配为统一的接口定义，保证复用性。</p>
+<h2><span id="tong-yi-duo-ge-lei-de-jie-kou-she-ji">统一多个类的接口设计</span></h2><p>某个功能的实现依赖多个外部系统(或者说类)，敏感词过滤为例，系统可能依赖多个敏感词库，提高过滤的召回率。但是他们的接口实现都不太一样，通过适配器把接口适配为统一的接口定义，保证复用性。</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/87536f14abafefa2bc78ce1e1d5040ce.png" alt="Pasted image 20240831120842"></p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/z8uslh" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-<h2><span id="替换外部依赖a为外部依赖b">替换外部依赖A为外部依赖B</span></h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/0fe1215757c70ba85b6a73a3d1aa5aa5.png" alt="Pasted image 20240831182711"></p>
+<h2><span id="ti-huan-wai-bu-yi-lai-a-wei-wai-bu-yi-lai-b">替换外部依赖A为外部依赖B</span></h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/0fe1215757c70ba85b6a73a3d1aa5aa5.png" alt="Pasted image 20240831182711"></p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/5gtu0m" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-<h2><span id="兼容老版本的接口">兼容老版本的接口</span></h2><p>版本升级后，部分接口被弃用，标注deprecated，但是仍然有部分项目在用，如何丝滑的过渡？</p>
+<h2><span id="jian-rong-lao-ban-ben-de-jie-kou">兼容老版本的接口</span></h2><p>版本升级后，部分接口被弃用，标注deprecated，但是仍然有部分项目在用，如何丝滑的过渡？</p>
 <p>jdk给我们的demo，jdk1.0的容器遍历的类Enumeration，在JDK1.2的时候改为Iterator类，那如何兼容呢？采用适配器模式,暂时保留 Enumeration 类，并将其实现替换为直接调用 Itertor</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/ukprsd" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
-<h2><span id="适配不同格式的数据">适配不同格式的数据</span></h2><p>不同格式的数据之间的适配，比如，把从不同征信系统拉取的不同格式的征信数据，统一为相同的格式，以方 便存储和使用。再比如，Java 中的 Arrays.asList() 也可以看作一种数据适配器，将数组类 型的数据转化为集合容器类型。</p>
-<h2><span id="不同日志框架的适配">不同日志框架的适配</span></h2><p>2023年爆出的log4j的漏洞让全国人民都知道了这个日志框架。<br>java的日志框架比较混乱，或者说多元，因为最开始没有和数据库连接一样制定相关的接口规范。<br>梳理下大致的发展：</p>
+<h2><span id="gua-pei-bu-tong-ge-shi-de-shu-ju">适配不同格式的数据</span></h2><p>不同格式的数据之间的适配，比如，把从不同征信系统拉取的不同格式的征信数据，统一为相同的格式，以方 便存储和使用。再比如，Java 中的 Arrays.asList() 也可以看作一种数据适配器，将数组类 型的数据转化为集合容器类型。</p>
+<h2><span id="bu-tong-ri-zhi-kuang-jia-de-gua-pei">不同日志框架的适配</span></h2><p>2023年爆出的log4j的漏洞让全国人民都知道了这个日志框架。<br>java的日志框架比较混乱，或者说多元，因为最开始没有和数据库连接一样制定相关的接口规范。<br>梳理下大致的发展：</p>
 <ol>
 <li>最开始只有<code>System.out.print</code>这种，没有日志级别啥的</li>
 <li>2001年log4j诞生，定义了Logger Appender Level等概念，但是同步锁导致高并发下的性能有问题</li>
@@ -167,7 +168,7 @@
 <p>那问题来了，如果不同的项目，又用到logback，又用到log4j，然后呢想用slf4j，怎么整？<br>就考虑到适配器模式，把不同的框架接口二次封装，适配为统一的slf4j接口定义。</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/ltvfa1" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
-<h1><span id="桥接模式">桥接模式</span></h1><p>桥接模式也叫作桥梁模式(Bridge Pattern)，该模式旨在将抽象和实现解耦</p>
+<h1><span id="qiao-jie-mo-shi">桥接模式</span></h1><p>桥接模式也叫作桥梁模式(Bridge Pattern)，该模式旨在将抽象和实现解耦</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/b58f4c7cf10d5c03e10da974089b982b.png" alt="Pasted image 20240810164618"></p>
 <p>还是以三方登录为例子，核心逻辑的实现需要在“右路Implementor的结构体系中</p>
 <p>要实现什么功能？</p>
@@ -175,22 +176,22 @@
 <li>实现三方登录</li>
 <li>维持现有的注册登录</li>
 </ol>
-<h2><span id="implementor的实现">implementor的实现</span></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">RegisterLoginFuncInterface</span> &#123;  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">login</span><span class="params">(String account,String password)</span>;  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">register</span><span class="params">(UserInfo userInfo)</span>;  </span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">checkUserExist</span><span class="params">(String userName)</span>;  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">login3rd</span><span class="params">(HttpServletRequest request)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="implementor-de-shi-xian">implementor的实现</span></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">RegisterLoginFuncInterface</span> &#123;  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">login</span><span class="params">(String account,String password)</span>;  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">register</span><span class="params">(UserInfo userInfo)</span>;  </span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">checkUserExist</span><span class="params">(String userName)</span>;  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">login3rd</span><span class="params">(HttpServletRequest request)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然后就是具体的实现，这里面就有问题了，比如RegisterLoginByDefault是否要实现login3rd？RegisterLoginByGitee是否要实现login? 通过抽象层解决</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/ursb8n" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-<h2><span id="abstract的实现">abstract的实现</span></h2><p>需要提供给client这些方法：login抽象方法、register抽象方法、checkUserExists抽象方法和第三方账号登录的login3rd抽象方法</p>
+<h2><span id="abstract-de-shi-xian">abstract的实现</span></h2><p>需要提供给client这些方法：login抽象方法、register抽象方法、checkUserExists抽象方法和第三方账号登录的login3rd抽象方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractRegisterLoginComponent</span> &#123;  </span><br><span class="line">    <span class="comment">// 桥梁  </span></span><br><span class="line">    <span class="keyword">protected</span> RegisterLoginFuncInterface funcInterface;  </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">AbstractRegisterLoginComponent</span><span class="params">(RegisterLoginFuncInterface funcInterface)</span> &#123;  </span><br><span class="line">        validate(funcInterface);  </span><br><span class="line">        <span class="built_in">this</span>.funcInterface = funcInterface;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">validate</span><span class="params">(RegisterLoginFuncInterface funcInterface)</span> &#123;  </span><br><span class="line">        <span class="keyword">if</span> (!(funcInterface <span class="keyword">instanceof</span> RegisterLoginFuncInterface)) &#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>(<span class="string">&quot;unknown register/login function type!&quot;</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">login</span><span class="params">(String username, String password)</span>;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">register</span><span class="params">(UserInfo userInfo)</span>;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">boolean</span> <span class="title function_">checkUserExists</span><span class="params">(String userName)</span>;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">login3rd</span><span class="params">(HttpServletRequest request)</span>;  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>用“抽象和实现”两种类结构的设计换来了代码的高扩展性，换来了核心实现对Client端的“最少知识”原则，换来了耦合度的降低，就好比我们用空间换来了执行速度。</p>
 <p>继续左路突破，RegisterLoginComponent子类</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/zwiuf1" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
-<h2><span id="搭建桥梁">搭建桥梁</span></h2><p>通过在AbstractRegisterLoginComponent抽象类中关联RegisterLoginFuncInterface接口，并以“构造函数”的形式，初始化RegisterLoginFuncInterface接口属性，完成抽象与实现的桥梁搭建。</p>
+<h2><span id="da-jian-qiao-liang">搭建桥梁</span></h2><p>通过在AbstractRegisterLoginComponent抽象类中关联RegisterLoginFuncInterface接口，并以“构造函数”的形式，初始化RegisterLoginFuncInterface接口属性，完成抽象与实现的桥梁搭建。</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/e433209cbae862550ebf8583899a936c.png" alt="Pasted image 20240907184925"></p>
-<h2><span id="调用">调用</span></h2><p>Controller层→Service层→桥接模式的左路的抽象AbstractRegisterLoginComponent入口</p>
+<h2><span id="diao-yong">调用</span></h2><p>Controller层→Service层→桥接模式的左路的抽象AbstractRegisterLoginComponent入口</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/lp092p" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>service层调用具体的登录实现，不能直接new，这样的话，每个进行login登录的用户线程，都会new两个对象，一个是左路的抽象子类RegisterLoginComponent作为调用入口；一个是右路具体的子类，如RegisterLoginByDefault。对于用户量庞大且活跃度较高的应用，这种代码很可能会引起频繁的垃圾收集操作。</p>
@@ -198,12 +199,12 @@
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/ie25sh" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>利用@PostConstruct注解，在RegisterLoginByDefault对象和RegisterLoginByGitee对象注入到SpringBoot的容器后，初始化funcMap</p>
-<h2><span id="补充">补充</span></h2><p>桥接模式的核心其实就是桥梁，本质也是组合模式，只是扩展性更强。</p>
+<h2><span id="bu-chong">补充</span></h2><p>桥接模式的核心其实就是桥梁，本质也是组合模式，只是扩展性更强。</p>
 <p>监控告警可以采用这种，Notification是抽象，MsgSender是实现，具体有短信告警、电话告警等</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/a9f70d" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-<h1><span id="组合模式">组合模式</span></h1><h2><span id="解释">解释</span></h2><p>将对象组合成树形结构以表示“部分—整体”的层次结构</p>
+<h1><span id="zu-he-mo-shi">组合模式</span></h1><h2><span id="jie-shi">解释</span></h2><p>将对象组合成树形结构以表示“部分—整体”的层次结构</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/22843313984c39eb618204d15c40384a.png" alt="Pasted image 20240907194633"></p>
 <ul>
 <li>Component抽象角色。所有树形结构的叶子节点和非叶子节点都需要继承该抽象角色</li>
@@ -211,17 +212,17 @@
 <li>Leaf叶子构件角色</li>
 </ul>
 <p>但是有些过时，现实场景，不能保证叶子节点永远不会没有子节点。因此再继续优化。<br><img src="https://s1.imagehub.cc/images/2024/09/13/5d2635f9622e1c25c4bfbbc61176c9aa.png" alt="Pasted image 20240818173156"></p>
-<h2><span id="实现">实现</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/qnr9nm" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2><span id="shi-xian">实现</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/qnr9nm" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>设计要点：</p>
 <ul>
 <li>addProductIteam方法和delProductIteam方法，都不强制子类进行实现，因此没有使用abstract修饰这两个方法，子类可以根据需求自主选择实现哪些方法。</li>
 <li>参数都用AbstractProductIteam本身，遵循李氏替换原则</li>
 </ul>
-<h2><span id="对应controller-service和repository">对应controller service和repository</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/6dqssa" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2><span id="dui-ying-controller-service-he-repository">对应controller service和repository</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/6dqssa" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>其中，generateProductTree方法是将数据库的商品类目信息转化成组合模式树形结构的核心代码</p>
-<h1><span id="访问者模式">访问者模式</span></h1><h2><span id="概念">概念</span></h2><p>旨在操作某对象结构中各个（各层级）元素的模式，在不改变元素整体结构的前提下，定义作用于这些元素的新操作。</p>
+<h1><span id="fang-wen-zhe-mo-shi">访问者模式</span></h1><h2><span id="gai-nian">概念</span></h2><p>旨在操作某对象结构中各个（各层级）元素的模式，在不改变元素整体结构的前提下，定义作用于这些元素的新操作。</p>
 <p>商品类目的树形结构来说，我们可以利用访问者模式，对树形结构的任意节点进行操作（添加、删除）​。</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/915a1ae5241790b321c1844483f8526c.png" alt="Pasted image 20240907225018"></p>
 <p>除Client调用端以外，访问者模式包含5个角色，其中两个角色属于组合模式，我仅仅需要搞定其他3个角色即可</p>
@@ -237,15 +238,15 @@
 <h2><span id="concretevistor">ConcreteVistor</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/91ox3d" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-<h2><span id="objectstructure数据提供者">ObjectStructure数据提供者</span></h2><p>其实就是RedisCommonProcessor，从缓存获取数据</p>
+<h2><span id="objectstructure-shu-ju-ti-gong-zhe">ObjectStructure数据提供者</span></h2><p>其实就是RedisCommonProcessor，从缓存获取数据</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/4o4eiq" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/0c5d949dbd2068f205ea0fb4fda58655.png" alt="Pasted image 20240907230308"></p>
-<h2><span id="controller-service和repository">controller service和repository</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/3cbjkx" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2><span id="controller-service-he-repository">controller service和repository</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/3cbjkx" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 无论是商品类目添加还是商品类目删除，代码的实现逻辑并未涉及补偿机制以及极端场景
 
 
-<h1><span id="状态模式">状态模式</span></h1><h2><span id="概念">概念</span></h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/17d69e64e20704116815013b0ef7c3ec.png" alt="Pasted image 20240818190853"></p>
+<h1><span id="zhuang-tai-mo-shi">状态模式</span></h1><h2><span id="gai-nian">概念</span></h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/17d69e64e20704116815013b0ef7c3ec.png" alt="Pasted image 20240818190853"></p>
 <ul>
 <li>State抽象状态角色：该角色主要进行状态的定义和方法的定义。</li>
 <li>ConcreteState具体状态类：不同的状态需要创建不同的状态类（订单有四个状态，就需要创建四个具体的状态类）​，并且实现抽象状态类定义的方法。</li>
@@ -257,7 +258,7 @@
 <li>并发的问题，不同的订单不能使用同一个context，context有状态。但是无状态的话，违背UML类图的结构</li>
 </ol>
 <p>解决：</p>
-<h2><span id="采用spring状态机">采用spring状态机</span></h2><h3><span id="概念">概念</span></h3><p>状态机是状态模式的一种应用，相当于上下文角色的一个升级版，在工作流状态转化、订单状态转化等各种系统中有大量使用，封装状态的变化规则。</p>
+<h2><span id="cai-yong-spring-zhuang-tai-ji">采用spring状态机</span></h2><h3><span id="gai-nian">概念</span></h3><p>状态机是状态模式的一种应用，相当于上下文角色的一个升级版，在工作流状态转化、订单状态转化等各种系统中有大量使用，封装状态的变化规则。</p>
 <ul>
 <li>state（状态）​：如订单的不同状态</li>
 <li>transition（转移）​：一个状态接收一个输入，执行了某些动作到达了另外一个状态的过程就是一个transition（转移）​。例如，订单状态在ORDER_WAIT_PAY的情况下，接收到了一个支付动作，那么订单状态就会从ORDER_WAIT_PAY状态transition（转移）到ORDER_WAIT_SEND状态。</li>
@@ -273,7 +274,7 @@
 <li>转化过程配置到Spring状态机中，需要创建基于@Configuration注解的配置类</li>
 </ul>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/cad77b2d72f479d1f689c46e50d2380f.png" alt="Pasted image 20240908072241"></p>
-<h3><span id="具体实现">具体实现</span></h3><p>创建订单状态枚举类</p>
+<h3><span id="ju-ti-shi-xian">具体实现</span></h3><p>创建订单状态枚举类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">OrderState</span> &#123;  </span><br><span class="line">    ORDER_WAIT_PAY, <span class="comment">//待支付  </span></span><br><span class="line">    ORDER_WAIT_SEND, <span class="comment">// 待发货  </span></span><br><span class="line">    ORDER_WAIT_RECEIVE, <span class="comment">// 待收货  </span></span><br><span class="line">    ORDER_FINISH; <span class="comment">// 完成订单  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>订单操作枚举类</p>
@@ -292,13 +293,13 @@
 
 
 
-<h1><span id="观察者模式">观察者模式</span></h1><p>核心就两个：观察者observer和被观察者subject，再加上各自的子类</p>
+<h1><span id="guan-cha-zhe-mo-shi">观察者模式</span></h1><p>核心就两个：观察者observer和被观察者subject，再加上各自的子类</p>
 <p>缺点：很难优雅的把观察者添加到observerList中</p>
 <p>解决：对observersList属性的初始化过程中，我们需要引入一个用fianl static修饰的Vector数据结构，并通过@PostConstruct注解初始化Vector中的元素</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/eab5nm" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-<h2><span id="基于状态机的观察者模式">基于状态机的观察者模式</span></h2><p>作用：</p>
+<h2><span id="ji-yu-zhuang-tai-ji-de-guan-cha-zhe-mo-shi">基于状态机的观察者模式</span></h2><p>作用：</p>
 <ol>
 <li>监听器 监听对象</li>
 <li>监听到状态变化，所采取的行动逻辑</li>
@@ -309,13 +310,13 @@
 <p>PayToSend方法的参数<code>Message&lt;OrderStateChangeAction&gt;message</code>，此处使用org.springframework.messaging.Message类，对OrderStateChangeAction订单操作枚举类进行了封装，从字面意义来说，这个参数代表了一条订单操作的消息。我们可以根据这个消息，获取订单的信息，并进行后续处理</p>
 <h2><span id="controller-service">controller、service</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/b5fcmi" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
-<h3><span id="雷点">雷点</span></h3><p>所有的第三方平台的支付操作，都是两段式的：第一段向第三方支付平台提交订单支付请求；第二段第三方支付平台回调我们平台的接口。只有在第二段的时候，我们才能确认订单支付是否成功，才能确认是否需要将订单状态转为待发货状态。</p>
+<h3><span id="lei-dian">雷点</span></h3><p>所有的第三方平台的支付操作，都是两段式的：第一段向第三方支付平台提交订单支付请求；第二段第三方支付平台回调我们平台的接口。只有在第二段的时候，我们才能确认订单支付是否成功，才能确认是否需要将订单状态转为待发货状态。</p>
 <p>其他注意：</p>
 <ul>
 <li>订单存储到Redis中，是以orderId作为key的。创建完订单后，可以打开Redis客户端，通过get具体的orderId命令查看当前存储的订单信息。当订单签收成功后，Redis中的订单信息就会被删除</li>
 <li>状态机存储到Redis中，是以具体的orderId+STATE为key的</li>
 </ul>
-<h1><span id="命令模式">命令模式</span></h1><h2><span id="概念">概念</span></h2><p>将请求封装到一个命令(Command)对象中，实现了请求调用者和具体实现者之间的解耦</p>
+<h1><span id="ming-ling-mo-shi">命令模式</span></h1><h2><span id="gai-nian">概念</span></h2><p>将请求封装到一个命令(Command)对象中，实现了请求调用者和具体实现者之间的解耦</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/d7aea0b1d6919d222f1f46772ee51ea7.png" alt="Pasted image 20240908115357"></p>
 <ul>
 <li>抽象命令(Command)角色 一般定义为接口，用于定义执行命令的接口</li>
@@ -324,57 +325,57 @@
 <li>调用者(Invoker)角色 接收客户端正确的命令，并触发命令的执行</li>
 <li>客户端(Client)角色 创建Invoker和命令，并通过invoker触发命令</li>
 </ul>
-<h2><span id="实现">实现</span></h2><h3><span id="接收者ordercommandreceiver">接收者OrderCommandReceiver</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderCommandReceiver</span> &#123;  </span><br><span class="line">    <span class="comment">// 接收命令后执行  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">action</span><span class="params">(Order order)</span> &#123;  </span><br><span class="line">        <span class="keyword">switch</span> (order.getOrderState()) &#123;  </span><br><span class="line">            <span class="keyword">case</span> ORDER_WAIT_PAY:  </span><br><span class="line">                System.out.println(<span class="string">&quot;创建订单：order = &quot;</span> + order);  </span><br><span class="line">                System.out.println(<span class="string">&quot;存入db&quot;</span>);  </span><br><span class="line">                <span class="keyword">return</span>;  </span><br><span class="line">            <span class="keyword">case</span> ORDER_WAIT_SEND:  </span><br><span class="line">                System.out.println(<span class="string">&quot;支付订单：order = &quot;</span> + order);  </span><br><span class="line">                System.out.println(<span class="string">&quot;存入db&quot;</span>);  </span><br><span class="line">                System.out.println(<span class="string">&quot;通过 MQ 通知财务&quot;</span>);  </span><br><span class="line">                System.out.println(<span class="string">&quot;通过 MQ 通知物流&quot;</span>);  </span><br><span class="line">                <span class="keyword">return</span>;  </span><br><span class="line">            <span class="keyword">case</span> ORDER_WAIT_RECEIVE:  </span><br><span class="line">                System.out.println(<span class="string">&quot;订单发货：order = &quot;</span> + order);  </span><br><span class="line">                System.out.println(<span class="string">&quot;存入db&quot;</span>);  </span><br><span class="line">                <span class="keyword">return</span>;  </span><br><span class="line">            <span class="keyword">case</span> ORDER_FINISH:  </span><br><span class="line">                System.out.println(<span class="string">&quot;接收订单：order = &quot;</span> + order);  </span><br><span class="line">                System.out.println(<span class="string">&quot;存入db&quot;</span>);  </span><br><span class="line">                <span class="keyword">return</span>;  </span><br><span class="line">            <span class="keyword">default</span>:  </span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>(<span class="string">&quot;Order state error&quot;</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="shi-xian">实现</span></h2><h3><span id="jie-shou-zhe-ordercommandreceiver">接收者OrderCommandReceiver</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderCommandReceiver</span> &#123;  </span><br><span class="line">    <span class="comment">// 接收命令后执行  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">action</span><span class="params">(Order order)</span> &#123;  </span><br><span class="line">        <span class="keyword">switch</span> (order.getOrderState()) &#123;  </span><br><span class="line">            <span class="keyword">case</span> ORDER_WAIT_PAY:  </span><br><span class="line">                System.out.println(<span class="string">&quot;创建订单：order = &quot;</span> + order);  </span><br><span class="line">                System.out.println(<span class="string">&quot;存入db&quot;</span>);  </span><br><span class="line">                <span class="keyword">return</span>;  </span><br><span class="line">            <span class="keyword">case</span> ORDER_WAIT_SEND:  </span><br><span class="line">                System.out.println(<span class="string">&quot;支付订单：order = &quot;</span> + order);  </span><br><span class="line">                System.out.println(<span class="string">&quot;存入db&quot;</span>);  </span><br><span class="line">                System.out.println(<span class="string">&quot;通过 MQ 通知财务&quot;</span>);  </span><br><span class="line">                System.out.println(<span class="string">&quot;通过 MQ 通知物流&quot;</span>);  </span><br><span class="line">                <span class="keyword">return</span>;  </span><br><span class="line">            <span class="keyword">case</span> ORDER_WAIT_RECEIVE:  </span><br><span class="line">                System.out.println(<span class="string">&quot;订单发货：order = &quot;</span> + order);  </span><br><span class="line">                System.out.println(<span class="string">&quot;存入db&quot;</span>);  </span><br><span class="line">                <span class="keyword">return</span>;  </span><br><span class="line">            <span class="keyword">case</span> ORDER_FINISH:  </span><br><span class="line">                System.out.println(<span class="string">&quot;接收订单：order = &quot;</span> + order);  </span><br><span class="line">                System.out.println(<span class="string">&quot;存入db&quot;</span>);  </span><br><span class="line">                <span class="keyword">return</span>;  </span><br><span class="line">            <span class="keyword">default</span>:  </span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>(<span class="string">&quot;Order state error&quot;</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3><span id="抽象命令ordercommandinterface">抽象命令OrderCommandInterface</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">OrderCommandInterface</span> &#123;  </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(Order order)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="chou-xiang-ming-ling-ordercommandinterface">抽象命令OrderCommandInterface</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">OrderCommandInterface</span> &#123;  </span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(Order order)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3><span id="具体命令ordercommand">具体命令OrderCommand</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderCommand</span> <span class="keyword">implements</span> <span class="title class_">OrderCommandInterface</span>&#123;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> OrderCommandReceiver receiver;  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(Order order)</span> &#123;  </span><br><span class="line">        <span class="built_in">this</span>.receiver.action(order);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="ju-ti-ming-ling-ordercommand">具体命令OrderCommand</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderCommand</span> <span class="keyword">implements</span> <span class="title class_">OrderCommandInterface</span>&#123;  </span><br><span class="line">    <span class="meta">@Autowired</span>  </span><br><span class="line">    <span class="keyword">private</span> OrderCommandReceiver receiver;  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(Order order)</span> &#123;  </span><br><span class="line">        <span class="built_in">this</span>.receiver.action(order);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h3><span id="命令调用者invoker">命令调用者Invoker</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderCommandInvoker</span> &#123;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">invoke</span><span class="params">(OrderCommandInterface command, Order order)</span> &#123;  </span><br><span class="line">        command.execute(order);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="ming-ling-diao-yong-zhe-invoker">命令调用者Invoker</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderCommandInvoker</span> &#123;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">invoke</span><span class="params">(OrderCommandInterface command, Order order)</span> &#123;  </span><br><span class="line">        command.execute(order);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3><span id="调用">调用</span></h3><p>OrderStateListener类的调用</p>
+<h3><span id="diao-yong">调用</span></h3><p>OrderStateListener类的调用</p>
 <p>详见之前的观察者模式的OrderStateListener</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">OrderCommandInvoker</span> <span class="variable">invoker</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OrderCommandInvoker</span>();  </span><br><span class="line">invoker.invoke(orderCommand,order);</span><br></pre></td></tr></table></figure>
 
 
 <p>service的调用，详见 [[设计模式重新整理#controller、service]]</p>
-<h1><span id="策略模式">策略模式</span></h1><h2><span id="概念">概念</span></h2><p>指对象有某个行为，但是在不同的场景中，该行为有不同的实现逻辑，即不同的策略，实现方式不同</p>
+<h1><span id="ce-lue-mo-shi">策略模式</span></h1><h2><span id="gai-nian">概念</span></h2><p>指对象有某个行为，但是在不同的场景中，该行为有不同的实现逻辑，即不同的策略，实现方式不同</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/e06a7ad5f8305eff129e40904d18c04a.png" alt="Pasted image 20240908121422"><br>哈哈，看着跟状态模式一样，</p>
 <ul>
 <li>Strategy抽象策略角色：该角色主要进行策略方法的定义</li>
 <li>ConcreteStrategy具体策略类：不同的策略需要创建不同的策略类（在多种类支付的实战中，支付宝支付策略和微信支付策略就是具体的策略类）​，并且实现抽象策略类定义的方法。</li>
 <li>Context上下文角色（也称环境角色）​：关联抽象策略类，并调用策略类的方法</li>
 </ul>
-<h2><span id="实现">实现</span></h2><p>第三方支付，如支付宝</p>
-<h3><span id="抽象策略类paystrategyinterface">抽象策略类PayStrategyInterface</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">PayStrategyInterface</span> &#123;  </span><br><span class="line">    <span class="comment">// 返回值类型string 访问第三方支付，平台返回一个url地址，让用户进行支付  </span></span><br><span class="line">    String <span class="title function_">pay</span><span class="params">(Order order)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="shi-xian">实现</span></h2><p>第三方支付，如支付宝</p>
+<h3><span id="chou-xiang-ce-lue-lei-paystrategyinterface">抽象策略类PayStrategyInterface</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">PayStrategyInterface</span> &#123;  </span><br><span class="line">    <span class="comment">// 返回值类型string 访问第三方支付，平台返回一个url地址，让用户进行支付  </span></span><br><span class="line">    String <span class="title function_">pay</span><span class="params">(Order order)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3><span id="具体策略alipaystrategy">具体策略AlipayStrategy</span></h3><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/7xlx3o" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h3><span id="ju-ti-ce-lue-alipaystrategy">具体策略AlipayStrategy</span></h3><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/7xlx3o" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <h3><span id="context">context</span></h3><p>Service层调用的是门面模式的封装层，门面模式调用策略工厂及策略模式的相关类</p>
 <p>策略模式和策略工厂的配合使用，就不需要将context修改成无状态类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractPayContext</span> &#123;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">execute</span><span class="params">(Order order)</span>;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PayContext</span> <span class="keyword">extends</span> <span class="title class_">AbstractPayContext</span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> PayStrategyInterface payStrategy;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PayContext</span><span class="params">(PayStrategyInterface payStrategy)</span> &#123;  </span><br><span class="line">        <span class="built_in">this</span>.payStrategy = payStrategy;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">execute</span><span class="params">(Order order)</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.payStrategy.pay(order);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1><span id="门面模式">门面模式</span></h1><h2><span id="解释">解释</span></h2><p>旨在封装。可以封装一个需求模块，如多种类支付模块，也可以封装一个复杂的系统，从设计模式的角度看Spring Cloud Gateway，Gateway就是一个门面，Spring Cloud Gateway提供了所有请求的访问入口，为后续无数的微服务模块提供了门面。</p>
+<h1><span id="men-mian-mo-shi">门面模式</span></h1><h2><span id="jie-shi">解释</span></h2><p>旨在封装。可以封装一个需求模块，如多种类支付模块，也可以封装一个复杂的系统，从设计模式的角度看Spring Cloud Gateway，Gateway就是一个门面，Spring Cloud Gateway提供了所有请求的访问入口，为后续无数的微服务模块提供了门面。</p>
 <ul>
 <li>Facade门面角色：该角色暴露给调用者进行调用。作为门面角色，它知道子系统的所有功能，门面角色会将客户端发来的请求转发到子系统中，转发之前，可以进行一定的类型转换和参数封装等辅助逻辑</li>
 <li>subsystem子系统角色：子系统角色可以简单到一个类，也可以复杂到多个系统。当然，针对第三方支付需求来说，子系统角色就是策略模式的Context环境类——PayContext</li>
 </ul>
-<h2><span id="实现">实现</span></h2><p>facade可以直接new创建Context类和具体的策略类，但是每次支付都创建，对内存产生很大的压力，导致频繁的minorGC</p>
+<h2><span id="shi-xian">实现</span></h2><p>facade可以直接new创建Context类和具体的策略类，但是每次支付都创建，对内存产生很大的压力，导致频繁的minorGC</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/6f107s" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-<h1><span id="工厂模式">工厂模式</span></h1><h2><span id="概念">概念</span></h2><ul>
+<h1><span id="gong-han-mo-shi">工厂模式</span></h1><h2><span id="gai-nian">概念</span></h2><ul>
 <li>Product：抽象产品角色</li>
 <li>ConcreteProduct：具体产品角色。此处我们具体需要创建的对象是PayContext类</li>
 <li>Creator：抽象工厂角色</li>
 <li>ConcreteCreator：具体工厂角色</li>
 </ul>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/f75d0098ce351da009a38f20fa1aa93a.png" alt="Pasted image 20240908130056"></p>
-<h2><span id="实现">实现</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/gjyc1m" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2><span id="shi-xian">实现</span></h2><iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/gjyc1m" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-<h1><span id="享元模式">享元模式</span></h1><h2><span id="解释">解释</span></h2><p>旨在解决重复对象的内存浪费问题，为重复的对象创建缓冲池。享元模式最经典的就是池技术，如String常量池、数据库连接池等都是享元模式的经典应用。我们对享元模式的使用，就是通过Map作为本地缓存，减少PayContext对象的重复创建。</p>
+<h1><span id="xiang-yuan-mo-shi">享元模式</span></h1><h2><span id="jie-shi">解释</span></h2><p>旨在解决重复对象的内存浪费问题，为重复的对象创建缓冲池。享元模式最经典的就是池技术，如String常量池、数据库连接池等都是享元模式的经典应用。我们对享元模式的使用，就是通过Map作为本地缓存，减少PayContext对象的重复创建。</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/f99d0e72fcc0dbe173dca6a579ba1e95.png" alt="Pasted image 20240908202443"></p>
 <ul>
 <li>FlyWeight角色：抽象享元角色。定义对象的抽象方法和属性，对应我们的AbstractPayContext类</li>
@@ -393,12 +394,12 @@
 <li>UnsharedFlyweight 对于一些对象，我们无法将其设置为单例对象，每次使用该对象，我们需要使用new关键字进行创建，或者我们可以使用@Scope注解，将对象标记为多例prototype对象，在每次使用对象时，都会重新创建一个全新的对象</li>
 <li>Client调用者 可以通过Spring的上下文对象ApplicationContext，调用BeanFactory的getBean方法获取单例对象;可以直接通过new关键字创建具体对象，即使对象是单例的，我们依然可以通过new关键字创建对象;可以直接通过new关键字创建多例对象</li>
 </ul>
-<h1><span id="责任链">责任链</span></h1><h2><span id="解释">解释</span></h2><ul>
+<h1><span id="ze-ren-lian">责任链</span></h1><h2><span id="jie-shi">解释</span></h2><ul>
 <li>Handler抽象责任角色：抽象责任角色负责定义抽象方法，并且需要在该角色中定义nextHandler。开篇我们就提到过，责任链模式就类似于链表，创建链表节点时，我们会定义next节点属性。同理，此处我们定义nextHandler属性，将多个责任类定义到一个责任处理链条中</li>
 <li>ConcreteHandler具体责任角色：具体的责任类。根据本章的实战需求，我们需要定义三个具体责任类：按用户购物种类筛选的责任类、按用户所在城市筛选的责任类和按用户性别筛选的责任类</li>
 <li>Client责任链的装配者、使用者：Client在进行责任链的调用前，需要对责任链条进行装配，说直白些，就是将多个具体责任类，通过nextHandler属性进行连接，因此Client角色的作用分为两个：装配责任链条、调用责任链条的头节点<br><img src="https://s1.imagehub.cc/images/2024/09/13/e8ac54f50f29d8a119025f1f59a2808c.png" alt="Pasted image 20240825201408"></li>
 </ul>
-<h2><span id="实现">实现</span></h2><h3><span id="需求描述">需求描述</span></h3><p>业务投放场景</p>
+<h2><span id="shi-xian">实现</span></h2><h3><span id="xu-qiu-miao-shu">需求描述</span></h3><p>业务投放场景</p>
 <p>不同的用户可能会收到不同的投放内容，我们需要根据用户不同的属性进行投放业务的筛选，只展示符合当前用户的投放信息</p>
 <p>返回信息之前，增加点判断条件对信息进行筛选</p>
 <p>业务那边要求实时调整筛选条件</p>
@@ -406,7 +407,7 @@
 <p>一些广告商想要作投放推广，投放全国女性用户和投放北京女性用户的价格肯定是不一样的啊。咱们目前只是入门级别的，把城市作为最小的投放单元。微信的广告投放更狠，都是按照方圆公里数进行投放的，投放多少公里以内的符合某些条件的用户。</p>
 <p>Apollo是携程框架部门研发的开源配置管理中心，能够集中化管理应用的不同环境、不同集群的配置，配置修改后能够实时推送到应用端，而且Apollo还有UI操作界面，完全满足投放的业务需求。业务部门可以在Apollo的UI界面修改筛选条件，然后单击发布，新的刷选条件就会实时地推送到咱们的项目</p>
 <p>Apollo配置中心+责任链模式。筛选条件目前只需要支持三个：​“按用户购物种类的筛选逻辑”​“按用户所在城市的筛选逻辑”和“按用户性别的筛选逻辑</p>
-<h3><span id="实现">实现</span></h3><p>需求：</p>
+<h3><span id="shi-xian">实现</span></h3><p>需求：</p>
 <ol>
 <li>在Apollo中配置的duty.chain的值是“city,sex,product”​，我们如何将它们转化成CityHandler→SexHandler→ProductHandler这样的责任对象链条</li>
 <li>如何确保，只有在第一次初始化责任链条或者是duty.chain的配置发生改变时，才去重新进行责任链条的组装</li>
@@ -419,37 +420,37 @@
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/rglmj4" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-<h1><span id="装饰器模式">装饰器模式</span></h1><h2><span id="解释">解释</span></h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/8cb2006c8c7afa627d336c079c492dec.png" alt="Pasted image 20240826172210"></p>
+<h1><span id="zhuang-shi-qi-mo-shi">装饰器模式</span></h1><h2><span id="jie-shi">解释</span></h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/8cb2006c8c7afa627d336c079c492dec.png" alt="Pasted image 20240826172210"></p>
 <ul>
 <li>Component抽象构件：Component是一个接口或者抽象类，定义我们核心的原始对象。本章实战，我们需要对OrderService的pay方法进行装饰，因此此处的Componet抽象构件，就是OrderService的抽象父类</li>
 <li>ConcreteComponent具体构件：你要装饰的就是它，就是我们的OrderService类</li>
 <li>Decorator抽象装饰角色：定义装饰器的属性和新的方法。此处我们的积分更新／红包发放方法的定义，就是在该类中进行的</li>
 <li>ConcreteDecorator具体装饰角色：新的装饰功能的具体实现类。具体实现积分更新／红包发放逻辑，服务降级逻辑也在此处</li>
 </ul>
-<h2><span id="实现">实现</span></h2><h3><span id="需求">需求</span></h3><p>平台积分更新和红包发放，在支付之后，并且需要做服务降级</p>
+<h2><span id="shi-xian">实现</span></h2><h3><span id="xu-qiu">需求</span></h3><p>平台积分更新和红包发放，在支付之后，并且需要做服务降级</p>
 <ul>
 <li>0代表正常服务，每次商品支付成功后，直接进行更新操作</li>
 <li>1代表延迟服务，遇上秒杀或双11活动，需要进行延迟更新，比如说凌晨0点开始秒杀，可以将积分更新或红包发放在30分钟后进行处理</li>
 <li>2代表暂停服务，平台可以随时将积分更新和红包发放业务暂停</li>
 </ul>
-<h3><span id="实现">实现</span></h3><p>apollo设置延时时间+rabbitmqTTL机制和死信队列实现延迟服务+装饰器隔离支付和积分红包的服务</p>
+<h3><span id="shi-xian">实现</span></h3><p>apollo设置延时时间+rabbitmqTTL机制和死信队列实现延迟服务+装饰器隔离支付和积分红包的服务</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/qzu9ck" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/13caca9011abaf7c3401ff203231487d.png" alt="Pasted image 20240909173849"></p>
-<h1><span id="建造者模式">建造者模式</span></h1><h2><span id="概念">概念</span></h2><ul>
+<h1><span id="jian-zao-zhe-mo-shi">建造者模式</span></h1><h2><span id="gai-nian">概念</span></h2><ul>
 <li>Product产品类：要建造的对象，本章对应我们的电子发票类</li>
 <li>Builder抽象建造者：负责产品的组建，定义产品组建的抽象方法</li>
 <li>ConcreteBuilder具体建造者：实现抽象类定义的所有方法，并且返回一个组建好的对象。根据本章需求，返回电子发票对象</li>
 <li>Director导演类：负责指导Builder进行对象创建，也可以称之为指挥者</li>
 </ul>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/82e41457a6f4f97698850376f5d2ee0e.png" alt="Pasted image 20240826204457"></p>
-<h2><span id="实现">实现</span></h2><h3><span id="需求分析">需求分析</span></h3><p>开发票，分为个人和企业<br>个人电子发票只需要填写抬头，企业电子发票需要填写税号、抬头还有银行卡等信息</p>
+<h2><span id="shi-xian">实现</span></h2><h3><span id="xu-qiu-fen-xi">需求分析</span></h3><p>开发票，分为个人和企业<br>个人电子发票只需要填写抬头，企业电子发票需要填写税号、抬头还有银行卡等信息</p>
 <p>使用建造者模式可以。</p>
 <p>扩展性呢？</p>
 <p>指挥者角色，这个角色主要负责信息的拼装，一般不负责信息的校验和获取。比如，将银行卡信息校验放到指挥者角色中不太合适，产品信息的获取放到这里也不合适，为指挥者角色做一个代理类，代理类中会有这些辅助的校验和辅助信息。后续新增其他逻辑的时候，直接在代理类中作修改就行，非常方便，扩展性很不错</p>
 <p>此外，支持clone</p>
 <p>两个意义：<br>一是对于发票的不可变信息，我们可以直接克隆，减少new关键字的使用，因为发票信息中，有一部分信息是固定不变的；<br>二是考虑未知的备份操作，一张电子发票开具后，可能不同的部门有不同的使用方式，支持Clone的话，可以直接在生成好的电子发票对象上进行Clone操作，生成两个相同的电子发票对象，分别进行不同的使用</p>
-<h3><span id="实现">实现</span></h3><p>product产品类</p>
+<h3><span id="shi-xian">实现</span></h3><p>product产品类</p>
 <iframe onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));" loading="lazy" style="width: 100%;height: 200px;" src="https://www.codecopy.cn/embed/cxwfwo" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>builder建造者</p>
@@ -465,12 +466,12 @@
 <li>RealSubject具体主题角色：被代理角色。也就是我们的Director类</li>
 <li>Proxy代理角色：在该角色中，我们要代理Director类的方法，并且增加前置的校验处理</li>
 </ul>
-<h1><span id="原型模式">原型模式</span></h1><h2><span id="概念">概念</span></h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/0297e06870152309d4073505369b68c3.png" alt="Pasted image 20240826211305"></p>
+<h1><span id="yuan-xing-mo-shi">原型模式</span></h1><h2><span id="gai-nian">概念</span></h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/0297e06870152309d4073505369b68c3.png" alt="Pasted image 20240826211305"></p>
 <ul>
 <li>Prototype原型抽象角色：原型模式的抽象角色，就是Java自带的java.lang.Cloneable接口，我们无须自主创建该角色</li>
 <li>ConcretePrototype原型具体角色：实现Cloneable接口的对象。依照本章的实战需求，我们需要让PersonalTicket和CompanyTicket实现Cloneable接口。</li>
 </ul>
-<h2><span id="实现">实现</span></h2><p>上个发票实现cloneable就是原型模式</p>
+<h2><span id="shi-xian">实现</span></h2><p>上个发票实现cloneable就是原型模式</p>
 <p>这里涉及到 引用拷贝、深拷贝和浅拷贝的区别</p>
 <p>引用拷贝：<br>创建了teacherWang对象，然后创建teacherSun对象等于teacherWang对象，teacherWang和teacherSun共用一个对象的内存地址，整个过程中，堆内存中只有一个Teacher对象</p>
 <p>浅拷贝：<br>实现cloneable接口，只能拷贝最外层的对象。拿Teacher对象来说，通过浅拷贝，我们会在堆内存中创建新的Teacher对象，然而Teacher对象中的Student对象却不会被重新创建。</p>
@@ -480,7 +481,7 @@
 <li>让所有层次的对象，都实现Cloneable接口，并实现Object的Clone方法</li>
 <li>通过Serializable序列化接口，实现深拷贝 大部分都是这种</li>
 </ul>
-<h1><span id="中介者模式">中介者模式</span></h1><h2><span id="概念">概念</span></h2><p>中介者模式可以通过中介者对象来封装一系列的对象交互，将对象间复杂的关系网状结构变成结构简单的以中介者为核心的星形结构，简化对象间的关系。同时，中介者模式能够将各个对象之间的关系解耦，每个对象不再与它关联的对象直接发生相互作用，而是通过中介者对象与关联的对象进行通信。</p>
+<h1><span id="zhong-jie-zhe-mo-shi">中介者模式</span></h1><h2><span id="gai-nian">概念</span></h2><p>中介者模式可以通过中介者对象来封装一系列的对象交互，将对象间复杂的关系网状结构变成结构简单的以中介者为核心的星形结构，简化对象间的关系。同时，中介者模式能够将各个对象之间的关系解耦，每个对象不再与它关联的对象直接发生相互作用，而是通过中介者对象与关联的对象进行通信。</p>
 <p>产品进销存系统中进行应用，包括我们的微信、QQ聊天，也都是采用了中介者模式的设计思想</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/0662c6998ae02eed25c66af57d596126.png" alt="Pasted image 20240827103053"></p>
 <ul>
@@ -492,38 +493,38 @@
 <p>跟代理模式的区别：<br>只负责中转，不处理具体事务</p>
 <p>跟观察者模式的区别：<br>介入具体业务，对象的交互，eventbus属于观察者模式</p>
 <p>缺点：<br>容易膨胀，变成大而复杂的上帝类</p>
-<h2><span id="实现">实现</span></h2><h3><span id="需求分析">需求分析</span></h3><p>朋友代付</p>
+<h2><span id="shi-xian">实现</span></h2><h3><span id="xu-qiu-fen-xi">需求分析</span></h3><p>朋友代付</p>
 <p>对于公司来说，咱们只关心商品的订单 订单谁支付、通过什么方式支付都不要紧，只要支付的时候，是当前的商品订单就行。<br>朋友代付功能，无非就是把商品订单信息转发到待支付的朋友那里，然后请朋友帮忙支付就行了</p>
 <p>订单消息和支付结果中转的场景</p>
 <ul>
 <li>订单消息中转 把我要购买的商品订单转发给我的朋友</li>
 <li>支付结果中转 朋友付完钱，不得告诉你一声</li>
 </ul>
-<h3><span id="实现">实现</span></h3><h4><span id="mediator抽象中介者abstractmediator">Mediator抽象中介者AbstractMediator</span></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractMediator</span> &#123;  </span><br><span class="line">    <span class="comment">/**  </span></span><br><span class="line"><span class="comment">     * 消息交互  </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> orderId 用户的订单ID  </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> targetCustomer 目标用户，比如说张三请李四帮忙支付，那么李四便是目标用户  </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> customer 抽象同事类 中介者需要根据该参数确定调用者的角色——购买者或帮忙支付者  </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> payResult 只有支付成功后此参数才不为null  </span></span><br><span class="line"><span class="comment">     */</span>    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">messageTransfer</span><span class="params">(String orderId, String targetCustomer, AbstractCustomer customer, String payResult)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="shi-xian">实现</span></h3><h4><span id="mediator-chou-xiang-zhong-jie-zhe-abstractmediator">Mediator抽象中介者AbstractMediator</span></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractMediator</span> &#123;  </span><br><span class="line">    <span class="comment">/**  </span></span><br><span class="line"><span class="comment">     * 消息交互  </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> orderId 用户的订单ID  </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> targetCustomer 目标用户，比如说张三请李四帮忙支付，那么李四便是目标用户  </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> customer 抽象同事类 中介者需要根据该参数确定调用者的角色——购买者或帮忙支付者  </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> payResult 只有支付成功后此参数才不为null  </span></span><br><span class="line"><span class="comment">     */</span>    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">messageTransfer</span><span class="params">(String orderId, String targetCustomer, AbstractCustomer customer, String payResult)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4><span id="colleague抽象同事类abstractcustomer">Colleague抽象同事类AbstractCustomer</span></h4><ul>
+<h4><span id="colleague-chou-xiang-tong-shi-lei-abstractcustomer">Colleague抽象同事类AbstractCustomer</span></h4><ul>
 <li>关联中介者，因为购买者和支付者都需要直接与中介者打交道，因此需要关联中介者类</li>
 <li>定义与中介者进行消息交互的方法</li>
 <li>有一些核心属性，如需要支付的订单号及当前客户信息等</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractCustomer</span> &#123;  </span><br><span class="line">    <span class="comment">//关联中介者  </span></span><br><span class="line">    <span class="keyword">public</span> AbstractMediator mediator;  </span><br><span class="line">    <span class="comment">//订单ID  </span></span><br><span class="line">    <span class="keyword">public</span> String orderId;  </span><br><span class="line">    <span class="comment">//当前用户信息  </span></span><br><span class="line">    <span class="keyword">public</span> String customerName;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">AbstractCustomer</span><span class="params">(AbstractMediator mediator, String orderId, String customerName)</span> &#123;  </span><br><span class="line">        <span class="built_in">this</span>.mediator = mediator;  </span><br><span class="line">        <span class="built_in">this</span>.orderId = orderId;  </span><br><span class="line">        <span class="built_in">this</span>.customerName = customerName;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getCustomerName</span><span class="params">()</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.customerName;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 和中介者的信息交互方法  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">messageTransfer</span><span class="params">(String orderId, String targetCustomer, String payResult)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4><span id="concretecolleague具体同事类buyer和payer">ConcreteColleague具体同事类Buyer和Payer</span></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Buyer</span> <span class="keyword">extends</span> <span class="title class_">AbstractCustomer</span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Buyer</span><span class="params">(AbstractMediator mediator, String orderId, String customerName)</span> &#123;  </span><br><span class="line">        <span class="built_in">super</span>(mediator, orderId, customerName);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">messageTransfer</span><span class="params">(String orderId, String targetCustomer, String payResult)</span> &#123;  </span><br><span class="line">        <span class="built_in">super</span>.mediator.messageTransfer(orderId,targetCustomer,<span class="built_in">this</span>,payResult);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Payer</span> <span class="keyword">extends</span> <span class="title class_">AbstractCustomer</span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Payer</span><span class="params">(AbstractMediator mediator, String orderId, String customerName)</span> &#123;  </span><br><span class="line">        <span class="built_in">super</span>(mediator, orderId, customerName);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">messageTransfer</span><span class="params">(String orderId, String targetCustomer, String payResult)</span> &#123;  </span><br><span class="line">        <span class="built_in">super</span>.mediator.messageTransfer(orderId,targetCustomer,<span class="built_in">this</span>,payResult);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="concretecolleague-ju-ti-tong-shi-lei-buyer-he-payer">ConcreteColleague具体同事类Buyer和Payer</span></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Buyer</span> <span class="keyword">extends</span> <span class="title class_">AbstractCustomer</span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Buyer</span><span class="params">(AbstractMediator mediator, String orderId, String customerName)</span> &#123;  </span><br><span class="line">        <span class="built_in">super</span>(mediator, orderId, customerName);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">messageTransfer</span><span class="params">(String orderId, String targetCustomer, String payResult)</span> &#123;  </span><br><span class="line">        <span class="built_in">super</span>.mediator.messageTransfer(orderId,targetCustomer,<span class="built_in">this</span>,payResult);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Payer</span> <span class="keyword">extends</span> <span class="title class_">AbstractCustomer</span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Payer</span><span class="params">(AbstractMediator mediator, String orderId, String customerName)</span> &#123;  </span><br><span class="line">        <span class="built_in">super</span>(mediator, orderId, customerName);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">messageTransfer</span><span class="params">(String orderId, String targetCustomer, String payResult)</span> &#123;  </span><br><span class="line">        <span class="built_in">super</span>.mediator.messageTransfer(orderId,targetCustomer,<span class="built_in">this</span>,payResult);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h4><span id="concretemediator具体中介者mediator">ConcreteMediator具体中介者Mediator</span></h4><ul>
+<h4><span id="concretemediator-ju-ti-zhong-jie-zhe-mediator">ConcreteMediator具体中介者Mediator</span></h4><ul>
 <li>具体中介者需要知道所有的同事类，因此该类需要关联同事类</li>
 <li>具体中介者需要实现抽象中介者的方法，作为不同同事类之间的信息交互桥梁</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Mediator</span> <span class="keyword">extends</span> <span class="title class_">AbstractMediator</span>&#123;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, Map&lt;String, AbstractCustomer&gt;&gt; customerInstances = <span class="keyword">new</span> <span class="title class_">ConcurrentHashMap</span>&lt;&gt;();  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">messageTransfer</span><span class="params">(String orderId, String targetCustomer, AbstractCustomer customer, String payResult)</span> &#123;  </span><br><span class="line">        <span class="keyword">if</span> (customer <span class="keyword">instanceof</span> Buyer) &#123;  </span><br><span class="line">            <span class="type">AbstractCustomer</span> <span class="variable">buyer</span> <span class="operator">=</span> customerInstances.get(orderId).get(<span class="string">&quot;buyer&quot;</span>);  </span><br><span class="line">            System.out.println(<span class="string">&quot;Friend pays on behalf: &quot;</span>+buyer.getCustomerName() + <span class="string">&quot; transfer orderId &quot;</span>+ orderId+<span class="string">&quot; to customer &quot;</span>+targetCustomer+<span class="string">&quot; to pay&quot;</span>);  </span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (customer <span class="keyword">instanceof</span> Payer) &#123;  </span><br><span class="line">            <span class="type">AbstractCustomer</span> <span class="variable">payer</span> <span class="operator">=</span> customerInstances.get(orderId).get(<span class="string">&quot;payer&quot;</span>);  </span><br><span class="line">            System.out.println(<span class="string">&quot;payment completed on behalf &quot;</span>+payer.getCustomerName()+<span class="string">&quot; completed orderId &quot;</span>+orderId+<span class="string">&quot; pay, notify &quot;</span>+targetCustomer+<span class="string">&quot;, pay result: &quot;</span>+payResult);  </span><br><span class="line">            customerInstances.remove(orderId);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addInstance</span><span class="params">(String orderId, HashMap&lt;String, AbstractCustomer&gt; map)</span> &#123;  </span><br><span class="line">        customerInstances.put(orderId, map);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/5f9ebe940c28f726f5230e8b2818cd42.png" alt="Pasted image 20240910140421"></p>
-<h4><span id="保证全局唯一中介者">保证全局唯一中介者</span></h4><p>通过Map&lt;String, Map&lt;String, AbstractCustomer&gt;&gt;数据结构存储购买者和实际支付者的信息。其中，外层Map的key为OrderId，内层Map的key为Buyer和Payer，value为AbstractCustomer对象</p>
+<h4><span id="bao-zheng-quan-ju-wei-yi-zhong-jie-zhe">保证全局唯一中介者</span></h4><p>通过Map&lt;String, Map&lt;String, AbstractCustomer&gt;&gt;数据结构存储购买者和实际支付者的信息。其中，外层Map的key为OrderId，内层Map的key为Buyer和Payer，value为AbstractCustomer对象</p>
 <p>代支付完成后，从Map中删除此orderId的信息</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderService</span> <span class="keyword">implements</span> <span class="title class_">OrderServiceInterface</span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span>  </span><br><span class="line">	<span class="keyword">private</span> Mediator mediator;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">friendPay</span><span class="params">(String sourceCustomer, String orderId, String targetCustomer, String payResult, String role)</span> &#123;  </span><br><span class="line">    <span class="comment">//创建中介者  </span></span><br><span class="line">    <span class="type">Buyer</span> <span class="variable">buyer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Buyer</span>( mediator, orderId,sourceCustomer);  </span><br><span class="line">    <span class="type">Payer</span> <span class="variable">payer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Payer</span>( mediator, orderId,sourceCustomer);  </span><br><span class="line">    HashMap&lt;String, AbstractCustomer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();  </span><br><span class="line">    map.put(<span class="string">&quot;buyer&quot;</span>, buyer);  </span><br><span class="line">    map.put(<span class="string">&quot;payer&quot;</span>,payer);  </span><br><span class="line">    mediator.addInstance(orderId,map);  </span><br><span class="line">    <span class="keyword">if</span> (role.equals(<span class="string">&quot;B&quot;</span>)) &#123;  </span><br><span class="line">        buyer.messageTransfer(orderId,targetCustomer,payResult);  </span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (role.equals(<span class="string">&quot;P&quot;</span>)) &#123;  </span><br><span class="line">        payer.messageTransfer(orderId,targetCustomer,payResult);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h1><span id="模板方法模式">模板方法模式</span></h1><h2><span id="概念">概念</span></h2><p>定义一个操作中的算法框架，而将一些步骤延迟到子类中，使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤</p>
+<h1><span id="mo-ban-fang-fa-mo-shi">模板方法模式</span></h1><h2><span id="gai-nian">概念</span></h2><p>定义一个操作中的算法框架，而将一些步骤延迟到子类中，使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤</p>
 <p>白话版：模板方法模式会定义好做一件事情的步骤，这个步骤是固定的，一部分步骤已经实现好了，你无须关心；另外一部分步骤没有做任何实现，需要子类进行实现</p>
 <p>对于已经定义好的步骤，我们称之为基础方法，需要子类进行实现的方法称之为模板方法<br><img src="https://s1.imagehub.cc/images/2024/09/13/0e111a91f20cce052d25201ed5c63ffc.png" alt="Pasted image 20240827144906"></p>
 <ul>
@@ -531,7 +532,7 @@
 <li>ConcreteClass具体模板对象：对抽象模板方法进行个性实现，不会改变整体的执行结构</li>
 </ul>
 <p>Spring源码的核心refresh方法里面的postProcessBeanFactory方法和onRefresh方法就是两个模板方法，与我们距离最近的模板方法模式的使用案例，就是AQS源码中的使用。</p>
-<h2><span id="实现">实现</span></h2><h3><span id="需求">需求</span></h3><p>审计日志</p>
+<h2><span id="shi-xian">实现</span></h2><h3><span id="xu-qiu">需求</span></h3><p>审计日志</p>
 <p>记录四种订单日志即可。每种订单日志有相似的部分，都有用户操作时间、操作类型、订单ID和用户ID</p>
 <ul>
 <li>订单创建日志：无其他特殊信息，包含刚才描述的相似内容即可</li>
@@ -540,7 +541,7 @@
 <li>订单签收日志：无其他特殊信息，包含刚才所说的相似内容即可</li>
 </ul>
 <p>这些日志放到哪里,数据处理部门给我们提供了一个Queue，我们直接将信息发送到Queue里就行。</p>
-<h3><span id="实现">实现</span></h3><p><img src="https://s1.imagehub.cc/images/2024/09/13/0f1c87f9850b358c224c48b62a9d01c9.png" alt="Pasted image 20240827150149"></p>
+<h3><span id="shi-xian">实现</span></h3><p><img src="https://s1.imagehub.cc/images/2024/09/13/0f1c87f9850b358c224c48b62a9d01c9.png" alt="Pasted image 20240827150149"></p>
 <p>模型OrderAuditLog</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span>  </span><br><span class="line"><span class="meta">@Builder</span>  </span><br><span class="line"><span class="meta">@NoArgsConstructor</span>  </span><br><span class="line"><span class="meta">@AllArgsConstructor</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderAuditLog</span> &#123;  </span><br><span class="line">    <span class="comment">//当前用户信息  </span></span><br><span class="line">    <span class="keyword">private</span> String account;  </span><br><span class="line">    <span class="comment">// 用户操作  </span></span><br><span class="line">    <span class="keyword">private</span> String action;  </span><br><span class="line">    <span class="comment">// 用户操作具体时间  </span></span><br><span class="line">    <span class="keyword">private</span> Date date;  </span><br><span class="line">    <span class="keyword">private</span> String orderId;  </span><br><span class="line">    <span class="comment">// 其他额外信息  </span></span><br><span class="line">    <span class="keyword">private</span> Object details;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
