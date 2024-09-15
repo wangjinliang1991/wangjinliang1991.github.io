@@ -329,20 +329,20 @@
 <p>适配器(Adapter)角色，既能够支持已有功能（用户名／密码登录）​，也能够适配扩展功能（第三方账号授权登录）​，适配的扩展功能还能够复用已有的方法（register方法和login方法）</p>
 <p>具体gitee的实现详见</p>
 <p>设计模式-适配器模式-通过gitee登录应用系统</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/mzgqwg"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/mzgqwg"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <h2 id="统一多个类的接口设计"><a href="#统一多个类的接口设计" class="headerlink" title="统一多个类的接口设计"></a>统一多个类的接口设计</h2><p>某个功能的实现依赖多个外部系统(或者说类)，敏感词过滤为例，系统可能依赖多个敏感词库，提高过滤的召回率。但是他们的接口实现都不太一样，通过适配器把接口适配为统一的接口定义，保证复用性。</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/87536f14abafefa2bc78ce1e1d5040ce.png" alt="Pasted image 20240831120842"></p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/z8uslh"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/z8uslh"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 <h2 id="替换外部依赖A为外部依赖B"><a href="#替换外部依赖A为外部依赖B" class="headerlink" title="替换外部依赖A为外部依赖B"></a>替换外部依赖A为外部依赖B</h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/0fe1215757c70ba85b6a73a3d1aa5aa5.png" alt="Pasted image 20240831182711"></p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/5gtu0m"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/5gtu0m"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 <h2 id="兼容老版本的接口"><a href="#兼容老版本的接口" class="headerlink" title="兼容老版本的接口"></a>兼容老版本的接口</h2><p>版本升级后，部分接口被弃用，标注deprecated，但是仍然有部分项目在用，如何丝滑的过渡？</p>
 <p>jdk给我们的demo，jdk1.0的容器遍历的类Enumeration，在JDK1.2的时候改为Iterator类，那如何兼容呢？采用适配器模式,暂时保留 Enumeration 类，并将其实现替换为直接调用 Itertor</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/ukprsd"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/ukprsd"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <h2 id="适配不同格式的数据"><a href="#适配不同格式的数据" class="headerlink" title="适配不同格式的数据"></a>适配不同格式的数据</h2><p>不同格式的数据之间的适配，比如，把从不同征信系统拉取的不同格式的征信数据，统一为相同的格式，以方 便存储和使用。再比如，Java 中的 Arrays.asList() 也可以看作一种数据适配器，将数组类 型的数据转化为集合容器类型。</p>
 <h2 id="不同日志框架的适配"><a href="#不同日志框架的适配" class="headerlink" title="不同日志框架的适配"></a>不同日志框架的适配</h2><p>2023年爆出的log4j的漏洞让全国人民都知道了这个日志框架。<br>java的日志框架比较混乱，或者说多元，因为最开始没有和数据库连接一样制定相关的接口规范。<br>梳理下大致的发展：</p>
@@ -355,7 +355,7 @@
 <li>那log4j由于性能问题，Apache宣布2015年不再维护，就又搞了log4j2，但是它跟log4j不兼容</li>
 </ol>
 <p>那问题来了，如果不同的项目，又用到logback，又用到log4j，然后呢想用slf4j，怎么整？<br>就考虑到适配器模式，把不同的框架接口二次封装，适配为统一的slf4j接口定义。</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/ltvfa1"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/ltvfa1"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><p>桥接模式也叫作桥梁模式(Bridge Pattern)，该模式旨在将抽象和实现解耦</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/b58f4c7cf10d5c03e10da974089b982b.png" alt="Pasted image 20240810164618"></p>
@@ -368,7 +368,7 @@
 <h2 id="implementor的实现"><a href="#implementor的实现" class="headerlink" title="implementor的实现"></a>implementor的实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">RegisterLoginFuncInterface</span> &#123;  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">login</span><span class="params">(String account,String password)</span>;  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">register</span><span class="params">(UserInfo userInfo)</span>;  </span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">checkUserExist</span><span class="params">(String userName)</span>;  </span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">login3rd</span><span class="params">(HttpServletRequest request)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然后就是具体的实现，这里面就有问题了，比如RegisterLoginByDefault是否要实现login3rd？RegisterLoginByGitee是否要实现login? 通过抽象层解决</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/ursb8n"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/ursb8n"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 <h2 id="abstract的实现"><a href="#abstract的实现" class="headerlink" title="abstract的实现"></a>abstract的实现</h2><p>需要提供给client这些方法：login抽象方法、register抽象方法、checkUserExists抽象方法和第三方账号登录的login3rd抽象方法</p>
@@ -376,21 +376,21 @@
 
 <p>用“抽象和实现”两种类结构的设计换来了代码的高扩展性，换来了核心实现对Client端的“最少知识”原则，换来了耦合度的降低，就好比我们用空间换来了执行速度。</p>
 <p>继续左路突破，RegisterLoginComponent子类</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/zwiuf1"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/zwiuf1"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <h2 id="搭建桥梁"><a href="#搭建桥梁" class="headerlink" title="搭建桥梁"></a>搭建桥梁</h2><p>通过在AbstractRegisterLoginComponent抽象类中关联RegisterLoginFuncInterface接口，并以“构造函数”的形式，初始化RegisterLoginFuncInterface接口属性，完成抽象与实现的桥梁搭建。</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/e433209cbae862550ebf8583899a936c.png" alt="Pasted image 20240907184925"></p>
 <h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><p>Controller层→Service层→桥接模式的左路的抽象AbstractRegisterLoginComponent入口</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/lp092p"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/lp092p"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>service层调用具体的登录实现，不能直接new，这样的话，每个进行login登录的用户线程，都会new两个对象，一个是左路的抽象子类RegisterLoginComponent作为调用入口；一个是右路具体的子类，如RegisterLoginByDefault。对于用户量庞大且活跃度较高的应用，这种代码很可能会引起频繁的垃圾收集操作。</p>
 <p>引入工厂类RegisterLoginComponentFactory进行RegisterLoginComponent对象的生成和缓存。</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/ie25sh"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/ie25sh"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>利用@PostConstruct注解，在RegisterLoginByDefault对象和RegisterLoginByGitee对象注入到SpringBoot的容器后，初始化funcMap</p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>桥接模式的核心其实就是桥梁，本质也是组合模式，只是扩展性更强。</p>
 <p>监控告警可以采用这种，Notification是抽象，MsgSender是实现，具体有短信告警、电话告警等</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/a9f70d"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/a9f70d"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 <h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><p>将对象组合成树形结构以表示“部分—整体”的层次结构</p>
@@ -401,14 +401,14 @@
 <li>Leaf叶子构件角色</li>
 </ul>
 <p>但是有些过时，现实场景，不能保证叶子节点永远不会没有子节点。因此再继续优化。<br><img src="https://s1.imagehub.cc/images/2024/09/13/5d2635f9622e1c25c4bfbbc61176c9aa.png" alt="Pasted image 20240818173156"></p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/qnr9nm"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/qnr9nm"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>设计要点：</p>
 <ul>
 <li>addProductIteam方法和delProductIteam方法，都不强制子类进行实现，因此没有使用abstract修饰这两个方法，子类可以根据需求自主选择实现哪些方法。</li>
 <li>参数都用AbstractProductIteam本身，遵循李氏替换原则</li>
 </ul>
-<h2 id="对应controller-service和repository"><a href="#对应controller-service和repository" class="headerlink" title="对应controller service和repository"></a>对应controller service和repository</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/6dqssa"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2 id="对应controller-service和repository"><a href="#对应controller-service和repository" class="headerlink" title="对应controller service和repository"></a>对应controller service和repository</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/6dqssa"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>其中，generateProductTree方法是将数据库的商品类目信息转化成组合模式树形结构的核心代码</p>
 <h1 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>旨在操作某对象结构中各个（各层级）元素的模式，在不改变元素整体结构的前提下，定义作用于这些元素的新操作。</p>
@@ -424,14 +424,14 @@
 </ul>
 <h2 id="Visitor"><a href="#Visitor" class="headerlink" title="Visitor"></a>Visitor</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ItemVisitor</span>&lt;T&gt; &#123;  </span><br><span class="line">    T <span class="title function_">visitor</span><span class="params">(AbstractProductItem productItem)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="ConcreteVistor"><a href="#ConcreteVistor" class="headerlink" title="ConcreteVistor"></a>ConcreteVistor</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/91ox3d"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2 id="ConcreteVistor"><a href="#ConcreteVistor" class="headerlink" title="ConcreteVistor"></a>ConcreteVistor</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/91ox3d"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 <h2 id="ObjectStructure数据提供者"><a href="#ObjectStructure数据提供者" class="headerlink" title="ObjectStructure数据提供者"></a>ObjectStructure数据提供者</h2><p>其实就是RedisCommonProcessor，从缓存获取数据</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/4o4eiq"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/4o4eiq"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/0c5d949dbd2068f205ea0fb4fda58655.png" alt="Pasted image 20240907230308"></p>
-<h2 id="controller-service和repository"><a href="#controller-service和repository" class="headerlink" title="controller service和repository"></a>controller service和repository</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/3cbjkx"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2 id="controller-service和repository"><a href="#controller-service和repository" class="headerlink" title="controller service和repository"></a>controller service和repository</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/3cbjkx"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 无论是商品类目添加还是商品类目删除，代码的实现逻辑并未涉及补偿机制以及极端场景
 
 
@@ -478,14 +478,14 @@
 <li>配置转换流程</li>
 <li>状态机自身的存储和读取 spring-statemachine-redis</li>
 </ul>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/15kizf"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/15kizf"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 
 <h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><p>核心就两个：观察者observer和被观察者subject，再加上各自的子类</p>
 <p>缺点：很难优雅的把观察者添加到observerList中</p>
 <p>解决：对observersList属性的初始化过程中，我们需要引入一个用fianl static修饰的Vector数据结构，并通过@PostConstruct注解初始化Vector中的元素</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/eab5nm"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/eab5nm"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 <h2 id="基于状态机的观察者模式"><a href="#基于状态机的观察者模式" class="headerlink" title="基于状态机的观察者模式"></a>基于状态机的观察者模式</h2><p>作用：</p>
@@ -493,11 +493,11 @@
 <li>监听器 监听对象</li>
 <li>监听到状态变化，所采取的行动逻辑</li>
 </ol>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/q5f7mh"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/q5f7mh"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>通过@OnTransition注解，标注source和target属性，代表了该方法专门用于监听订单状态从ORDER_WAIT_PAY到ORDER_WAIT_SEND的转化</p>
 <p>PayToSend方法的参数<code>Message&lt;OrderStateChangeAction&gt;message</code>，此处使用org.springframework.messaging.Message类，对OrderStateChangeAction订单操作枚举类进行了封装，从字面意义来说，这个参数代表了一条订单操作的消息。我们可以根据这个消息，获取订单的信息，并进行后续处理</p>
-<h2 id="controller、service"><a href="#controller、service" class="headerlink" title="controller、service"></a>controller、service</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/b5fcmi"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2 id="controller、service"><a href="#controller、service" class="headerlink" title="controller、service"></a>controller、service</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/b5fcmi"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <h3 id="雷点"><a href="#雷点" class="headerlink" title="雷点"></a>雷点</h3><p>所有的第三方平台的支付操作，都是两段式的：第一段向第三方支付平台提交订单支付请求；第二段第三方支付平台回调我们平台的接口。只有在第二段的时候，我们才能确认订单支付是否成功，才能确认是否需要将订单状态转为待发货状态。</p>
 <p>其他注意：</p>
@@ -539,7 +539,7 @@
 <h2 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h2><p>第三方支付，如支付宝</p>
 <h3 id="抽象策略类PayStrategyInterface"><a href="#抽象策略类PayStrategyInterface" class="headerlink" title="抽象策略类PayStrategyInterface"></a>抽象策略类PayStrategyInterface</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">PayStrategyInterface</span> &#123;  </span><br><span class="line">    <span class="comment">// 返回值类型string 访问第三方支付，平台返回一个url地址，让用户进行支付  </span></span><br><span class="line">    String <span class="title function_">pay</span><span class="params">(Order order)</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="具体策略AlipayStrategy"><a href="#具体策略AlipayStrategy" class="headerlink" title="具体策略AlipayStrategy"></a>具体策略AlipayStrategy</h3><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/7xlx3o"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h3 id="具体策略AlipayStrategy"><a href="#具体策略AlipayStrategy" class="headerlink" title="具体策略AlipayStrategy"></a>具体策略AlipayStrategy</h3><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/7xlx3o"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <h3 id="context"><a href="#context" class="headerlink" title="context"></a>context</h3><p>Service层调用的是门面模式的封装层，门面模式调用策略工厂及策略模式的相关类</p>
 <p>策略模式和策略工厂的配合使用，就不需要将context修改成无状态类</p>
@@ -551,7 +551,7 @@
 <li>subsystem子系统角色：子系统角色可以简单到一个类，也可以复杂到多个系统。当然，针对第三方支付需求来说，子系统角色就是策略模式的Context环境类——PayContext</li>
 </ul>
 <h2 id="实现-3"><a href="#实现-3" class="headerlink" title="实现"></a>实现</h2><p>facade可以直接new创建Context类和具体的策略类，但是每次支付都创建，对内存产生很大的压力，导致频繁的minorGC</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/6f107s"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/6f107s"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><h2 id="概念-5"><a href="#概念-5" class="headerlink" title="概念"></a>概念</h2><ul>
@@ -561,7 +561,7 @@
 <li>ConcreteCreator：具体工厂角色</li>
 </ul>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/f75d0098ce351da009a38f20fa1aa93a.png" alt="Pasted image 20240908130056"></p>
-<h2 id="实现-4"><a href="#实现-4" class="headerlink" title="实现"></a>实现</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/gjyc1m"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h2 id="实现-4"><a href="#实现-4" class="headerlink" title="实现"></a>实现</h2><iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/gjyc1m"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 <h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><h2 id="解释-2"><a href="#解释-2" class="headerlink" title="解释"></a>解释</h2><p>旨在解决重复对象的内存浪费问题，为重复的对象创建缓冲池。享元模式最经典的就是池技术，如String常量池、数据库连接池等都是享元模式的经典应用。我们对享元模式的使用，就是通过Map作为本地缓存，减少PayContext对象的重复创建。</p>
@@ -603,10 +603,10 @@
 </ol>
 <p>采用了枚举类+反射责任类创建+synchronized同步代码块+链表哑结点的简易算法进行实现，并且使用了两个全局变量控制组装时机，只有在第一次进行责任链条初始化和duty.chain配置更新时，才会触发责任链条的重新组装</p>
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/a3fb4e085388187f2f0cb3da1085ac22.png" alt="Pasted image 20240825202221"><br>责任类</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/iidb0d"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/iidb0d"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>组装和调用</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/rglmj4"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/rglmj4"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
 <h1 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h1><h2 id="解释-4"><a href="#解释-4" class="headerlink" title="解释"></a>解释</h2><p><img src="https://s1.imagehub.cc/images/2024/09/13/8cb2006c8c7afa627d336c079c492dec.png" alt="Pasted image 20240826172210"></p>
@@ -623,7 +623,7 @@
 <li>2代表暂停服务，平台可以随时将积分更新和红包发放业务暂停</li>
 </ul>
 <h3 id="实现-8"><a href="#实现-8" class="headerlink" title="实现"></a>实现</h3><p>apollo设置延时时间+rabbitmqTTL机制和死信队列实现延迟服务+装饰器隔离支付和积分红包的服务</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/qzu9ck"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/qzu9ck"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p><img src="https://s1.imagehub.cc/images/2024/09/13/13caca9011abaf7c3401ff203231487d.png" alt="Pasted image 20240909173849"></p>
 <h1 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h1><h2 id="概念-6"><a href="#概念-6" class="headerlink" title="概念"></a>概念</h2><ul>
@@ -640,13 +640,13 @@
 <p>此外，支持clone</p>
 <p>两个意义：<br>一是对于发票的不可变信息，我们可以直接克隆，减少new关键字的使用，因为发票信息中，有一部分信息是固定不变的；<br>二是考虑未知的备份操作，一张电子发票开具后，可能不同的部门有不同的使用方式，支持Clone的话，可以直接在生成好的电子发票对象上进行Clone操作，生成两个相同的电子发票对象，分别进行不同的使用</p>
 <h3 id="实现-10"><a href="#实现-10" class="headerlink" title="实现"></a>实现</h3><p>product产品类</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/cxwfwo"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/cxwfwo"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>builder建造者</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/uohbhu"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/uohbhu"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>director导演</p>
-<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 200px;"  src="https://www.codecopy.cn/embed/bdapwx"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' loading="lazy" style="width: 100%;height: 400px;"  src="https://www.codecopy.cn/embed/bdapwx"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 <p>director搞了个AbstractDirector抽象类，为了程序的扩展性，银行卡信息的校验放在代理类，此外后续可能有其他的校验</p>
 <p>上面也是代理模式</p>
