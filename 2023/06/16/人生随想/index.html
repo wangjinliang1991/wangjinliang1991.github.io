@@ -103,6 +103,10 @@
  
     </div>
       
+
+
+
+  
     <div class="article-entry" itemprop="articleBody">
        
   <p>年轻的人，总是会理想主义；世事经历的多了，便成了存在主义。新冠肺炎、指鼠为鸭、账号突然被封，让我们的周遭变得不确定，只有每天太阳照常升起，所以，好好活就是有意义，分享给那些在隧道中艰难跋涉的人们。</p>
@@ -412,6 +416,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link

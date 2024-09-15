@@ -103,6 +103,12 @@
  
     </div>
       
+    <div class="tocbot"></div>
+
+
+
+
+  
     <div class="article-entry" itemprop="articleBody">
        
   <h2 id="chatGPT注册"><a href="#chatGPT注册" class="headerlink" title="chatGPT注册"></a>chatGPT注册</h2><h3 id="vpn"><a href="#vpn" class="headerlink" title="vpn"></a>vpn</h3><p>OpenAI直接拒绝了国内包括香港的注册，因此必须使用VPN，有付费的，有免费的。</p>
@@ -408,6 +414,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link

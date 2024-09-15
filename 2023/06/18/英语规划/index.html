@@ -103,6 +103,12 @@
  
     </div>
       
+    <div class="tocbot"></div>
+
+
+
+
+  
     <div class="article-entry" itemprop="articleBody">
        
   <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>英语，作为一个拦路虎，很烦人，但是又不得不面对，因为英语作为国际通用语言，比较前沿的东西都是英语写的，科研成果、github、chatGPT等等，而中文环境充斥着僵尸号、各种二三手的消息、自我阉割的审查机制，导致学习成本用人生长度来计算的话，比英语高多了。</p>
@@ -433,6 +439,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link
